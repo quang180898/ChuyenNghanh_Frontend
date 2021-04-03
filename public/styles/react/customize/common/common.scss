@@ -1,0 +1,14 @@
+.text-link {
+    a {
+        color: #666b77;
+        text-decoration: none;
+    }
+}
+.chatbot-table {
+    tbody tr {
+        &:hover,
+        &.active {
+            background-color: unset;
+        }
+    }
+}

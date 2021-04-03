@@ -1,0 +1,23 @@
+.scb-dashboard {
+    .title-card-status {
+        .text {
+            margin: 0 0 15px 0;
+        }
+    }
+
+    .statistical_card__block {
+        &.border_absolute {
+            position: unset;
+        }
+    }
+
+    #chart {
+        max-height: 400px;
+    }
+
+    .chart-notes__text,
+    .statistical_card__content,
+    .statistical_card__counter {
+        font-size: 16px;
+    }
+}

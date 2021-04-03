@@ -1,0 +1,14 @@
+.input-chatbot {
+    &__label {
+        @include flexbox;
+        @include justify-content(space-between);
+        .text {
+            @include fw-normal;
+            color: #666b77;
+        }
+        .add {
+            color: #0080ff;
+            cursor: pointer;
+        }
+    }
+}

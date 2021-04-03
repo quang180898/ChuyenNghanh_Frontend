@@ -1,0 +1,23 @@
+.input-datepicker {
+    .form-group {
+        @include flexbox;
+        @include flex-direction(column);
+    }
+}
+
+
+.status_marital {
+    @include flexbox;
+}
+
+.range_income {
+    margin-top: 5px;
+    width: 100%;
+    @include flexbox;
+    @include flex-wrap(wrap);
+
+    .ant-radio-wrapper {
+        margin-bottom: 7px;
+        @include flex(1)
+    }
+}

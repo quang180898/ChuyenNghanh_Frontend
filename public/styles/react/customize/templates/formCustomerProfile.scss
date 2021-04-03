@@ -1,0 +1,43 @@
+.scb-formCustomerProfile {
+    .input_icf {
+        display: flex;
+        &-form {
+            width: 95%;
+        }
+        & i {
+            font-size: 40px;
+            color: #e05858;
+        }
+    }
+    .ant-form-item {
+        margin-bottom: 0;
+    }
+    .ant-select-arrow {
+        color: #666b77;
+    }
+    .ant-form label {
+        font-weight: bold;
+        font-family: "Roboto-Bold", arial;
+        font-size: 14px;
+        color: #666b77;
+    }
+    .customer_name > input.ant-input {
+        color: #1f2191 !important;
+        font-weight: bold;
+    }
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+        background-color: #f2f5fa !important;
+    }
+    .ant-input-affix-wrapper {
+        background-color: #f2f5fa !important;
+    }
+    .ant-input-affix-wrapper > input.ant-input {
+        background-color: #f2f5fa !important;
+    }
+    .ant-picker {
+        background-color: #f2f5fa !important;
+    }
+    .ant-form-item-has-error .ant-form-item-explain {
+        margin-top: -10px;
+    }
+}

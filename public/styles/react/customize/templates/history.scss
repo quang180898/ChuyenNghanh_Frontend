@@ -1,0 +1,33 @@
+.history {
+    .text-decoration {
+        a {
+            color: #666b77;
+        }
+    }
+    .ant-select-selector {
+        background-color: #0080ff !important;
+        border: none !important;
+        min-height: auto !important;
+        color: white;
+        min-height: none;
+    }
+    .ant-select-arrow {
+        color: white;
+    }
+    .ant-picker {
+        background-color: #0080ff !important;
+        color: white !important;
+        min-height: 0 !important;
+        border: none !important;
+        color: white;
+    }
+    .ant-picker-input input {
+        color: white;
+    }
+    .anticon svg {
+        color: white;
+    }
+    .ant-picker-suffix {
+        color: white;
+    }
+}
