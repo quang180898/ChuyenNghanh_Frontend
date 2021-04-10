@@ -1,7 +1,6 @@
 //libs
 import React, { Suspense } from 'react';
-import { Switch, Route } from "react-router-dom";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { LOGINS } from "../routes";
 import { StaticLoading } from '../components/base/Loading';
 

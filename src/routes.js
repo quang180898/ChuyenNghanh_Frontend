@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { PAGES_URL } from './contants';
+import { PAGES_URL } from './contant';
 
 const Login = lazy(() => import('./templates/Account/Login'));
 const ForgotPassword = lazy(() => import('./templates/Account/ForgotPassword'));
