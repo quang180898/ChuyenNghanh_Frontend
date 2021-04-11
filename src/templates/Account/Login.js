@@ -17,9 +17,7 @@ const Login = () => {
     }
     return (
         <div className="login scb-login">
-            <div className="login__bg">
-                <img className="logo" src={`${IMAGE_URL}images/logo.png`} alt="vlogo" />
-            </div>
+            <div className="login__bg"/>
             <div className="login__right">
                 <div className="login__form">
                     <Form
