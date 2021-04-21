@@ -2,20 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Form } from 'antd';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
-import { PAGES_URL, PERMISSION } from "../../contant";
+import { accountAction } from '../../store/action';
+import { PAGES_URL, GENDER_TYPE ,PERMISSION } from "../../contant";
 import { convertContant, getLocalStore, RULES } from "../../functions/Utils";
 import { ButtonStyle } from "../../components/base/Button";
 import { InputBase, InputDatePicker, InputPassword } from "../../components/base/Input";
-import { SelectSingle } from "../../components/base/Select";
 
 const Register = () => {
 
     const [formCreateEditAccount] = Form.useForm()
     const dispatch = useDispatch();
-    const history = useHistory();
-    const location = useLocation();
-    const user = getLocalStore('user')
+    const dateFormat = "DD/MM/YYYY";
     const accountReducer = useSelector(state => state.accountReducer)
     const { newAccount } = accountReducer;
     const [isloading, setLoading] = useState(false);
@@ -24,15 +21,25 @@ const Register = () => {
         user_name: '',
         password: '',
         password_repeat: '',
-        gender: '',
         email: '',
         phone: '',
-        birth_date: '',
         // permission_code: convertContant('user', PERMISSION, "label").value
     })
-    
+
     const onSubmitInfo = (data) => {
-        console.log(data);
+        if (data) {
+            const {name , userName, email, password, rePassword, phone} = data
+            const params = {
+                name: name,
+                user_name: userName,
+                pass_word: password,
+                password_repeat: rePassword,
+                mobile: phone,
+                mail: email,
+            }
+            dispatch(accountAction.createOrUpdateAccount(params))
+        }
+        setLoading(true)
     }
 
     return (
@@ -58,20 +65,6 @@ const Register = () => {
                         <div className="cus-input">
                             <Form.Item name="userName" rules={RULES.text.form()} >
                                 <InputBase label="User Name" />
-                            </Form.Item>
-                        </div>
-                        </div>
-                        <div className="col-12 col-sm-6 col-xl-4">
-                        <div className="cus-input">
-                            <Form.Item name="birthDate" rules={RULES.birthday.form()} >
-                                <InputDatePicker label="Birth Date" />
-                            </Form.Item>
-                        </div>
-                        </div>
-                        <div className="col-12 col-sm-6 col-xl-4">
-                        <div className="cus-input">
-                            <Form.Item name="gender" rules={RULES.text.form()} >
-                                <SelectSingle label="Gender" />
                             </Form.Item>
                         </div>
                         </div>

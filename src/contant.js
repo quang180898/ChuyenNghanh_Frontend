@@ -18,6 +18,11 @@ export const PERMISSION = [
     { value: 2, label: 'user', data: 'User' },
 ]
 
+export const GENDER_TYPE = [
+    {value: 0, label: "Male" },
+    {value: 1, label: "Famale"},
+]
+
 export const PAGES_URL = {
     login: {
         url: '/login',

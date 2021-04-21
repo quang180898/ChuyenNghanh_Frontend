@@ -4,16 +4,33 @@ import { Form } from 'antd';
 import { RULES } from "functions/Utils";
 import { PAGES_URL } from "contant";
 import { InputBase, InputPassword } from "components/base/Input";
+import { useDispatch, useSelector } from "react-redux";
 import { ButtonStyle } from "components/base/Button";
 
 const Login = () => {
-
-    //tên form
+    const dispatch = useDispatch();
     const [formLogin] = Form.useForm();
+    const dataLogin = useSelector(state => state.accountReducer);
+    const { error, login } = dataLogin;
+    const [state, setState] = useState({
+        isWarning: false,
+        isSave: false
+    })
 
-    //submit form lấy hết data từ form.item (e)
-    const onSubmitInfo = (e) => {
-        console.log(e);
+    const [loading, setLoading] = useState(false)
+    const [time, setTime] = useState()
+
+    // check login fail and off loading
+    useEffect(()=>{
+        if(dataLogin && dataLogin.error && dataLogin.error.err){
+            setLoading(false);
+        }
+    },[dataLogin])
+
+
+    const onSubmitInfo = (data) => {
+        const { username, password } = data
+        dispatch(accountAction.loadLogin({ username: username, password: password }))
     }
     return (
         <div className="login scb-login">
@@ -26,13 +43,13 @@ const Login = () => {
                     >
                         <div className="title">Sign in</div>
                         <div className="cus-input">
-                            <Form.Item name="email" rules={RULES.email.form()} >
-                                <InputBase label="Email" />
+                            <Form.Item name="username" rules={RULES.text.form()} >
+                                <InputBase label="Username" />
                             </Form.Item>
                         </div>
                         <div className="cus-input">
                             <Form.Item name="password" rules={RULES.password.form()} >
-                                <InputPassword label="PassWord" />
+                                <InputPassword label="Password" />
                             </Form.Item>
                         </div>
                         <div className="forgot-password">

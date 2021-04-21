@@ -23,6 +23,7 @@ export function* loginWatcher() {
 
 // createOrUpdateAccount
 export function* createOrUpdateAccount(payload) {
+    console.log({payload})
     try {
         const response = yield accountService.createOrUpdateAccount(payload.params);
         if (response.success) {

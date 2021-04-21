@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Container from './Container';
+import Header from '../components/common/Header/Header';
+import Footer from '../components/common/Footer/Footer';
+
 const MainPage = (props) => {
     return (
-        <Container />
+        <div>
+            <Header />
+            <Container />
+            <Footer />
+        </div>
     );
 }
 
