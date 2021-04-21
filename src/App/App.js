@@ -6,7 +6,6 @@ import { getPathList, LOGINS , MAIN} from '../routes';
 import MainLogin from './MainLogin';
 import MainPage from "./MainPage";
 // import { TOKEN } from '../functions/Utils';
-const TOKEN = false
 
 const PrivateLoginRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
@@ -16,9 +15,7 @@ const PrivateLoginRoute = ({ component: Component, ...rest }) => (
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
         //check nếu chưa login thì ko được vào mainPage
-        TOKEN
-            ? <MainPage />
-            : <Redirect to='/login' />
+        <MainPage />
     )} />
 )
 
