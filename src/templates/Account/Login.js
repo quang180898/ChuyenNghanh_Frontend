@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Form } from 'antd';
 import { RULES } from "functions/Utils";
-import { IMAGE_URL, PAGES_URL } from "contant";
+import { PAGES_URL } from "contant";
 import { InputBase, InputPassword } from "components/base/Input";
 import { ButtonStyle } from "components/base/Button";
 

@@ -12,7 +12,10 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
+    writeToDisk: true,
     historyApiFallback: true,
+    port: 3000,
+    hot: true
   },
   module: {
     rules: [
@@ -76,8 +79,8 @@ module.exports = {
     })
   ],
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true,
+    filename: 'bundle.js',
+    publicPath: '/',
+    path: __dirname + '/dist',
   },
 };

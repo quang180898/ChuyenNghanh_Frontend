@@ -1,9 +1,10 @@
-import { lazy } from 'react';
+import React, { lazy } from 'react';
 import { PAGES_URL } from './contant';
 
 const Login = lazy(() => import('./templates/Account/Login'));
 const ForgotPassword = lazy(() => import('./templates/Account/ForgotPassword'));
 const Register = lazy(() => import('./templates/Account/Register'));
+const Home = lazy(() => import('./templates/Home/Home'));
 
 const LOGINS = [
     {
@@ -20,6 +21,13 @@ const LOGINS = [
     },
 ]
 
+const MAIN = [
+    {
+        "path": PAGES_URL.home.url,
+        "component": Home
+    },
+]
+
 const getPathList = (DATA) => {
     var list = []
     for (var i = 0; i < DATA.length; i++) {
@@ -31,4 +39,4 @@ const getPathList = (DATA) => {
     return list
 }
 
-export { LOGINS, getPathList }
+export { MAIN,LOGINS, getPathList }

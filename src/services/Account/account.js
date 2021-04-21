@@ -29,6 +29,5 @@ function login(username, password, onNext) {
 function createOrUpdateAccount(params) {
     const { name, user_name, pass_word, password_repeat, mobile, mail } = params
     const body = params;
-    // console.log('params', params);
     return api.postWithFormData(body, api.ACCOUNT_UPDATE)
 }

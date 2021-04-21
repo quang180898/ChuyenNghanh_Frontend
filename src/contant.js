@@ -13,6 +13,11 @@ export const FILE_CONTENT_TYPE = {
     DWG: 'image/vnd.dwg',
 }
 
+export const PERMISSION = [
+    { value: 1, label: 'admin', data: 'Admin' },
+    { value: 2, label: 'user', data: 'User' },
+]
+
 export const PAGES_URL = {
     login: {
         url: '/login',
@@ -24,6 +29,10 @@ export const PAGES_URL = {
     },
     forgotPassword: {
         url: '/forgotPassword',
+        title: ''
+    },
+    home: {
+        url: '/home',
         title: ''
     },
 }

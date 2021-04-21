@@ -3,52 +3,47 @@
     @include flex-wrap(nowrap);
     background-color: #ffffff;
     height: 100vh;
+
     @media (max-width: 992px) {
         flex-direction: column;
     }
+
+    @media (max-width: 767px) {
+        display: block;
+    }
+
     &__bg {
-        width: 50%;
+        width: 40%;
         position: relative;
         @media (max-width: 992px) {
             width: 100%;
             height: 35vh;
         }
-        @media (max-width: 767px) {
-            text-align: center;
-            .logo {
-                position: absolute;
-                margin: auto;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-            }
-        }
     }
     &__right {
         @include flex_center;
         @include flex-direction(column);
-        width: 50%;
-        padding: 0 60px;
+        width: 60%;
+
+        @media (max-width: 1200px) {
+            padding: 0 10px;
+        }
+
         @media (max-width: 992px) {
             width: 100%;
-            padding: 85px 80px;
         }
         @media (max-width: 481px) {
             height: auto;
-            padding: 30px 40px;
+            padding: 30px;
         }
     }
     &__form {
-        max-width: 518px;
         width: 100%;
-        .mess-error {
-            margin-top: 5px;
-            display: none;
-            @media (max-width: 481px) {
-                font-size: 10px;
-            }
+        max-width: 460px;
+        @media (max-width: 992px) {
+            padding-top: 30px;
         }
+        
         .title {
             @include fw-medium;
             text-align: center;
@@ -87,49 +82,6 @@
         }
         .form-group {
             margin-bottom: 45px;
-            .form-control {
-                font-size: 18px;
-                height: 100%;
-                color: #304460;
-                padding: 12px;
-                @media (max-width: 992px) {
-                    font-size: 16px;
-                }
-                @media (max-width: 481px) {
-                    font-size: 14px;
-                }
-
-                @mixin placeholderInputStyles {
-                    @include fw-light;
-                    font-size: 18px;
-                    color: #8b8b8b;
-                    @media (max-width: 992px) {
-                        font-size: 16px;
-                    }
-                    @media (max-width: 481px) {
-                        font-size: 14px;
-                    }
-                }
-                &::-webkit-input-placeholder {
-                    /* Chrome/Opera/Safari */
-                    @include placeholderInputStyles;
-                }
-
-                &::-moz-placeholder {
-                    /* Firefox 19+ */
-                    @include placeholderInputStyles;
-                }
-
-                &:-ms-input-placeholder {
-                    /* IE 10+ */
-                    @include placeholderInputStyles;
-                }
-
-                &:-moz-placeholder {
-                    /* Firefox 18- */
-                    @include placeholderInputStyles;
-                }
-            }
             .input-icon {
                 color: #717c99;
             }
@@ -196,4 +148,18 @@
             }
         }
     }
+    .ant-picker {
+        min-height: 48px;
+    }
+    .ant-select {
+        min-width: unset;
+        .ant-select-selector {
+            min-height: 48px !important;
+        }
+    }
+    
 }
+.register {
+    max-width: none;
+}
+

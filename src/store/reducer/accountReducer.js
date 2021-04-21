@@ -2,7 +2,7 @@ import { accountAction } from '../action';
 
 const initialState = {
     login: null,
-    new_account: null,
+    newAccount: null,
     isFetching: false,
     error: false,
 };
@@ -19,11 +19,11 @@ export default (state = initialState, action) => {
 
         //new account
         case accountAction.CREATE_UPDATE_ACCOUNT_REQUEST:
-            return { ...state, isFetching: true, new_account: null, success: false, error: false };
+            return { ...state, isFetching: true, newAccount: null, success: false, error: false };
         case accountAction.CREATE_UPDATE_ACCOUNT_SUCCESS:
-            return { ...state, isFetching: false, success: true, new_account: action.response, error: false };
+            return { ...state, isFetching: false, success: true, newAccount: action.response, error: false };
         case accountAction.CREATE_UPDATE_ACCOUNT_FAILURE:
-            return { ...state, isFetching: false, error: action.err, success: false, new_account: action.response };
+            return { ...state, isFetching: false, error: action.err, success: false, newAccount: action.response };
 
         default:
             return state;    
