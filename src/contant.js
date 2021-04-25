@@ -1,5 +1,9 @@
 export const IMAGE_URL = "../"
 
+export const CONTENT_TYPE = 'application/json; charset=utf-8';
+export const CONTENT_MULITPART = 'multipart/form-data';
+export const MNV_ENCODE = 0;
+
 export const FILE_CONTENT_TYPE = {
     DEFAULT: 'application/octet-stream',
     PDF: 'application/pdf',

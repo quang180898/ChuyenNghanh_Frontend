@@ -1,10 +1,6 @@
 .DS_Store
-.idea/
 package-lock.json
 node_modules/
 release-builds/
 dist/
 debug.log
-# build-dev/
-# build-prod/
-# build-sta/

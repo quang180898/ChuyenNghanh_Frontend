@@ -13,7 +13,10 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     writeToDisk: true,
-    historyApiFallback: true,
+    proxy: {
+      '/': 'http://localhost:8000'
+    },
+    host: 'localhost',
     port: 3000,
     hot: true
   },

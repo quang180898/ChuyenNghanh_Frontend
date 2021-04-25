@@ -6,7 +6,7 @@ import { accountAction } from '../../store/action';
 import { PAGES_URL, GENDER_TYPE ,PERMISSION } from "../../contant";
 import { convertContant, getLocalStore, RULES } from "../../functions/Utils";
 import { ButtonStyle } from "../../components/base/Button";
-import { InputBase, InputDatePicker, InputPassword } from "../../components/base/Input";
+import { InputBase, InputPassword } from "../../components/base/Input";
 
 const Register = () => {
 

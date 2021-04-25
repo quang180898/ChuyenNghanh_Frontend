@@ -2,6 +2,7 @@
   "name": "quanly-thuvien",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
@@ -9,6 +10,9 @@
     "antd": "^4.15.0",
     "bootstrap": "^4.6.0",
     "concurrently": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.4",
     "i18next": "^20.1.0",
     "mini-css-extract-plugin": "^1.4.0",
     "moment": "^2.29.1",
@@ -27,7 +31,9 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "webpack serve --open",
+    "client": "webpack serve --config webpack.config.js --open",
+    "start": "concurrently \"npm run client\" \"npm run server\"",
+    "server": "node server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

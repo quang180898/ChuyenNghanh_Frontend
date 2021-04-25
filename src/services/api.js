@@ -1,17 +1,10 @@
-import {
-    getHeader, getUrl, authHeader, handleRequest, handleRequestBinary, postWithFormData,
-    postWithFormDataTest,
-    CONTENT_TYPE
-} from './lib.js';
-
-let PREFIX = '/backend/v1/';
+let DOMAIN = {
+    api: 'http://localhost:8000'
+};
+let PREFIX = '/api/backend/';
 
 export default {
     // ACCOUNT
-    LOGIN: PREFIX + "/LOGIN/",
-    ACCOUNT_UPDATE : PREFIX + "/REGISTER/",
-    
-    getHeader, getUrl, authHeader, handleRequest, handleRequestBinary, postWithFormData,
-    postWithFormDataTest,
-    CONTENT_TYPE  
+    LOGIN: DOMAIN.api + PREFIX + "v1/login/",
+    ACCOUNT_UPDATE: DOMAIN.api + PREFIX + "v1/account/register/",
 }
