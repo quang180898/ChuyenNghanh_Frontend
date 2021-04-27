@@ -23,41 +23,88 @@ $icons: bars user cogs paper-plane pie-chart;
             max-width: 50px;
             height: 100%;
             max-height: 30px;
-
         }
     }
 
     &__menu {
-        width: 77px;
-        height: 76px;
-        overflow: hidden;
-        transition: all .2s ease-in-out;
-        border-radius: 0 0 3px 0;
 
-
-
-        &:hover {
-            width: 77px;
-            height: 385px;
-            transition: all .4s ease-in-out;
+        .ant-menu-horizontal {
+            border-bottom: unset;
         }
 
-        ul {
-            list-style-type: none;
-            margin: 0 0 0 0;
-            transition: all .2s ease-in-out;
-            background: lighten(#E74C3C, 7%);
-
+        .anticon {
+            font-size: 22px;
         }
+    }
 
-        li {
-            transition: all .2s ease-in-out;
+    &__icon {
+        font-size: 15px;
+    }
 
-            &:hover {
-                background: lighten(#E74C3C, 15%);
-                transition: all .4s ease-in-out;
+    &__item {
+        a {
+            text-decoration: none;
+            font-size: 15px;
+        }
+    }
+
+    .cart {
+        display: flex;
+        justify-content: center;
+
+        &__number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            &--cartIcon {
+                font-size: 25px;
+                margin-right: 5px;
             }
 
+            &--num {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                padding: 0px 6px;
+                border-radius: 50%;
+                background-color: #1890ff;
+                color: white;
+                top: -12px;
+                right: 4px;
+                transition: all 0.3s ease-out;
+            }
+        }
+
+        &__buttons {
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            button {
+                background-color: #1890ff;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #eb4d4b;
+                }
+            }
+
+
+            &--addToCart {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 15px;
+                color: #fff;
+                transition: all 0.3s;
+                z-index: 100;
+            }
         }
     }
 }
