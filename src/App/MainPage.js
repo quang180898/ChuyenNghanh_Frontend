@@ -5,7 +5,7 @@ import Footer from '../components/common/Footer/Footer';
 
 const MainPage = (props) => {
     return (
-        <div>
+        <div >
             <Header />
             <Container />
             <Footer />

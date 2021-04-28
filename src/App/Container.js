@@ -7,7 +7,7 @@ import Home from '../templates/Home/Home';
 
 const Container = () => {
     return (
-        <div>
+        <div className="container">
             <Home />
             <Suspense fallback={''}>
                 <Switch >
