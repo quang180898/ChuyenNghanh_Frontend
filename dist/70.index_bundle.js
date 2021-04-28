@@ -1,1 +1,0 @@
-(self.webpackChunkquanly_thuvien=self.webpackChunkquanly_thuvien||[]).push([[70],{5070:function(e,n,u){"use strict";u.r(n);var t=u(7294);n.default=function(){return t.createElement("div",{className:"login scb-login"})}}}]);

@@ -13,7 +13,7 @@ var time = rightNow.getHours() + "g" + rightNow.getMinutes()
 var dateTimeBuild = date + '.' + time;
 
 module.exports = {
-  mode: 'none',
+  mode: 'development',
   entry: ["./src/index.js"],
   resolve: {
     extensions: ['*', '.js', '.jsx']
