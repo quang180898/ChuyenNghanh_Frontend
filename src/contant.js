@@ -3,6 +3,7 @@ export const IMAGE_URL = "../"
 export const CONTENT_TYPE = 'application/json; charset=utf-8';
 export const CONTENT_MULITPART = 'multipart/form-data';
 export const MNV_ENCODE = 0;
+export const MAX_SIZE_IMAGE = 2500000; //limit size image
 
 export const FILE_CONTENT_TYPE = {
     DEFAULT: 'application/octet-stream',
@@ -15,6 +16,13 @@ export const FILE_CONTENT_TYPE = {
     XLS: 'application/vnd.ms-excel',
     XLSX: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     DWG: 'image/vnd.dwg',
+}
+
+export const NOTIFICATION_TYPE = {
+    success: 'success',
+    info: 'info',
+    warning: 'warning',
+    error: 'error',
 }
 
 export const PERMISSION = [

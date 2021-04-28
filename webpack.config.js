@@ -1,10 +1,19 @@
 const path = require("path");
+const webpack = require('webpack');
 const globImporter = require("node-sass-glob-importer");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+let runHotModuleReplacement = false;
+
+var rightNow = new Date();
+var date = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
+var time = rightNow.getHours() + "g" + rightNow.getMinutes()
+
+var dateTimeBuild = date + '.' + time;
+
 module.exports = {
-  mode: 'development',
+  mode: 'none',
   entry: ["./src/index.js"],
   resolve: {
     extensions: ['*', '.js', '.jsx']
@@ -14,7 +23,7 @@ module.exports = {
     contentBase: './dist',
     writeToDisk: true,
     proxy: {
-      '/': 'http://localhost:8000'
+      '/': 'http://localhost:5000'
     },
     host: 'localhost',
     port: 3000,
@@ -75,15 +84,19 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-        filename: '[name].css',
+      filename: 'css/[name].[hash].' + dateTimeBuild + '.css',
+      chunkFilename: 'css/[name].[hash].chunk-[id].css',
     }),
     new HtmlWebpackPlugin({
-        template: "./public/index.html"
-    })
+      inject: true,
+      template: "./public/index.html"
+    }),
+    ...(runHotModuleReplacement == true ? [new webpack.HotModuleReplacementPlugin()] : []),
   ],
   output: {
-    filename: 'bundle.js',
-    publicPath: '/',
     path: __dirname + '/dist',
+    publicPath: '/',
+    filename: '[name].[hash].' + dateTimeBuild + '.js',
+    chunkFilename: '[name].[hash].' + dateTimeBuild + '.js'
   },
 };

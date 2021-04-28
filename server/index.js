@@ -6,7 +6,7 @@ var request = require("request");
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 // Define
-const PORT = 8000;
+const PORT = 5000;
 const LOCAL_PATH = path.join(__dirname, "../dist");
 console.log('LOCAL_PATH:', LOCAL_PATH);
 

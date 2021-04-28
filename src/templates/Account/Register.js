@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useRef} from "react";
 import { Form } from 'antd';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { accountAction } from '../../store/action';
-import { PAGES_URL, GENDER_TYPE ,PERMISSION } from "../../contant";
-import { convertContant, getLocalStore, RULES } from "../../functions/Utils";
+import { PAGES_URL } from "../../contant";
+import { RULES, showNotification } from "../../functions/Utils";
+import { FILE_CONTENT_TYPE, MAX_SIZE_IMAGE, NOTIFICATION_TYPE } from "../../contant";
 import { ButtonStyle } from "../../components/base/Button";
 import { InputBase, InputPassword } from "../../components/base/Input";
 
 const Register = () => {
 
-    const [formCreateEditAccount] = Form.useForm()
+    const [formCreateEditAccount] = Form.useForm();
     const dispatch = useDispatch();
-    const dateFormat = "DD/MM/YYYY";
     const accountReducer = useSelector(state => state.accountReducer)
     const { newAccount } = accountReducer;
+    const refFile = useRef()
     const [isloading, setLoading] = useState(false);
+    const [state, setState] = useState({ file: null, data: null, showPassword: false })
     const [dataUser, setDataUser] = useState({
         name: '',
         user_name: '',
@@ -37,9 +39,30 @@ const Register = () => {
                 mobile: phone,
                 mail: email,
             }
-            dispatch(accountAction.createOrUpdateAccount(params))
+            if (state.file) {
+                params.image = state.file
+                params.image_name = state.file.name
+            }
+            console.log(params)
+            if (password === rePassword) {
+                dispatch(accountAction.createOrUpdateAccount(params))
+            } else {
+                showNotification({ message: 'Mật khẩu không trùng nhau', title: 'waring', type: NOTIFICATION_TYPE.error })
+            }
         }
         setLoading(true)
+    }
+
+    const onChangeFile = (e) => {
+        if (e) {
+            let files = e.target.files
+            if (files.size > MAX_SIZE_IMAGE) {
+                return
+            }
+            if (files && files.length > 0) {
+                setState({...state,file: files[0]})
+            }
+        }
     }
 
     return (
@@ -97,6 +120,16 @@ const Register = () => {
                         </div>
                         </div>
                         <div className="col-12">
+                        <div className="cus-input mb-3">
+                            <input type="file" 
+                                ref={refFile}
+                                onChange={onChangeFile}
+                                accept={`${FILE_CONTENT_TYPE.XPNG, FILE_CONTENT_TYPE.GIF, FILE_CONTENT_TYPE.JPEG}`}
+                                required
+                            />
+                        </div>
+                        </div>
+                        <div className="col-12">
                         <ButtonStyle
                             className="btn-blue"
                             label="Sign in"
@@ -104,14 +137,14 @@ const Register = () => {
                         />
                         </div>
                         </div>
-                    </Form>      
+                    </Form> 
                     <div className="support-login">
-                            <span>Or </span>
-                            <Link to={`${PAGES_URL.login.url}`}>
-                                Sign in your account
-                            </Link>
-                        </div>
-            </div>          
+                        <span>Or </span>
+                        <Link to={`${PAGES_URL.login.url}`}>
+                            Sign in your account
+                        </Link>
+                    </div>
+                </div>          
             </div>
         </div>
         </div>
