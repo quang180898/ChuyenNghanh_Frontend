@@ -9,6 +9,7 @@ const CardBook = (props) => {
         <div className="book">
             <CardStyle
                 title={title}
+
             >
                 <div className="book__img">
                     <img src='../images/library.jpg' className="img" />
