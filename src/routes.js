@@ -5,6 +5,7 @@ const Login = lazy(() => import('./templates/Account/Login'));
 const ForgotPassword = lazy(() => import('./templates/Account/ForgotPassword'));
 const Register = lazy(() => import('./templates/Account/Register'));
 const Home = lazy(() => import('./templates/Home/Home'));
+const Admin = lazy(() => import('./templates/Admin/Admin'));
 
 const LOGINS = [
     {
@@ -25,6 +26,10 @@ const MAIN = [
     {
         "path": PAGES_URL.home.url,
         "component": Home
+    },
+    {
+        "path": PAGES_URL.admin.url,
+        "component": Admin
     },
 ]
 

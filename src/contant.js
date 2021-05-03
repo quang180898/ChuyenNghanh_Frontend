@@ -42,18 +42,22 @@ export const GENDER_TYPE = [
 export const PAGES_URL = {
     login: {
         url: '/login',
-        title: ''
+        title: 'Login'
     },
     register: {
         url: '/register',
-        title: ''
+        title: 'Register'
     },
     forgotPassword: {
         url: '/forgotPassword',
-        title: ''
+        title: 'ForgotPassword'
     },
     home: {
-        url: '/home',
-        title: ''
+        url: '/',
+        title: 'Home'
+    },
+    admin: {
+        url: '/admin',
+        title: 'Admin'
     },
 }

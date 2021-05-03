@@ -16,13 +16,12 @@ const Header = (props) => {
                 <div className='header'>
                     <div className="header__logo">Library</div>
                     <div className="header__menu">
-                        <Menu onClick={handleClick} mode="horizontal">
+                        <Menu onClick={(e) => handleClick(e.key)} mode="horizontal">
                             <SubMenu key="SubMenu" icon={<UnorderedListOutlined />} >
                                 <Menu.ItemGroup >
-                                    <Menu.Item key="setting:1">Home</Menu.Item>
-                                    <Menu.Item key="setting:2">Detail </Menu.Item>
-                                    <Menu.Item key="setting:3">Ablout</Menu.Item>
-                                    <Menu.Item key="setting:4">View</Menu.Item>
+                                    <Menu.Item key="1">Home</Menu.Item>
+                                    <Menu.Item key="2">Admin</Menu.Item>
+                                    <Menu.Item key="3">About</Menu.Item>
                                 </Menu.ItemGroup>
                             </SubMenu>
                         </Menu>
