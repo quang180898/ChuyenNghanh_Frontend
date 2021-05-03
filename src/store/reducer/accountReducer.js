@@ -8,6 +8,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+    console.log("action", action)
     switch (action.type) {
         //login
         case accountAction.LOGIN_REQUEST:
@@ -24,6 +25,18 @@ export default (state = initialState, action) => {
             return { ...state, isFetching: false, success: true, newAccount: action.response, error: false };
         case accountAction.CREATE_UPDATE_ACCOUNT_FAILURE:
             return { ...state, isFetching: false, error: action.err, success: false, newAccount: action.response };
+        
+        //clear
+
+        case accountAction.LOGIN_CLEAR:
+            return {
+                ...state,
+                login: null,
+                isFetching: false,
+                success: false,
+                error: false,
+                newAccount: null,
+            };
 
         default:
             return state;    

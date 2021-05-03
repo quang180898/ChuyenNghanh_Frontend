@@ -5,7 +5,7 @@ import Header from '../components/common/Header/Header';
 const MainPage = (props) => {
     return (
        <div>
-             <Header/>
+            <Header/>
             <Container />
        </div>
     );

@@ -3,9 +3,9 @@ import { accountAction } from '../action';
 import { accountService } from "../../services/index";
 
 export function* login(payload) {
-    let { username, password, onNext } = payload.params
+    console.log({payload})
     try {
-        const response = yield accountService.login(username, password, onNext);
+        const response = yield accountService.login({ params: payload.params });
         if (response.success) {
             yield put({ type: accountAction.LOGIN_SUCCESS, response })
         }

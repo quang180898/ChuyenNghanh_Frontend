@@ -9,6 +9,8 @@ const actions = {
     CREATE_UPDATE_ACCOUNT_FAILURE: name + 'CREATE_UPDATE_ACCOUNT_FAILURE',
     CREATE_UPDATE_ACCOUNT_SUCCESS: name + 'CREATE_UPDATE_ACCOUNT_SUCCESS',
 
+    LOGIN_CLEAR: name + 'CLEAR',
+
     loadLogin: (params) => ({
         type: actions.LOGIN_REQUEST,
         params: params
@@ -17,6 +19,10 @@ const actions = {
     createOrUpdateAccount: (params) => ({
         type: actions.CREATE_UPDATE_ACCOUNT_REQUEST,
         params: params
+    }),
+
+    requestClearAction: (params) => ({
+        type: actions.LOGIN_CLEAR,
     }),
 };
 export default actions;

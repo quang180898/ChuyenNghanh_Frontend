@@ -3,7 +3,7 @@ import { Input } from 'antd';
 import { getValueAndSetDefault } from "../../../functions/Utils";
 
 const InputPassword = (props) => {
-    const { prefix, inputClassName, label, value, onChange,classNameGroup, labelClassName } = props
+    const { prefix, inputClassName, label, value, onChange, placeholder, classNameGroup, labelClassName } = props
     return (
         <div className={classNameGroup ? classNameGroup : "form-group"}>
             <label className={getValueAndSetDefault(labelClassName, 'label')}>
@@ -11,6 +11,7 @@ const InputPassword = (props) => {
             </label>
             < Input.Password
                 className={getValueAndSetDefault(inputClassName, '')}
+                placeholder={getValueAndSetDefault(placeholder, 'Nhập')}
                 onChange={onChange}
                 value={value}
                 prefix={prefix}

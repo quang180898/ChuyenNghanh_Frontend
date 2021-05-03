@@ -1,5 +1,4 @@
 import React, { lazy, useState } from 'react';
-import { Trans } from 'react-i18next';
 import { message, notification, Pagination } from 'antd';
 
 import * as moment from 'moment';
@@ -12,13 +11,6 @@ import zh_CN from "antd/es/date-picker/locale/zh_CN"
 
 const LIMITED_AGE = 18
 
-/**
- * get or remove item on localStorage 
- * @param {*} text : name item to get/del
- * @param {} remove : true-> del
- */
-
-//array tableshow pagination
 
 export const paginationTable = (tableList, limit) => {
     if (tableList && tableList.length > 0) {
@@ -179,26 +171,6 @@ export const LoadDataPaging = (total_record, page, total_page, limit) => {
     } else { return list; }
 }
 
-
-
-
-// translate text --> should to use 
-export const translate = (text, trans = false) => {
-    if (trans) {
-        return trans(text)
-    }
-    else {
-        return <Trans>{text}</Trans>
-    }
-}
-
-
-
-/**
- * @param {*} value: 0,123456
- * @param {} noparse
- * @return: 0.123456
- */
 export const convertStringToFloat = (value, noparse = false) => {
     let text = value;
     if (typeof text == "string") {
@@ -222,10 +194,6 @@ export const convertStringToFloat = (value, noparse = false) => {
     }
 }
 
-/**
- * @param {*} value: 0.123456
- * @return: 0,123456
- */
 export const convertFloatToString = (value) => {
     if (value) {
         let newText = ""
@@ -272,8 +240,6 @@ export const convertFloatToString = (value) => {
     return 0;
 }
 
-
-// change language for datepicker 
 export const datePichkerLocation = () => {
     let language = getLocalStore("language")
     switch (language) {
@@ -286,11 +252,6 @@ export const datePichkerLocation = () => {
     }
 }
 
-
-/*
-input:moment(11/12/2020,"DD/MM/YYYY")
-output: one day ago or time
-*/
 export const renderDayAgo = (date) => {
     let time = moment().unix() - moment(date).unix()
     let language = getLocalStore("language")
@@ -302,12 +263,6 @@ export const renderDayAgo = (date) => {
     }
 }
 
-
-/**
-*   uppercase character first 
-*   @param {*} text : 'capitalize text'
-*   @return value ==> example = 'Capitalize text'
- */
 export const capitalizeText = (text) => {
     let result = text.slice(0, 1).toUpperCase() + text.slice(1, text.length).toLowerCase()
     return result;
@@ -323,23 +278,23 @@ message.config({
     maxCount: 1,
 })
 export const showMessage = {
-    success: (content) => message.success({
-        content: translate(content),
+    success: content => message.success({
+        content: content,
         className: 'text_51c471',
         style: {
             marginTop: '5vh',
         },
 
     }),
-    warning: (content) => message.warning({
-        content: translate(content),
+    warning: content => message.warning({
+        content: content,
         className: 'color_e94c4c',
         style: {
             marginTop: '5vh',
         },
     }),
     error: (content) => message.error({
-        content: translate(content),
+        content: content,
         className: 'color_e94c4c',
         style: {
             marginTop: '5vh',
@@ -347,13 +302,6 @@ export const showMessage = {
     }),
 }
 
-/**
-*   notification from right 
-*   @param {*} type : success, error, info, warning, warn
-*   @param {*} message : text want to show
-*   @param {*} title : title want to show
-*   @param {} duration : time on show
- */
 export const showNotification = ({ type, message, title, duration = 4.5 }) => {
     notification[type ? type : 'success']({
         message: title,
@@ -533,19 +481,19 @@ export const RULES = {
                                 let format = /(0)+([1-9])+([0-9]{8})/;
                                 if (!format.test(value)) {
                                     if (value.length != 10) {
-                                        return Promise.reject(translate("phone_length"))
+                                        return Promise.reject("phone_length")
                                     }
-                                    return Promise.reject(translate("phone_error"))
+                                    return Promise.reject("phone_error")
                                 }
                                 else {
                                     if (value.length != 10) {
-                                        return Promise.reject(translate("phone_length"))
+                                        return Promise.reject("phone_length")
                                     }
                                     return Promise.resolve()
                                 }
                             }
                             else {
-                                return Promise.reject(translate("input_null"))
+                                return Promise.reject("input_null")
                             }
                         }
                         return Promise.resolve()
@@ -579,11 +527,11 @@ export const RULES = {
                                     return Promise.resolve()
                                 }
                                 else
-                                    return Promise.reject(translate(text))
+                                    return Promise.reject(text)
 
                             }
                             else {
-                                return Promise.reject(translate("input_null"))
+                                return Promise.reject("input_null")
                             }
                         }
                         return Promise.resolve()
@@ -606,7 +554,7 @@ export const RULES = {
                             if (value && value[0] != " ") {
                                 let r = value.match(reg)
                                 if (r == null) {
-                                    return Promise.reject(translate(text))
+                                    return Promise.reject(text)
                                 }
                                 else {
                                     return Promise.resolve()
@@ -614,7 +562,7 @@ export const RULES = {
 
                             }
                             else {
-                                return Promise.reject(translate("input_null"))
+                                return Promise.reject("input_null")
                             }
                         }
                         return Promise.resolve()
@@ -628,11 +576,11 @@ export const RULES = {
         form: [
             {
                 required: true,
-                message: translate("input_null")
+                message: ("input_null")
             },
             {
                 min: 9,
-                message: translate("identity_length")
+                message: ("identity_length")
             }
         ],
         type: 'number'
@@ -643,7 +591,7 @@ export const RULES = {
             //nếu isRequired true thì rule sẽ kiểm tra xem user đã nhập vào ô hay chưa
             {
                 required: isRequired,
-                message: translate("input_null"),
+                message: ("input_null"),
             }
         ],
         type: 'number'
@@ -652,7 +600,7 @@ export const RULES = {
         form: [
             {
                 pattern: '/^[0-9\b]+$/',
-                message: translate("input_null"),
+                message: ("input_null"),
             }
         ],
         type: 'number'
@@ -668,14 +616,14 @@ export const RULES = {
                             if (isRequired) {
                                 //nếu chưa nhập text thì thông báo lỗi
                                 if (!value) {
-                                    return Promise.reject(translate("input_null"))
+                                    return Promise.reject("input_null")
                                 }
                                 else {
                                     //kiểm tra email chuẩn theo format chưa
                                     //format thì tìm hiểu trên https://developer.mozilla.org/vi/docs/Web/JavaScript/Guide/Regular_Expressions
                                     let format = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
                                     if (!format.test(value)) {
-                                        return Promise.reject(translate(e))
+                                        return Promise.reject(e)
                                     }
                                     else {
                                         return Promise.resolve()
@@ -698,17 +646,17 @@ export const RULES = {
                 //password phải được nhập
                 {
                     required: isRequired,
-                    message: translate('input_pass_null')
+                    message: ('input_pass_null')
                 },
                 // password tối thiểu 8 ký tự
                 {
                     min: 8,
-                    message: translate("input_pass_min")
+                    message: ("input_pass_min")
                 },
                 // password tối đa 25 ký tự
                 {
                     max: 25,
-                    message: translate("input_pass_max")
+                    message: ("input_pass_max")
                 }
             ]
         },
@@ -719,7 +667,7 @@ export const RULES = {
         form: (isRequired = true, textMessage = 'input_null') => {
             return [{
                 required: isRequired,
-                message: translate(textMessage),
+                message: (textMessage),
             }]
         },
         type: 'text'
@@ -739,14 +687,14 @@ export const RULES = {
                             oldDate.setFullYear(oldDate.getFullYear() - 200)
                             date.setFullYear(date.getFullYear() - LIMITED_AGE)
                             if (moment(date).endOf('day') < moment(value).endOf('day') || moment(oldDate).endOf('day') > moment(value).endOf('day')) {
-                                return Promise.reject(translate("birth_day_error"))
+                                return Promise.reject("birth_day_error")
                             }
                             else {
                                 return Promise.resolve()
                             }
                         }
                         else {
-                            return Promise.reject(translate("input_null"))
+                            return Promise.reject("input_null")
                         }
                     }
                     return Promise.resolve()
@@ -756,7 +704,7 @@ export const RULES = {
         type: 'text'
     },
     require: {
-        form: [{ required: true, message: translate("input_null") }]
+        form: [{ required: true, message: ("input_null") }]
     }
 };
 

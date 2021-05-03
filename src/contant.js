@@ -1,9 +1,13 @@
+import { getLocalStore } from "functions/Utils";
+
 export const IMAGE_URL = "../"
 
 export const CONTENT_TYPE = 'application/json; charset=utf-8';
 export const CONTENT_MULITPART = 'multipart/form-data';
 export const MNV_ENCODE = 0;
 export const MAX_SIZE_IMAGE = 2500000; //limit size image
+export const MNV_LANGUAGE = getLocalStore('language');
+export const ERROR_SERVER = 'Đã xảy ra lỗi'; //check status error fail
 
 export const FILE_CONTENT_TYPE = {
     DEFAULT: 'application/octet-stream',
