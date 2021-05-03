@@ -5,47 +5,73 @@ import { Switch, Route, useHistory, withRouter, Link, useLocation, matchPath, Re
 import { MAIN } from "../routes";
 import { Animated } from 'react-animated-css';
 import { CardBook } from 'components/common/CardBook';
+import { SliderImg } from 'components/common/Slider';
+
+const data = [
+    {
+        image_url: '../images/library.jpg',
+    },
+    {
+        image_url: '../images/library.jpg',
+    },
+    {
+        image_url: '../images/library.jpg',
+    },
+    {
+        image_url: '../images/library.jpg',
+    },
+    {
+        image_url: 'http://placekitten.com/g/400/200',
+    },
+]
 
 const Container = () => {
     return (
-        <>
-        <div className="home">
-            <div className="row">
-                <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                    <CardBook
-                        title="Ten Sach"
-                        book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-                    />
-                </div>
-                <div className="col-xl-4 col-lg-6 col-md-6  col-sm-12">
-                    <CardBook
-                        title="Ten Sach"
-                        book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-                    />
-                </div>
-                <div className="col-xl-4 col-lg-6 col-md-6  col-sm-12">
-                    <CardBook
-                        title="Ten Sach"
-                        book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-                    />
-                </div>
-                <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                    <CardBook
-                        title="Ten Sach"
-                        book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-                    />
-                </div>
-                <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                    <CardBook
-                        title="Ten Sach"
-                        book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-                    />
-                </div>
-                <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                    <CardBook
-                        title="Ten Sach"
-                        book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-                    />
+        <div className="container">
+        <div className="home ">
+            <div className="home__slider">
+                <SliderImg
+                    datas={data}
+                />
+            </div>
+            <div className="home__content">
+                <div className="row">
+                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                        <CardBook
+                            title="Ten Sach"
+                            book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+                        />
+                    </div>
+                    <div className="col-xl-4 col-lg-6 col-md-6  col-sm-12">
+                        <CardBook
+                            title="Ten Sach"
+                            book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+                        />
+                    </div>
+                    <div className="col-xl-4 col-lg-6 col-md-6  col-sm-12">
+                        <CardBook
+                            title="Ten Sach"
+                            book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+                        />
+                    </div>
+                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                        <CardBook
+                            title="Ten Sach"
+                            book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+                        />
+                    </div>
+                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                        <CardBook
+                            title="Ten Sach"
+                            book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+                        />
+                    </div>
+                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                        <CardBook
+                            title="Ten Sach"
+                            book_content=" This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,8 +86,11 @@ const Container = () => {
             ))}
         </Switch>
     </Suspense>
-    </>
+    </div>
     );
 }
 
 export default Container;
+
+
+
