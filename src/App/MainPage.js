@@ -1,12 +1,14 @@
+import { Footer } from 'components/common/Footer';
+import { Header } from 'components/common/Header';
 import React, { useState, useEffect } from 'react';
 import Container from './Container';
-import Header from '../components/common/Header/Header';
 
 const MainPage = (props) => {
     return (
        <div>
-            <Header/>
+            <Header />
             <Container />
+            <Footer/>
        </div>
     );
 }
