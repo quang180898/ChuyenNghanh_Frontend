@@ -11,7 +11,7 @@ const Header = (props) => {
         console.log('click ', e);
     };
     return (
-        <div className=" background">
+        <div className="background">
             <div className="container">
                 <div className='header'>
                     <div className="header__logo">Library</div>
