@@ -44,7 +44,7 @@ const SliderImg = ({ className, datas = [] }) => {
     );
     return (
         <Slider {...settings}
-            className="slider"
+            className="slider "
             nextArrow={<NextArrow />}
             prevArrow={<PrevArrow />}
             slidesToShow={3}
