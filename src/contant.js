@@ -39,6 +39,11 @@ export const GENDER_TYPE = [
     {value: 1, label: "Famale"},
 ]
 
+export const SETTING_USER = [
+    {value: 1, label: "Tài khoản của tôi" },
+    {value: 2, label: "Thoát tài khoản"},
+]
+
 export const PAGES_URL = {
     login: {
         url: '/login',

@@ -1,15 +1,41 @@
 import { Input, Menu } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { UnorderedListOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+import { PAGES_URL, SETTING_USER } from 'contant';
+import { getLocalStore } from 'functions/Utils';
+import { DropdownIcon } from 'components/base/Dropdown';
 
 const { Search } = Input;
 const { SubMenu } = Menu;
 
 const Header = (props) => {
+
+    const userLocal = getLocalStore('user')
+
+    const [user, setUser] = useState(userLocal)
+    console.log({userLocal})
     const onSearch = value => console.log(value);
     const handleClick = (e) => {
         console.log('click ', e);
     };
+
+    const onChangeMenu = (value) => {
+        console.log({value})
+        switch(value){
+            case 1: 
+                return
+            case 2:
+                return logOut()
+        }
+    }
+
+    const logOut = () => {
+        // xóa data storage 
+        getLocalStore('user', true)
+        //reload page and auto run /login
+        window.location.reload()
+    }
     return (
         <div className="background">
             <div className="container">
@@ -36,8 +62,26 @@ const Header = (props) => {
                         />
                     </div>
                     <div className="header__login">
-                        <a href="">Login</a>/
-                        <a href="">Sign In</a>
+                        {user ? 
+                        <>  
+                            <i class="far fa-user mr-2" style={{fontSize: "35px"}}></i>
+                            <span className="ItemText">
+                                <span>
+                                    {user.name}
+                                </span>
+                                <span>
+                                    <DropdownIcon onChangeMenu={(e) => onChangeMenu(e)} options={SETTING_USER}/>
+                                </span>
+                            </span>
+                        </> :  
+                        <> 
+                            <Link to={PAGES_URL.login.url}>
+                                Login/
+                            </Link>
+                            <Link to={PAGES_URL.register.url}>
+                                Sign In
+                            </Link> </>
+                        }
                     </div>
                     <div className="cart">
                         <div className="cart__number">

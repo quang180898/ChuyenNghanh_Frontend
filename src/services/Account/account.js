@@ -16,7 +16,7 @@ export const accountService = {
             .then(data => {
                 if (data && data.success === true) {
                     localStorage.setItem('user', JSON.stringify(data['detail']));
-                    // window.location.replace('/home')
+                    window.location.replace('/')
                 }
                 return data;
             })

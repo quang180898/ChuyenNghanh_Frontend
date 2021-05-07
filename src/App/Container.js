@@ -4,15 +4,10 @@ import { Switch, Route, useHistory, withRouter, Link, useLocation, matchPath, Re
 
 import { MAIN } from "../routes";
 import { Animated } from 'react-animated-css';
-import Home from 'templates/Home/Home';
-
-
-
 
 const Container = () => {
     return (
         <div className="container">
-        <Home/>
         <Suspense fallback={''}>
         <Switch >
             {MAIN.map((data, idx) => (

@@ -65,13 +65,15 @@ const Login = () => {
                     showNotification({ type: NOTIFICATION_TYPE.error, title: "Có lỗi xảy ra", message: login && login.detail, duration: 1.8 })
                 }, 2100)
             }
+
+            dispatch(accountAction.requestClearAction())
         }
     }, [login])
 
     return (
         <div className="login scb-login">
-            <div className="login__bg"/>
             {loading && <StaticLoading />}
+            <div className="login__bg"/>
             <div className="login__right">
                 <div className="login__form">
                     <Form

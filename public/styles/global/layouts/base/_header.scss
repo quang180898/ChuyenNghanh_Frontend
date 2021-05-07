@@ -51,14 +51,20 @@
     }
 
     &__login {
+        @include flex_center;
+        
         @media (max-width: 767px) {
             padding-top: 10px;
         }
-
+        .ItemText {
+            @include flex_center;
+            @include flex-direction(column);
+        }
         a {
             color: white;
             font-size: 15px;
         }
+            
     }
 
     .cart {

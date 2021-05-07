@@ -1,13 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
 
-const SliderImg = ({ className, datas = [] }) => {
+const SliderImg = ({ className, children}) => {
 
     const settings = {
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 1,
+        slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: false,
         arrows: true,
@@ -47,13 +47,15 @@ const SliderImg = ({ className, datas = [] }) => {
             className="slider "
             nextArrow={<NextArrow />}
             prevArrow={<PrevArrow />}
-            slidesToShow={3}
             swipeToSlide={true}
             focusOnSelect={true}>
-            {datas.map((item, index) =>
-                <figure key={index}>
+            {children.map((item, index) =>
+            <div className="item" key={index}>
+                <figure className="image">
                     <img style={{ width: '100%' }} src={item.image_url} alt='Heli' />
+                    <a className="link">Chi Tiết</a>
                 </figure>
+            </div>
             )}
         </Slider>
     )

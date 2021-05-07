@@ -27,10 +27,6 @@ const MAIN = [
         "path": PAGES_URL.home.url,
         "component": Home
     },
-    {
-        "path": PAGES_URL.admin.url,
-        "component": Admin
-    },
 ]
 
 const getPathList = (DATA) => {
