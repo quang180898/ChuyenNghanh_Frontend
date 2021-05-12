@@ -1,23 +1,40 @@
 import { Input, Menu } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { UnorderedListOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { PAGES_URL, SETTING_USER } from 'contant';
 import { getLocalStore } from 'functions/Utils';
 import { DropdownIcon } from 'components/base/Dropdown';
+import { useDispatch, useSelector } from 'react-redux';
+import { homeAction } from 'store/action';
 
 const { Search } = Input;
 const { SubMenu } = Menu;
 
 const Header = (props) => {
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const [state , setState ] = useState()
+    const homeReducer = useSelector(state => state.homeReducer);
+    const { listCategory } = homeReducer;
 
+    useEffect(() => {
+        dispatch(homeAction.loadListCategory())
+    }, [])
+
+    useEffect(() => {
+        if (listCategory) {
+            setState(listCategory.detail)
+        }
+    }, [listCategory])
     const userLocal = getLocalStore('user')
 
     const [user, setUser] = useState(userLocal)
-    console.log({userLocal})
+
     const onSearch = value => console.log(value);
+    
     const handleClick = (e) => {
-        console.log('click ', e);
+        history.push(PAGES_URL.home.url + e);
     };
 
     const onChangeMenu = (value) => {
@@ -42,12 +59,14 @@ const Header = (props) => {
                 <div className='header'>
                     <div className="header__logo">Library</div>
                     <div className="header__menu">
-                        <Menu onClick={(e) => handleClick(e.key)} mode="horizontal">
+                        <Menu mode="horizontal">
                             <SubMenu key="SubMenu" icon={<UnorderedListOutlined />} >
                                 <Menu.ItemGroup >
-                                    <Menu.Item key="1">Home</Menu.Item>
-                                    <Menu.Item key="2">Admin</Menu.Item>
-                                    <Menu.Item key="3">About</Menu.Item>
+                                {state && state.map((value, index) => { 
+                                    return (
+                                        <Menu.Item key={index} onClick={() => handleClick(value.category_id)}>{value.category_name}</Menu.Item>
+                                    )
+                                })}    
                                 </Menu.ItemGroup>
                             </SubMenu>
                         </Menu>

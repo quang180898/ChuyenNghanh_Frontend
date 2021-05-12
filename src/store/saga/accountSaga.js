@@ -3,7 +3,6 @@ import { accountAction } from '../action';
 import { accountService } from "../../services/index";
 
 export function* login(payload) {
-    console.log({payload})
     try {
         const response = yield accountService.login({ params: payload.params });
         if (response.success) {
@@ -19,6 +18,24 @@ export function* login(payload) {
 
 export function* loginWatcher() {
     yield takeLatest(accountAction.LOGIN_REQUEST, login);
+}
+
+export function* mostBorrow(payload) {
+    try {
+        const response = yield accountService.loadListBorrow({ params: payload.params });
+        if (response.success) {
+            yield put({ type: accountAction.BORROW_SUCCESS, response })
+        }
+        else {
+            yield put({ type: accountAction.BORROW_FAILURE, response });
+        }
+    } catch (err) {
+        yield put({ type: accountAction.BORROW_FAILURE, err: { err } });
+    }
+}
+
+export function* mostBorrowWatcher() {
+    yield takeLatest(accountAction.BORROW_REQUEST, mostBorrow);
 }
 
 // createOrUpdateAccount
@@ -43,6 +60,7 @@ export function* createOrUpdateAccountWatcher() {
 export default function* rootSaga() {
     yield all([
         fork(loginWatcher),
+        fork(mostBorrowWatcher),
         fork(createOrUpdateAccountWatcher),
     ]);
 }

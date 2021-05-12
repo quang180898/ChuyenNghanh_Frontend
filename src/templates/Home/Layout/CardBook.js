@@ -1,22 +1,28 @@
+import { Card } from "antd";
+import { ButtonStyle } from "components/base/Button";
 import React from "react";
-import CardStyle from "../../../components/base/Card/CardStyle";
-import ButtonStyle from "../../../components/base/Button/ButtonStyle"
 
 const CardBook = (props) => {
-
-    const { title, book_content, image } = props
+    const { title, image , total} = props
     return (
         <div className="book">
-            <CardStyle
-                title={title}
+            <Card
+                hoverable
+                cover
             >
                 <div className="item">
                     <figure className="image">
                     <img src={`data:image/jpeg;base64,${image}`}/>
                         <a className="link">Chi Tiết</a>
                     </figure>
+                    <span>{title}</span>
                 </div>
-            </CardStyle>
+                <div className="support-book">
+                    <ButtonStyle label="Mượn sách"></ButtonStyle>
+                    <span>Số lượng: {total}</span>
+                </div>
+                
+            </Card>
         </div>
     )
 }

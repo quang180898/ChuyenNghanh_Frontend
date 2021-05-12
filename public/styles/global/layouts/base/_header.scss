@@ -57,6 +57,7 @@
             padding-top: 10px;
         }
         .ItemText {
+            font-size: 13px;
             @include flex_center;
             @include flex-direction(column);
         }
@@ -109,5 +110,4 @@
 .background {
     background: rgb(1, 127, 255);
     color: #fff;
-    padding: 16px 0px;
 }

@@ -5,11 +5,11 @@ import Container from './Container';
 
 const MainPage = (props) => {
     return (
-        <>
+        <div className="mainPage">
             <Header />
             <Container />
             <Footer/>
-        </>
+        </div>
     );
 }
 

@@ -10,7 +10,7 @@ const ButtonStyle = (props) => {
         isButton    
             ?
             <Button
-                className={`btn ${getValueAndSetDefault(className, '')}`}
+                className={`${getValueAndSetDefault(className, '')}`}
                 onClick={onClick}
                 htmlType={getValueAndSetDefault(htmlType, '')}
             
@@ -20,7 +20,7 @@ const ButtonStyle = (props) => {
             </Button>
             :
             <Link
-                className={`btn ${getValueAndSetDefault(className, '')}`}
+                className={`${getValueAndSetDefault(className, '')}`}
                 to={getValueAndSetDefault(url, '#')}
             >
                 {iconClassname && <i className={`btn-icon ${getValueAndSetDefault(iconClassname, '')}`} />}

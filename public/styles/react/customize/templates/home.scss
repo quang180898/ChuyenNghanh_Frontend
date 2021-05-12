@@ -1,4 +1,9 @@
 .book {
+    .title {
+        &__card {
+            border-bottom: none;
+        }
+    }
     .ant-card-body {
         padding: 15px;
         box-shadow: 0 1px 3px #0000001f, 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -33,6 +38,11 @@
         @include justify-content(flex-start);
         @include align-items(center);
     }
+    .support-book {
+        @include flexbox;
+        @include justify-content(space-between);
+        @include align-items(center);
+    }
 }
 
 .slider {
@@ -65,7 +75,7 @@
 
     .slick-prev {
         top: 43%;
-        left: -10px;
+        left: -8px;
     }
 
     .slick-slide {
@@ -73,6 +83,60 @@
         max-height: 400px;
         height: 100%;
     }
+    .slick-dots {
+        position: absolute;
+        bottom: 10px;
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        text-align: center;
+        li {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            margin: 0 5px;
+            padding: 0;
+            &.slick-active {
+                button {
+                    &::before {
+                        opacity: .75;
+                        color: #000;
+                    }
+                }
+            }
+            button {
+                font-size: 0;
+                line-height: 0;
+                display: block;
+                padding: 5px;
+                color: transparent;
+                border: 0;
+                outline: none;
+                background: transparent;
+                &:before {
+                    font-family: slick;
+                    font-size: 20px;
+                    line-height: 20px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 20px;
+                    height: 20px;
+                    content: "\2022";
+                    text-align: center;
+                    opacity: .25;
+                    color: #000;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+            }
+        }
+    }
+
 }
 
 .home__slider {
@@ -83,9 +147,8 @@
     }
 }
 .item{
-    margin-bottom:28px;
-    padding-bottom: 12px;
-    // width: calc(20% - 25px);
+    text-align: center;
+    margin-bottom: 20px;
     width: 100%;
     position: relative;
     transition: all 0.3s;

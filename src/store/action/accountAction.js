@@ -1,18 +1,27 @@
-const name = 'LOGIN_';
+const name = 'ACCOUNT_';
 const actions = {
 
-    LOGIN_REQUEST: name + '_REQUEST',
-    LOGIN_FAILURE: name + '_FAILURE',
-    LOGIN_SUCCESS: name + '_SUCCESS',
+    LOGIN_REQUEST: name + 'REQUEST',
+    LOGIN_FAILURE: name + 'FAILURE',
+    LOGIN_SUCCESS: name + 'SUCCESS',
 
     CREATE_UPDATE_ACCOUNT_REQUEST: name + 'CREATE_UPDATE_ACCOUNT_REQUEST',
     CREATE_UPDATE_ACCOUNT_FAILURE: name + 'CREATE_UPDATE_ACCOUNT_FAILURE',
     CREATE_UPDATE_ACCOUNT_SUCCESS: name + 'CREATE_UPDATE_ACCOUNT_SUCCESS',
 
-    LOGIN_CLEAR: name + 'CLEAR',
+    BORROW_REQUEST: name + 'BORROW_REQUEST',
+    BORROW_FAILURE: name + 'BORROW_FAILURE',
+    BORROW_SUCCESS: name + 'BORROW_SUCCESS',
+
+    LOGIN_CLEAR: name + 'LOGIN_CLEAR',
 
     loadLogin: (params) => ({
         type: actions.LOGIN_REQUEST,
+        params: params
+    }),
+
+    loadMostBorrow: (params) => ({
+        type: actions.BORROW_REQUEST,
         params: params
     }),
 

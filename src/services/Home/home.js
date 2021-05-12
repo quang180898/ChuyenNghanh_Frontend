@@ -3,12 +3,21 @@ import { getHeader, getUrl, handleRequest, postWithFormData } from '../../functi
 import { CONTENT_TYPE } from 'contant';
 
 export const homeService = {
-    loadList() {
+    loadList({params}) {
         const requestOptions = {
             method: "GET",
             headers: getHeader(CONTENT_TYPE),
         };
-        const url = getUrl(api.LIST_BOOK);
+        const url = getUrl(api.LIST_BOOK, params);
+        return handleRequest(url, requestOptions);
+    },
+    
+    loadCategory() {
+        const requestOptions = {
+            method: "GET",
+            headers: getHeader(CONTENT_TYPE),
+        };
+        const url = getUrl(api.LIST_CATEGORY);
         return handleRequest(url, requestOptions);
     },
 }

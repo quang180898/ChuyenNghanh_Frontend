@@ -2,13 +2,13 @@ import { accountAction } from '../action';
 
 const initialState = {
     login: null,
+    listBorrow: [],
     newAccount: null,
     isFetching: false,
     error: false,
 };
 
 export default (state = initialState, action) => {
-    console.log("action", action)
     switch (action.type) {
         //login
         case accountAction.LOGIN_REQUEST:
@@ -26,8 +26,16 @@ export default (state = initialState, action) => {
         case accountAction.CREATE_UPDATE_ACCOUNT_FAILURE:
             return { ...state, isFetching: false, error: action.err, success: false, newAccount: action.response };
         
-        //clear
 
+        //most borrow
+        case accountAction.BORROW_REQUEST:
+            return { ...state, isFetching: true, listBorrow: null, success: false, error: false };
+        case accountAction.BORROW_SUCCESS:
+            return { ...state, isFetching: false, success: true, listBorrow: action.response, error: false };
+        case accountAction.BORROW_FAILURE:
+            return { ...state, isFetching: false, error: action.err, success: false, listBorrow: action.response };
+        
+            //clear
         case accountAction.LOGIN_CLEAR:
             return {
                 ...state,

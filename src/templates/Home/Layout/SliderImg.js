@@ -1,11 +1,34 @@
-import React from "react";
+import { CardStyle } from "components/base/Card";
+import { StaticLoading } from "components/base/Loading";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
+import { accountAction } from "store/action";
+import { CardBook } from "../Layout";
 
-const SliderImg = ({ className, children}) => {
+const SliderImg = () => {
+    const dispatch = useDispatch();
+    const accountReducer = useSelector(state => state.accountReducer)
+    const { listBorrow } = accountReducer;
+    const [ mostBorrow, setMostBorrow] = useState()
+    const [isLoading, setLoading] = useState(false)
+
+    useEffect(() => {
+        dispatch(accountAction.loadMostBorrow())
+        setLoading(true)
+    }, [])
+
+    useEffect(() => {
+        if (listBorrow && listBorrow.success) {
+            console.log({ listBorrow })
+            setMostBorrow(listBorrow.detail);
+            setLoading(false)
+        }
+    }, [listBorrow])
 
     const settings = {
-        dots: false,
-        infinite: false,
+        dots: true,
+        infinite: true,
         speed: 300,
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -43,21 +66,30 @@ const SliderImg = ({ className, children}) => {
         <div {...props}> <i class="las la-chevron-circle-left"></i></div>
     );
     return (
-        <Slider {...settings}
-            className="slider "
-            nextArrow={<NextArrow />}
-            prevArrow={<PrevArrow />}
-            swipeToSlide={true}
-            focusOnSelect={true}>
-            {children.map((item, index) =>
-            <div className="item" key={index}>
-                <figure className="image">
-                    <img style={{ width: '100%' }} src={item.image_url} alt='Heli' />
-                    <a className="link">Chi Tiết</a>
-                </figure>
+        <CardStyle title="Sách nổi bật">
+            {isLoading && <StaticLoading/>}
+            <div className="home__slider">
+                <Slider {...settings}
+                    className="slider"
+                    nextArrow={<NextArrow />}
+                    prevArrow={<PrevArrow />}
+                    swipeToSlide={true}
+                    >
+                    {mostBorrow && mostBorrow.map((value, index) => {
+                        if (index < 5) { 
+                        return (
+                            <CardBook
+                                key={index}
+                                title={value.name}
+                                image={value.image_bytes}
+                                total={value.quantity}       
+                            />
+                        )
+                        }
+                    })}
+                </Slider>
             </div>
-            )}
-        </Slider>
+        </CardStyle>
     )
 }
 

@@ -28,6 +28,15 @@ export const accountService = {
         const body = params;
         console.log('params', params);
         return postWithFormData(body, api.ACCOUNT_UPDATE)
-    }
+    },
+
+    loadListBorrow() {
+        const requestOptions = {
+            method: "GET",
+            headers: getHeader(CONTENT_TYPE),
+        };
+        const url = getUrl(api.MOST_BORROW);
+        return handleRequest(url, requestOptions);
+    },
 }
 
