@@ -61,6 +61,10 @@ export const PAGES_URL = {
         url: '/',
         title: 'Home'
     },
+    profile: {
+        url: '/profile',
+        title: 'profile'
+    },
     admin: {
         url: '/admin',
         title: 'Admin'

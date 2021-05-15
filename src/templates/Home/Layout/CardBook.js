@@ -3,7 +3,7 @@ import { ButtonStyle } from "components/base/Button";
 import React from "react";
 
 const CardBook = (props) => {
-    const { title, image , total} = props
+    const { title, image , totalSize, totalBorrow} = props
     return (
         <div className="book">
             <Card
@@ -19,9 +19,8 @@ const CardBook = (props) => {
                 </div>
                 <div className="support-book">
                     <ButtonStyle label="Mượn sách"></ButtonStyle>
-                    <span>Số lượng: {total}</span>
-                </div>
-                
+                    {totalSize ? <span>Số lượng: {totalSize}</span> : <span>Lượt mượn: {totalBorrow}</span>}
+                </div>     
             </Card>
         </div>
     )

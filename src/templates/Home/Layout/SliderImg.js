@@ -20,7 +20,6 @@ const SliderImg = () => {
 
     useEffect(() => {
         if (listBorrow && listBorrow.success) {
-            console.log({ listBorrow })
             setMostBorrow(listBorrow.detail);
             setLoading(false)
         }
@@ -82,7 +81,7 @@ const SliderImg = () => {
                                 key={index}
                                 title={value.name}
                                 image={value.image_bytes}
-                                total={value.quantity}       
+                                totalBorrow={value.count_borrow}       
                             />
                         )
                         }

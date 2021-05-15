@@ -34,14 +34,17 @@ const Header = (props) => {
     const onSearch = value => console.log(value);
     
     const handleClick = (e) => {
-        history.push(PAGES_URL.home.url + e);
+        history.push(PAGES_URL.home.url +"category/"+ e);
     };
 
+    const onMoveProfile = () => {
+        history.push(PAGES_URL.home.url +"profile/"+ user.customer_id);
+    }
+
     const onChangeMenu = (value) => {
-        console.log({value})
         switch(value){
             case 1: 
-                return
+                return onMoveProfile()
             case 2:
                 return logOut()
         }

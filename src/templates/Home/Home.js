@@ -4,15 +4,14 @@ import { PaginationSingle } from "components/base/Pagination";
 import { getLocalStore, LoadDataPaging } from "functions/Utils";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { homeAction } from "store/action";
 import { CardBook, SliderImg } from "./Layout";
 
 const Home = () => {
     const dispatch = useDispatch()
-    const location = useLocation()
-    const pathName = location.pathname;
-    const pathCurrent = pathName.split("/")[1];
+    const categoryParam = useParams();
+    const { categoryId } = categoryParam;
     const homeReducer = useSelector(state => state.homeReducer);
     const [state, setState] = useState({
         listBook: null,
@@ -46,24 +45,24 @@ const Home = () => {
 
     useEffect(() => {
         if (state) {
-            console.log({state})
+            // console.log({state})
         }
     }, [state])
     
     useEffect(() => {
-        if (pathCurrent) {
+        if (categoryId) {
             loadListBook()
         }
-    }, [pathCurrent])
+    }, [categoryId])
 
     let loadListBook = () => {
         let page = state.page
-        let category_id = pathCurrent
+        let category_id = categoryId
         setState({ ...state, page })
         callListBook({ page: page, category_id: category_id})
     }
 
-    const callListBook = ({ page = state.page, category_id = pathCurrent }) => {
+    const callListBook = ({ page = state.page, category_id = categoryId }) => {
         dispatch(homeAction.loadListBook({ limit: limit , page: page, category_id: category_id}))
         setLoading(true)
     }
@@ -85,7 +84,7 @@ const Home = () => {
                             <CardBook
                                 title={value.name}
                                 image={value.image_bytes}
-                                total={value.quantity}
+                                totalSize={value.quantity}
                             />
                         </div>
                 )})}  

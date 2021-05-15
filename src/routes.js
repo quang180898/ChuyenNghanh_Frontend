@@ -5,6 +5,7 @@ const Login = lazy(() => import('./templates/Account/Login'));
 const ForgotPassword = lazy(() => import('./templates/Account/ForgotPassword'));
 const Register = lazy(() => import('./templates/Account/Register'));
 const Home = lazy(() => import('./templates/Home/Home'));
+const Profile = lazy(() => import('./templates/Profile/Profile'));
 const Admin = lazy(() => import('./templates/Admin/Admin'));
 
 const LOGINS = [
@@ -28,8 +29,12 @@ const MAIN = [
         "component": Home
     },
     {
-        "path": PAGES_URL.home.url + ":id",
+        "path": PAGES_URL.home.url + "category/:categoryId",
         "component": Home
+    },
+    {
+        "path": PAGES_URL.profile.url + "/:accountId",
+        "component": Profile
     },
 ]
 
@@ -40,7 +45,6 @@ const getPathList = (DATA) => {
             list.push(DATA[i].path)
         }
     }
-    // console.log({ list });
     return list
 }
 
