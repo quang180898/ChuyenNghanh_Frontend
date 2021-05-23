@@ -14,6 +14,8 @@
 
     .btn-blue {
         height: 48px !important;
+        background-color: blue !important;
+        color: #ffffff;
 
         &:hover{
             border: none;
@@ -24,7 +26,7 @@
         &:focus,&:active {
             border: none;
             background-color: #0080ff !important;
-            color: #ffffff;
+            color: black;
         }
     }
 }

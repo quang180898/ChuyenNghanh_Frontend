@@ -18,7 +18,7 @@ const CardBook = (props) => {
                     <span>{title}</span>
                 </div>
                 <div className="support-book">
-                    <ButtonStyle label="Mượn sách"></ButtonStyle>
+                    <ButtonStyle className="btn-white" label="Mượn sách"></ButtonStyle>
                     {totalSize ? <span>Số lượng: {totalSize}</span> : <span>Lượt mượn: {totalBorrow}</span>}
                 </div>     
             </Card>

@@ -13,6 +13,10 @@ const actions = {
     BORROW_FAILURE: name + 'BORROW_FAILURE',
     BORROW_SUCCESS: name + 'BORROW_SUCCESS',
 
+    GET_INFO_PROFILE_REQUEST: name + 'GET_INFO_PROFILE_REQUEST',
+    GET_INFO_PROFILE_FAILURE: name + 'GET_INFO_PROFILE_FAILURE',
+    GET_INFO_PROFILE_SUCCESS: name + 'GET_INFO_PROFILE_SUCCESS',
+
     LOGIN_CLEAR: name + 'LOGIN_CLEAR',
 
     loadLogin: (params) => ({
@@ -27,6 +31,11 @@ const actions = {
 
     createOrUpdateAccount: (params) => ({
         type: actions.CREATE_UPDATE_ACCOUNT_REQUEST,
+        params: params
+    }),
+
+    getInfoProfile: (params) => ({
+        type: actions.GET_INFO_PROFILE_REQUEST,
         params: params
     }),
 

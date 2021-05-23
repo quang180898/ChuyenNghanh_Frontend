@@ -56,6 +56,7 @@ const Register = () => {
     const onChangeFile = (e) => {
         if (e) {
             let files = e.target.files
+            console.log(files)
             if (files.size > MAX_SIZE_IMAGE) {
                 return
             }

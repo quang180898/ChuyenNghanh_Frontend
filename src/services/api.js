@@ -5,4 +5,5 @@ export default {
     LIST_BOOK: '/api/backend/v1/book/',
     MOST_BORROW: '/api/backend/v1/account_book/most_borrow/',
     LIST_CATEGORY: '/api/backend/v1/category/',
+    INFO_PROFILE: '/api/backend/v1/account/info/',
 }

@@ -34,8 +34,16 @@ export default (state = initialState, action) => {
             return { ...state, isFetching: false, success: true, listBorrow: action.response, error: false };
         case accountAction.BORROW_FAILURE:
             return { ...state, isFetching: false, error: action.err, success: false, listBorrow: action.response };
+
+        //info profile
+        case accountAction.GET_INFO_PROFILE_REQUEST:
+            return { ...state, isFetching: true, infoProfile: null, success: false, error: false };
+        case accountAction.GET_INFO_PROFILE_SUCCESS:
+            return { ...state, isFetching: false, success: true, infoProfile: action.response, error: false };
+        case accountAction.GET_INFO_PROFILE_FAILURE:
+            return { ...state, isFetching: false, error: action.err, success: false, infoProfile: action.response };
         
-            //clear
+        //clear
         case accountAction.LOGIN_CLEAR:
             return {
                 ...state,

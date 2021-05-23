@@ -24,7 +24,6 @@ export const accountService = {
     },
 
     createOrUpdateAccount(params) {
-        const { name, user_name, pass_word, password_repeat, mobile, mail } = params
         const body = params;
         console.log('params', params);
         return postWithFormData(body, api.ACCOUNT_UPDATE)
@@ -38,5 +37,16 @@ export const accountService = {
         const url = getUrl(api.MOST_BORROW);
         return handleRequest(url, requestOptions);
     },
+
+    getInfoProfile({params}) {
+        console.log({params})
+        const requestOptions = {
+            method: "GET",
+            headers: getHeader(CONTENT_TYPE),
+        };
+        const url = getUrl(api.INFO_PROFILE, params);
+        return handleRequest(url, requestOptions);
+    },
+
 }
 

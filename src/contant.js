@@ -8,6 +8,7 @@ export const MNV_ENCODE = 0;
 export const MAX_SIZE_IMAGE = 2500000; //limit size image
 export const MNV_LANGUAGE = getLocalStore('language');
 export const ERROR_SERVER = 'Đã xảy ra lỗi'; //check status error fail
+export const CARD_EQUAL = "d-flex flex-column"; //for 2 card equal
 
 export const FILE_CONTENT_TYPE = {
     DEFAULT: 'application/octet-stream',

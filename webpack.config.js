@@ -4,14 +4,6 @@ const globImporter = require("node-sass-glob-importer");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-let runHotModuleReplacement = false;
-
-var rightNow = new Date();
-var date = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
-var time = rightNow.getHours() + "g" + rightNow.getMinutes()
-
-var dateTimeBuild = date + '.' + time;
-
 module.exports = {
   mode: 'development',
   entry: ["./src/index.js"],
@@ -84,19 +76,18 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash].' + dateTimeBuild + '.css',
-      chunkFilename: 'css/[name].[hash].chunk-[id].css',
+      filename: 'css/[name].css',
     }),
     new HtmlWebpackPlugin({
       inject: true,
       template: "./public/index.html"
     }),
-    ...(runHotModuleReplacement == true ? [new webpack.HotModuleReplacementPlugin()] : []),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
-    filename: '[name].[hash].' + dateTimeBuild + '.js',
-    chunkFilename: '[name].[hash].' + dateTimeBuild + '.js'
+    filename: '[name].bundle.js',
+    clean: true,
   },
 };

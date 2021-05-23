@@ -10,7 +10,7 @@ const ButtonStyle = (props) => {
         isButton    
             ?
             <Button
-                className={`${getValueAndSetDefault(className, '')}`}
+                className={`btn ${getValueAndSetDefault(className, '')}`}
                 onClick={onClick}
                 htmlType={getValueAndSetDefault(htmlType, '')}
             
