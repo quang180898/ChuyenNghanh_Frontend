@@ -302,15 +302,6 @@ export const showMessage = {
     }),
 }
 
-export const showNotification = ({ type, message, title, duration = 4.5 }) => {
-    notification[type ? type : 'success']({
-        message: title,
-        description: message,
-        duration
-    });
-}
-
-
 /* second < 10 ? 01 : 10 */
 export const convertNumberTwoNumber = (second) => {
     if (second > 10) {
@@ -863,3 +854,60 @@ export const subPagination = (limit, array) => {
         />
     )
 }
+
+export const canvasToBinary = (snap) => {
+    var img = snap.toDataURL();
+    // Convert Base64 image to binary [function base64ToBinary()]
+    return base64ToBinary(img);
+}
+
+export const base64ToBinary = (dataURI) => {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ia], { type: mimeString, encoding: 'utf-8' });
+}
+
+export const showNotification = {
+    success: ({ message, title, duration = 4.5 }) => {
+        notification.success({
+            message: title,
+            description: message,
+            duration
+        });
+    },
+    error: ({ message, title, duration = 4.5 }) => {
+        notification.error({
+            message: title,
+            description: message,
+            duration
+        });
+    },
+    warning: ({ message, title, duration = 4.5 }) => {
+        notification.warning({
+            message: title,
+            description: message,
+            duration
+        });
+    },
+}
+
+export const dataURLtoFile = (dataurl, filename) => {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, {type:mime});
+}
+

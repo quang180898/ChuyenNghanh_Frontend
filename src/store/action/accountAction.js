@@ -17,6 +17,10 @@ const actions = {
     GET_INFO_PROFILE_FAILURE: name + 'GET_INFO_PROFILE_FAILURE',
     GET_INFO_PROFILE_SUCCESS: name + 'GET_INFO_PROFILE_SUCCESS',
 
+    UPDATE_INFO_PROFILE_REQUEST: name + 'UPDATE_INFO_PROFILE_REQUEST',
+    UPDATE_INFO_PROFILE_FAILURE: name + 'UPDATE_INFO_PROFILE_FAILURE',
+    UPDATE_INFO_PROFILE_SUCCESS: name + 'UPDATE_INFO_PROFILE_SUCCESS',
+
     LOGIN_CLEAR: name + 'LOGIN_CLEAR',
 
     loadLogin: (params) => ({
@@ -36,6 +40,11 @@ const actions = {
 
     getInfoProfile: (params) => ({
         type: actions.GET_INFO_PROFILE_REQUEST,
+        params: params
+    }),
+
+    updateInfoProfile: (params) => ({
+        type: actions.UPDATE_INFO_PROFILE_REQUEST,
         params: params
     }),
 

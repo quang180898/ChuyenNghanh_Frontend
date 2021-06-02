@@ -45,6 +45,8 @@ export const SETTING_USER = [
     {value: 2, label: "Thoát tài khoản"},
 ]
 
+export const USER_AVATAR_URL = 'user/avatar'
+
 export const PAGES_URL = {
     login: {
         url: '/login',

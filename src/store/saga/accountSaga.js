@@ -76,11 +76,31 @@ export function* getInfoProfileWatcher() {
     yield takeLatest(accountAction.GET_INFO_PROFILE_REQUEST, getInfoProfile);
 }
 
+// getInfoProfile
+export function* updateInfoProfile(payload) {
+    try {
+        const response = yield accountService.updateInfoProfile({ params: payload.params });
+        if (response.success) {
+            yield put({ type: accountAction.UPDATE_INFO_PROFILE_SUCCESS, response })
+        }
+        else {
+            yield put({ type: accountAction.UPDATE_INFO_PROFILE_FAILURE, response });
+        }
+    } catch (err) {
+        yield put({ type: accountAction.UPDATE_INFO_PROFILE_FAILURE, err: { err } });
+    }
+}
+
+export function* updateInfoProfileWatcher() {
+    yield takeLatest(accountAction.UPDATE_INFO_PROFILE_REQUEST, updateInfoProfile);
+}
+
 export default function* rootSaga() {
     yield all([
         fork(loginWatcher),
         fork(mostBorrowWatcher),
         fork(createOrUpdateAccountWatcher),
         fork(getInfoProfileWatcher),
+        fork(updateInfoProfileWatcher),
     ]);
 }

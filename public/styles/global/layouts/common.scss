@@ -350,7 +350,9 @@ body {
 }
 
 .card-wrap {
-    height: 90%;
+    overflow: hidden;
+    height: 100%;
+    margin-bottom: 30px;
 }
 
 .card {

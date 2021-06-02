@@ -1,41 +1,47 @@
 import { Form} from 'antd';
 import { InputBase } from 'components/base/Input';
 import CardWrap from 'components/common/Card/CardWarp';
+import e from 'cors';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { accountAction } from 'store/action';
 import { ModalChangePass } from './index';
 
-const Information = ({formInfo, disabled}) => {
+const Information = ({ data, formInfo, disabled}) => {
     const dispatch = useDispatch()
     
-    const [state, setState] = useState()
     const [visibleChangePass, setVisibleChangePass] = useState(false)
     
 
     const {accountId} = useParams();
 
     const store = useSelector(state => state.accountReducer);
-    const { infoProfile } = store;
 
     useEffect(() => {
-        dispatch(accountAction.getInfoProfile({ user_id: accountId }))
-    },[])
-
-    useEffect(() => {
-        if (infoProfile) {
+        if (data) {
             formInfo.setFieldsValue({
-                full_name: "hihi"
+                fullname: data.name,
+                username: data.username,
+                password: "******",
+                email: data.mail,
+                phone: data.mobile
             })
         }
-    },[infoProfile])
+    },[data])
 
-    const onSubmitInfo = (e) => {
-        console.log(e)
+    const onSubmitInfo = (values) => {
+        if (values) {
+            const {fullname, email, phone , address} = values
+            let params = {
+                user_id: parseInt(accountId),
+                name: fullname ? fullname : null,
+                mail : email ? email : null,
+                mobile: phone ? phone : null,
+            }
+            dispatch(accountAction.updateInfoProfile(params))
+        } 
     }
-
-
 
     return (
         <CardWrap isHeigth title="Information">
@@ -46,7 +52,7 @@ const Information = ({formInfo, disabled}) => {
             >
                 <div className="row">
                     <div className="col-12 col-sm-6 col-xl-6">
-                        <Form.Item label="Họ tên" name="full_name">
+                        <Form.Item label="Họ tên" name="fullname">
                             <InputBase disabled={disabled}/>
                         </Form.Item>
                     </div>
@@ -66,7 +72,7 @@ const Information = ({formInfo, disabled}) => {
                     </div>
                     <div className="col-12 col-sm-6 col-xl-6">
                         <Form.Item label="Email" name="email">
-                            <InputBase disabled={true}/>
+                            <InputBase disabled={disabled}/>
                         </Form.Item>
                     </div>
                     <div className="col-12 col-sm-6 col-xl-6">

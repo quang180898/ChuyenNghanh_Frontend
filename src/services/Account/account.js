@@ -48,5 +48,10 @@ export const accountService = {
         return handleRequest(url, requestOptions);
     },
 
+    updateInfoProfile({ params }) {
+        const body = params;
+        return postWithFormData(body, api.UPDATE_PROFILE)
+    },
+
 }
 

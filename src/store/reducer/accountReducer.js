@@ -42,6 +42,14 @@ export default (state = initialState, action) => {
             return { ...state, isFetching: false, success: true, infoProfile: action.response, error: false };
         case accountAction.GET_INFO_PROFILE_FAILURE:
             return { ...state, isFetching: false, error: action.err, success: false, infoProfile: action.response };
+
+         //update profile
+         case accountAction.UPDATE_INFO_PROFILE_REQUEST:
+            return { ...state, isFetching: true, postUpdateResponse: null, success: false, error: false };
+        case accountAction.UPDATE_INFO_PROFILE_SUCCESS:
+            return { ...state, isFetching: false, success: true, postUpdateResponse: action.response, error: false };
+        case accountAction.UPDATE_INFO_PROFILE_FAILURE:
+            return { ...state, isFetching: false, error: action.err, success: false, postUpdateResponse: action.response };
         
         //clear
         case accountAction.LOGIN_CLEAR:
