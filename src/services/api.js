@@ -7,4 +7,5 @@ export default {
     LIST_CATEGORY: '/api/backend/v1/category/',
     INFO_PROFILE: '/api/backend/v1/account/info/',
     UPDATE_PROFILE: '/api/backend/v1/account/update_profile/',
+    CHANGE_PASSWORD: '/api/backend/v1/account/change_password/',
 }

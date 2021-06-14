@@ -7,7 +7,7 @@ import { Animated } from 'react-animated-css';
 
 const Container = () => {
     return (
-        <div className="container">
+        <div className="container-fluid">
         <Suspense fallback={''}>
         <Switch >
             {MAIN.map((data, idx) => (

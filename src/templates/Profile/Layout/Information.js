@@ -1,16 +1,16 @@
 import { Form} from 'antd';
+import { ButtonStyle } from 'components/base/Button';
 import { InputBase } from 'components/base/Input';
 import CardWrap from 'components/common/Card/CardWarp';
-import e from 'cors';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { accountAction } from 'store/action';
 import { ModalChangePass } from './index';
 
-const Information = ({ data, formInfo, disabled}) => {
+const Information = ({ data, disabled, setDisabled}) => {
     const dispatch = useDispatch()
-    
+    const [formInfo] = Form.useForm();
     const [visibleChangePass, setVisibleChangePass] = useState(false)
     
 
@@ -30,7 +30,8 @@ const Information = ({ data, formInfo, disabled}) => {
         }
     },[data])
 
-    const onSubmitInfo = (values) => {
+    const onFinishInfo = (values) => {
+        setDisabled(true)
         if (values) {
             const {fullname, email, phone , address} = values
             let params = {
@@ -43,12 +44,28 @@ const Information = ({ data, formInfo, disabled}) => {
         } 
     }
 
+    const onSubmitInfo = () => { 
+        formInfo.submit()
+    }
+
+    const onResetField = () => {
+        setDisabled(true)
+        formInfo.setFieldsValue({
+            fullname: data.name,
+            username: data.username,
+            password: "******",
+            email: data.mail,
+            phone: data.mobile
+        })
+    }
+
     return (
-        <CardWrap isHeigth title="Information">
+        <>
+        <CardWrap title="Information">
             <Form 
                 layout="vertical"
                 form={formInfo}
-                onFinish={onSubmitInfo}
+                onFinish={onFinishInfo}
             >
                 <div className="row">
                     <div className="col-12 col-sm-6 col-xl-6">
@@ -89,6 +106,17 @@ const Information = ({ data, formInfo, disabled}) => {
             </Form>
             <ModalChangePass visible={visibleChangePass} setVisible={setVisibleChangePass}/>
         </CardWrap>
+        <div className="text-right">
+        {disabled ? 
+        <ButtonStyle className="btn-black-outline" label="Chỉnh sửa" onClick={() => setDisabled(false)} iconClassname="far fa-edit"/>
+            :
+        <>
+        <ButtonStyle className="btn-red mr-2" label="Huỷ" onClick={onResetField}/> 
+        <ButtonStyle className="btn-purple" label="Cập nhật" onClick={onSubmitInfo}/> 
+        </>
+        }
+    </div>
+    </>
     )
 }
 

@@ -53,5 +53,14 @@ export const accountService = {
         return postWithFormData(body, api.UPDATE_PROFILE)
     },
 
+    changePassword({ params }) {
+        const requestOptions = {
+            method: 'POST',
+            headers: getHeader(CONTENT_TYPE),
+            body: params,
+        };
+        const url = getUrl(api.CHANGE_PASSWORD);
+        return handleRequest(url, requestOptions);
+    },
 }
 

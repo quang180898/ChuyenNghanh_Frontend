@@ -68,6 +68,10 @@ export const PAGES_URL = {
         url: '/profile',
         title: 'profile'
     },
+    product: {
+        url: '/product',
+        title: 'product'
+    },
     admin: {
         url: '/admin',
         title: 'Admin'

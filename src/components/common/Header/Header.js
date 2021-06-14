@@ -37,6 +37,10 @@ const Header = (props) => {
         history.push(PAGES_URL.home.url +"category/"+ e);
     };
 
+    const onMoveHome = () => {
+        history.push(PAGES_URL.home.url);
+    }
+
     const onMoveProfile = () => {
         history.push(PAGES_URL.home.url +"profile/"+ user.customer_id);
     }
@@ -60,7 +64,7 @@ const Header = (props) => {
         <div className="background">
             <div className="container">
                 <div className='header'>
-                    <div className="header__logo">Library</div>
+                    <div className="header__logo" onClick={onMoveHome}>Library</div>
                     <div className="header__menu">
                         <Menu mode="horizontal">
                             <SubMenu key="SubMenu" icon={<UnorderedListOutlined />} >

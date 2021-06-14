@@ -148,7 +148,7 @@ const Avatar = ({ data, setDataImage }) => {
 
 
     return (
-        <CardWrap title="Avatar" isHeigth>
+        <CardWrap title="Avatar">
             {//has avatar
                 state.imgOld ?
                     <div id="div_image_preview">

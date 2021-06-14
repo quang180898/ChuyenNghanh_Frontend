@@ -21,6 +21,10 @@ const actions = {
     UPDATE_INFO_PROFILE_FAILURE: name + 'UPDATE_INFO_PROFILE_FAILURE',
     UPDATE_INFO_PROFILE_SUCCESS: name + 'UPDATE_INFO_PROFILE_SUCCESS',
 
+    CHANGE_PASSWORD_REQUEST: name + 'CHANGE_PASSWORD_REQUEST',
+    CHANGE_PASSWORD_FAILURE: name + 'CHANGE_PASSWORD_FAILURE',
+    CHANGE_PASSWORD_SUCCESS: name + 'CHANGE_PASSWORD_SUCCESS',
+
     LOGIN_CLEAR: name + 'LOGIN_CLEAR',
 
     loadLogin: (params) => ({
@@ -45,6 +49,11 @@ const actions = {
 
     updateInfoProfile: (params) => ({
         type: actions.UPDATE_INFO_PROFILE_REQUEST,
+        params: params
+    }),
+
+    changePassword: (params) => ({
+        type: actions.CHANGE_PASSWORD_REQUEST,
         params: params
     }),
 

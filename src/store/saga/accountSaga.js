@@ -95,6 +95,25 @@ export function* updateInfoProfileWatcher() {
     yield takeLatest(accountAction.UPDATE_INFO_PROFILE_REQUEST, updateInfoProfile);
 }
 
+// changePassword
+export function* changePassword(payload) {
+    try {
+        const response = yield accountService.changePassword({ params: payload.params });
+        if (response.success) {
+            yield put({ type: accountAction.CHANGE_PASSWORD_SUCCESS, response })
+        }
+        else {
+            yield put({ type: accountAction.CHANGE_PASSWORD_FAILURE, response });
+        }
+    } catch (err) {
+        yield put({ type: accountAction.CHANGE_PASSWORD_FAILURE, err: { err } });
+    }
+}
+
+export function* changePasswordWatcher() {
+    yield takeLatest(accountAction.CHANGE_PASSWORD_REQUEST, changePassword);
+}
+
 export default function* rootSaga() {
     yield all([
         fork(loginWatcher),
@@ -102,5 +121,6 @@ export default function* rootSaga() {
         fork(createOrUpdateAccountWatcher),
         fork(getInfoProfileWatcher),
         fork(updateInfoProfileWatcher),
+        fork(changePasswordWatcher),
     ]);
 }

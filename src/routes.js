@@ -6,6 +6,7 @@ const ForgotPassword = lazy(() => import('./templates/Account/ForgotPassword'));
 const Register = lazy(() => import('./templates/Account/Register'));
 const Home = lazy(() => import('./templates/Home/Home'));
 const Profile = lazy(() => import('./templates/Profile/Profile'));
+const Product = lazy(() => import('./templates/Product/Product'));
 const Admin = lazy(() => import('./templates/Admin/Admin'));
 
 const LOGINS = [
@@ -35,6 +36,10 @@ const MAIN = [
     {
         "path": PAGES_URL.profile.url + "/:accountId",
         "component": Profile
+    },
+    {
+        "path": PAGES_URL.product.url + "/:bookId",
+        "component": Product
     },
 ]
 
