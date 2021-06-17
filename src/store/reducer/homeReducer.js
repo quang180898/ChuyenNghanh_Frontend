@@ -1,12 +1,6 @@
 import { homeAction } from '../action';
 
-const initialState = {
-    listBook: [],
-    listCategory: [],
-    success: false,
-    error: false,
-    isFetching: false,
-};
+const initialState = {};
 
 export default (state = initialState, action) => {
     switch (action.type) {

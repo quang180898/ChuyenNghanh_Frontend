@@ -17,46 +17,48 @@
 
 .cus-table {
     @include scrollbarTable;
-    height: 500px;
-    overflow: auto;
     margin-bottom: 15px;
+    overflow: auto;
 
-    @media (max-width: 991px) {
-        overflow-x: auto;
+    &.max-height-300 {
+        max-height: 300px;
     }
 
     table {
-        min-width: 900px;
+        min-width: 1000px;
         width: 100%;
+        margin-bottom: 30px;
     }
 
-    tr {
-        border-bottom: 1px solid #ececec;
-        height: 48px;
-    }
-
-    tbody tr {
-
-        &:hover,
-        &.active {
-            background-color: #f5f6f6;
-        }
+    tbody {
+        border-bottom: solid 1px rgba(222, 226, 230, 0.5);
     }
 
     th {
         @include fw-medium;
-        color: #0057ae;
-        font-size: 16px;
-        padding: 7px 3px;
+        color: #1825aa;
+        font-size: 14px;
+        padding: 5px 15px;
+        border-bottom: solid 1px #1825aa;
+        &:first-child {
+            padding: 5px 15px 5px 0;
+        }
     }
 
     td {
-        @include fw-normal;
-        color: #666b77;
-        font-size: 16px;
-        padding: 3px;
+        color: #212529;
+        font-size: 14px;
+        padding: 15px;
+        border-bottom: solid 1px rgba(222, 226, 230, 0.5);
     }
-
+    .text-percent {
+        padding-right: 7px;
+    }
+    .icon-percent {
+        font-size: 14px;
+        color: #1825aa;
+        padding-right: 7px;
+    }
 }
 
 .table-icon {
@@ -74,9 +76,11 @@
         display: table;
         table-layout: fixed;
         width: 100%;
+        min-width: 1200px;
 
         tbody {
             @include scrollbarTable;
+            margin-bottom: 10px;
             display: block;
             overflow: auto;
             max-height: 535px;
@@ -88,5 +92,35 @@
             display: table;
             width: 100%;
         }
+    }
+}
+
+.table-custom {
+    table {
+        min-width: 1100px;
+    }
+    th {
+        font-size: 14px;
+        padding: 13px;
+        color: #000000;
+        border-bottom: solid 1px #928484;
+        &:first-child {
+            padding: 13px 13px 13px 0;
+        }
+    }
+    td {
+        font-size: 14px;
+    }
+    tbody {
+        border: unset;
+    }
+}
+
+.table-book {
+    table {
+        min-width: 1500px;
+    }
+    img {
+        border: 1px solid black;
     }
 }

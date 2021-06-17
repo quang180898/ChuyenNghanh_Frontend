@@ -2,10 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { Provider } from 'react-redux';
 import configureStore from '../store';
-import { getPathList, LOGINS , MAIN} from '../routes';
+import { ADMIN, getPathList, LOGINS , MAIN} from '../routes';
 import MainLogin from './MainLogin';
 import MainPage from "./MainPage";
-// import { TOKEN } from '../functions/Utils';
+import MainAdmin from "./MainAdmin";
+import { PAGES_URL } from 'contant';
+import { TOKEN } from '../functions/Utils';
 
 const PrivateLoginRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
@@ -14,8 +16,16 @@ const PrivateLoginRoute = ({ component: Component, ...rest }) => (
 )
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
-        //check nếu chưa login thì ko được vào mainPage
         <MainPage />
+    )} />
+)
+
+const PrivateAdminRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+        //check nếu chưa login thì ko được vào mainPage
+        TOKEN
+            ? <MainAdmin />
+            : <Redirect to={PAGES_URL.login.url} />
     )} />
 )
 
@@ -30,6 +40,9 @@ const App = () => {
                     </Route>
                     <Route exact path={getPathList(MAIN)} >
                         <Route render={props => <PrivateRoute {...props} />} />
+                    </Route>
+                    <Route exact path={getPathList(ADMIN)} >
+                        <Route render={props => <PrivateAdminRoute {...props} />} />
                     </Route>
                     <Route render={props => <PrivateRoute {...props} />} />
                 </Switch>

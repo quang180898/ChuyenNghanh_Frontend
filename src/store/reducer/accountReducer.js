@@ -57,8 +57,24 @@ export default (state = initialState, action) => {
         case accountAction.CHANGE_PASSWORD_SUCCESS:
             return { ...state, isLoading: false, success: true, changePassword: action.response, error: false };
         case accountAction.CHANGE_PASSWORD_FAILURE:
-            return { ...state, isLoading: false, error: action.err, success: false, changePassword: action.response };    
+            return { ...state, isLoading: false, error: action.err, success: false, changePassword: action.response };
         
+        //list user
+        case accountAction.GET_LIST_USER_REQUEST:
+            return { ...state, isLoading: true, listUser: null, success: false, error: false };
+        case accountAction.GET_LIST_USER_SUCCESS:
+            return { ...state, isLoading: false, success: true, listUser: action.response, error: false };
+        case accountAction.GET_LIST_USER_FAILURE:
+            return { ...state, isLoading: false, error: action.err, success: false, listUser: action.response };    
+
+        //delete user
+        case accountAction.DELETE_USER_REQUEST:
+            return { ...state, isLoading: true, deleteUser: null, success: false, error: false };
+        case accountAction.DELETE_USER_SUCCESS:
+            return { ...state, isLoading: false, success: true, deleteUser: action.response, error: false };
+        case accountAction.DELETE_USER_FAILURE:
+            return { ...state, isLoading: false, error: action.err, success: false, deleteUser: action.response };
+            
         //clear
         case accountAction.LOGIN_CLEAR:
             return {

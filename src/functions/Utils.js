@@ -45,8 +45,13 @@ export const getLocalStore = (text, remove = false) => {
 // token 
 const token = () => {
     if (getLocalStore('user')) {
-        let token = getLocalStore('user').token;
-        if (token) { return token }
+        let token = getLocalStore('user').permission_code;
+        if (token === 1) { 
+            console.log(token)
+            return token 
+        } else {
+            return null
+        }
     }
     return null
 }; // Production
@@ -79,6 +84,68 @@ export const DATEFORMAT = {
     TIMESTAMP_API: "yyyy-MM-dd'T'HH:mm:ss",
     TIMESTAMP_API3: "yyyy-MM-dd'T'HH:mm:ss.SSS",
     TIMESTAMP_API6: "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+}
+
+export const getBreadcrumbData = ({ router, url }) => {
+    let newRouter = [].concat(router)
+    const paths = url.split('/');//lấy list các ký tự đường link
+    let newPaths = [];//tạo mảng để trả về
+    let newUrl = ''; // link url được ghép lại
+    let newLink = "" //link url có :id
+    let textTemp = ''//lưu lại link trước đó để gắn :id vào
+    if (url != "/") {
+        for (let index = 0; index < paths.length; index++) {
+            newUrl = newUrl + "/" + paths[index];//gắn các list link lại với nhau
+            newUrl = newUrl.replace("//", "/")//nếu trùng // thì đổi thành /
+            let params = newRouter.find(e => {
+                if (e.path == newUrl) {
+                    return true
+                }
+                else {
+                    let route = e.path && e.path != "/" ? e.path.split("/") : [e.path];
+                    //kiểm tra xem đường link có id không, nếu có thì gắn id vào link trong route
+                    if (route.length > 1 && route[route.length - 1].includes(":")) {
+                        route[route.length - 1] = paths[index]
+                    }
+
+                    route = route.join("/");
+                    if (route == newUrl || route == (newUrl + "/")) {
+                        newUrl = e.path;
+                        return true
+                    }
+                }
+            })
+            if (params) {
+                let text = { ...params }
+                if (newLink != "/" && text.path.includes(newUrl)) {
+                    //nếu đường link là đường phân nhìu cấp
+                    let indexof = text.path.indexOf(newUrl)
+                    //các cấp trước đã được khởi tạo
+                    if (indexof > -1 && newLink != "" && textTemp != "") {
+                        //lấy đường link được khởi tạo để gắn vào đường link 
+                        text.path = text.path.replace(textTemp, newLink)
+                    }
+                    //nếu path hiện tại có id
+                    let lastIndex = text.path.lastIndexOf(":");
+                    if (lastIndex > -1) {
+                        //lấy phần tử đầu
+                        let temp = text.path.slice(0, lastIndex);
+                        textTemp = text.path
+                        //gắn thêm :id vào phần từ đầu
+                        text.path = temp + paths[index]
+                    }
+                }
+                newLink = text.path
+                //push link vào mảng
+                newPaths.push(text)
+            }
+        }
+    }
+    //lấy 2 đường link cuối cùng
+    if (newPaths.length > 3) {
+        newPaths.splice(1, newPaths.length - 3)
+    }
+    return newPaths
 }
 
 // convert time 
@@ -472,19 +539,19 @@ export const RULES = {
                                 let format = /(0)+([1-9])+([0-9]{8})/;
                                 if (!format.test(value)) {
                                     if (value.length != 10) {
-                                        return Promise.reject("phone_length")
+                                        return Promise.reject("độ dài không hợp lệ")
                                     }
-                                    return Promise.reject("phone_error")
+                                    return Promise.reject("số điện thoại lỗi")
                                 }
                                 else {
                                     if (value.length != 10) {
-                                        return Promise.reject("phone_length")
+                                        return Promise.reject("độ dài không hợp lệ")
                                     }
                                     return Promise.resolve()
                                 }
                             }
                             else {
-                                return Promise.reject("input_null")
+                                return Promise.reject("vui lòng nhập!")
                             }
                         }
                         return Promise.resolve()
@@ -496,12 +563,12 @@ export const RULES = {
     },
     textFullName: {
         //truyền isRequired để xác nhận có kiểm tra hay không
-        form: (isRequired = true, text = "input_null") => {
+        form: (isRequired = true, text = "vui lòng nhập!") => {
             return [
                 ({ }) => ({
                     validator: (rule, value) => {
                         if (isRequired) {
-                            // text là input muốn show khi không thỏa dk, mặc định là input_null
+                            // text là input muốn show khi không thỏa dk, mặc định là vui lòng nhập!
                             //nhập full name chỉ nhập được chữ và khoảng trắng
                             let format = /[a-zA-z ]/;
                             if (value && value[0] != " ") {
@@ -522,7 +589,7 @@ export const RULES = {
 
                             }
                             else {
-                                return Promise.reject("input_null")
+                                return Promise.reject("vui lòng nhập!")
                             }
                         }
                         return Promise.resolve()
@@ -534,12 +601,12 @@ export const RULES = {
     },
     textNoPasce: {
         //truyền isRequired để xác nhận có kiểm tra hay không
-        form: (isRequired = true, text = "input_null") => {
+        form: (isRequired = true, text = "vui lòng nhập!") => {
             return [
                 ({ }) => ({
                     validator: (rule, value) => {
                         if (isRequired) {
-                            // text là input muốn show khi không thỏa dk, mặc định là input_null
+                            // text là input muốn show khi không thỏa dk, mặc định là vui lòng nhập!
                             //kiểm tra value vào có phải là số || chữ || _
                             var reg = new RegExp("^\\w+$")
                             if (value && value[0] != " ") {
@@ -553,7 +620,7 @@ export const RULES = {
 
                             }
                             else {
-                                return Promise.reject("input_null")
+                                return Promise.reject("vui lòng nhập!")
                             }
                         }
                         return Promise.resolve()
@@ -567,7 +634,7 @@ export const RULES = {
         form: [
             {
                 required: true,
-                message: ("input_null")
+                message: ("vui lòng nhập!")
             },
             {
                 min: 9,
@@ -582,7 +649,7 @@ export const RULES = {
             //nếu isRequired true thì rule sẽ kiểm tra xem user đã nhập vào ô hay chưa
             {
                 required: isRequired,
-                message: ("input_null"),
+                message: ("vui lòng nhập!"),
             }
         ],
         type: 'number'
@@ -591,7 +658,7 @@ export const RULES = {
         form: [
             {
                 pattern: '/^[0-9\b]+$/',
-                message: ("input_null"),
+                message: ("vui lòng nhập!"),
             }
         ],
         type: 'number'
@@ -607,7 +674,7 @@ export const RULES = {
                             if (isRequired) {
                                 //nếu chưa nhập text thì thông báo lỗi
                                 if (!value) {
-                                    return Promise.reject("input_null")
+                                    return Promise.reject("vui lòng nhập!")
                                 }
                                 else {
                                     //kiểm tra email chuẩn theo format chưa
@@ -655,7 +722,7 @@ export const RULES = {
     },
     text: {
         //truyền isRequired để xác nhận có kiểm tra hay không, xong mới truyền text muốn show vào
-        form: (isRequired = true, textMessage = 'input_null') => {
+        form: (isRequired = true, textMessage = 'vui lòng nhập!') => {
             return [{
                 required: isRequired,
                 message: (textMessage),
@@ -685,7 +752,7 @@ export const RULES = {
                             }
                         }
                         else {
-                            return Promise.reject("input_null")
+                            return Promise.reject("vui lòng nhập!")
                         }
                     }
                     return Promise.resolve()
@@ -695,7 +762,7 @@ export const RULES = {
         type: 'text'
     },
     require: {
-        form: [{ required: true, message: ("input_null") }]
+        form: [{ required: true, message: ("vui lòng nhập!") }]
     }
 };
 
@@ -909,5 +976,9 @@ export const dataURLtoFile = (dataurl, filename) => {
             u8arr[n] = bstr.charCodeAt(n);
         }
         return new File([u8arr], filename, {type:mime});
+}
+
+export function removeEmptyFromObj(obj) {
+    return Object.entries(obj).reduce((a, [k, v]) => ((!v || v == null) ? a : (a[k] = v, a)), {})
 }
 

@@ -61,7 +61,7 @@ const Information = ({ data, disabled, setDisabled}) => {
 
     return (
         <>
-        <CardWrap title="Information">
+        <CardWrap title="Thông tin người dùng" isHeigth>
             <Form 
                 layout="vertical"
                 form={formInfo}
@@ -105,8 +105,7 @@ const Information = ({ data, disabled, setDisabled}) => {
                 </div>
             </Form>
             <ModalChangePass visible={visibleChangePass} setVisible={setVisibleChangePass}/>
-        </CardWrap>
-        <div className="text-right">
+            <div className="text-right">
         {disabled ? 
         <ButtonStyle className="btn-black-outline" label="Chỉnh sửa" onClick={() => setDisabled(false)} iconClassname="far fa-edit"/>
             :
@@ -116,6 +115,7 @@ const Information = ({ data, disabled, setDisabled}) => {
         </>
         }
     </div>
+        </CardWrap>
     </>
     )
 }

@@ -42,12 +42,6 @@ const Home = () => {
             setLoading(false)
         }
     }, [listBook])
-
-    useEffect(() => {
-        if (state) {
-            // console.log({state})
-        }
-    }, [state])
     
     useEffect(() => {
         if (categoryId) {
@@ -82,6 +76,7 @@ const Home = () => {
                     return (
                         <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12" key={index}>
                             <CardBook
+                                id={value.id}
                                 title={value.name}
                                 image={value.image_bytes}
                                 totalSize={value.quantity}

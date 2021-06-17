@@ -43,7 +43,6 @@ const Register = () => {
                 params.image = state.file
                 params.image_name = state.file.name
             }
-            console.log(params)
             if (password === rePassword) {
                 dispatch(accountAction.createOrUpdateAccount(params))
             } else {

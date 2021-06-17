@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { accountAction } from 'store/action';
 import { Avatar, Information } from './Layout';
+import { ButtonStyle } from 'components/base/Button';
+import { useHistory } from 'react-router-dom';
 
 const Profiles = () => {
 
     const dispatch = useDispatch();
-
+    const history = useHistory();
     const {accountId} = useParams();
-
+ 
     const [profileData, setProfileData] = useState()
     const [disableUpdate, setDisableUpdate] = useState(true)
 
@@ -24,7 +26,6 @@ const Profiles = () => {
     useEffect(() => {
         if (infoProfile) {
             if(infoProfile.success) {
-                console.log(infoProfile.detail)
                 let response = infoProfile.detail;
                 setProfileData(response)
             } 
@@ -42,6 +43,9 @@ const Profiles = () => {
                     <Information data={profileData} disabled={disableUpdate} setDisabled={setDisableUpdate}/>
                 </div>
             </div>
+        </div>
+        <div class="text-right mt-3">
+            <ButtonStyle className="btn-white" label="Trở về" onClick={() => history.goBack()} style={{ minWidth: "190px" }} />
         </div>
         </>
     )

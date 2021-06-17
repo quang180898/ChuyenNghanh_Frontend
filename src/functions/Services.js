@@ -125,7 +125,6 @@ function handleRequest(url, options) {
 }
 
 function postWithFormData(data, url, onProgress) {
-    console.log({data, url})
     return new Promise(function (resolve, reject) {
         const dataKeys = Object.keys(data);
         const formData = new FormData();

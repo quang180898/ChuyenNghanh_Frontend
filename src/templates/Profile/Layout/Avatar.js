@@ -35,7 +35,7 @@ const Avatar = ({ data, setDataImage }) => {
     useEffect(() => {
         if (data) {
             console.log(data)
-            setState({ ...state, imgOld: data.image_bytes, imgCurent: data.image_bytes })
+            setState({ ...state, imgOld: data.image_bytes, imgCurent: b64toBlob(data.image_bytes) })
         }
     }, [data])
 
@@ -45,7 +45,7 @@ const Avatar = ({ data, setDataImage }) => {
         if (postUpdateResponse) {
             if (postUpdateResponse.success) {
                 setState({ ...state, imgOld: postUpdateResponse.detail.customer_image_base64 })
-                showNotification.success({ message: 'update_success', title: 'success' })
+                showNotification.success({ message: 'Cập nhật thành công', title: 'success' })
                 setTimeout(() => {
                     setVisibleModal(false)
                 }, 1000);
@@ -136,7 +136,6 @@ const Avatar = ({ data, setDataImage }) => {
 
     // close modal 
     const onCancel = () => {
-        console.log('onCancel modal');
         setVisibleModal(false)
         setState({
             ...state,
@@ -148,7 +147,7 @@ const Avatar = ({ data, setDataImage }) => {
 
 
     return (
-        <CardWrap title="Avatar">
+        <CardWrap title="Ảnh đại diện" isHeigth>
             {//has avatar
                 state.imgOld ?
                     <div id="div_image_preview">
@@ -173,7 +172,7 @@ const Avatar = ({ data, setDataImage }) => {
                         {
                             !state.openCrop ?
                                 <div class="first" style={{ border: '1px solid #ccc', height: '100%' }}>
-                                    <img class="first_img" src={state.imgCurent}/>
+                                    <img class="first_img" src={state && state.imgCurent}/> 
                                 </div>
                                 : <>
                                     <ImageCropper setCropperData={setCropperData} state={state} />

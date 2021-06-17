@@ -1,5 +1,5 @@
 import React from 'react';
-import { Detail, Related } from './Layout';
+import { Detail, Related, InfoProduct, Description } from './Layout';
 
 const Products = () => {
 
@@ -7,6 +7,8 @@ const Products = () => {
         <>
             <Detail />
             <Related />
+            <InfoProduct />
+            <Description />
         </>
     )
 }

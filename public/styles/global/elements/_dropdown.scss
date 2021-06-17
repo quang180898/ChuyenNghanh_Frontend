@@ -32,3 +32,22 @@
     font-size: 22px;
     color: #0080ff;
 }
+
+.dropdown-blue-overlay {
+    .ant-dropdown-menu-item {
+        color: #367be3;
+    }
+}
+
+.dropdown-base-overlay {
+    .icon {
+        color: #6d30ab;
+        font-size: 18px;
+        padding: 0 10px 0 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #111;
+    }
+}

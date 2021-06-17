@@ -25,6 +25,14 @@ const actions = {
     CHANGE_PASSWORD_FAILURE: name + 'CHANGE_PASSWORD_FAILURE',
     CHANGE_PASSWORD_SUCCESS: name + 'CHANGE_PASSWORD_SUCCESS',
 
+    GET_LIST_USER_REQUEST: name + 'GET_LIST_USER_REQUEST',
+    GET_LIST_USER_FAILURE: name + 'GET_LIST_USER_FAILURE',
+    GET_LIST_USER_SUCCESS: name + 'GET_LIST_USER_SUCCESS',
+
+    DELETE_USER_REQUEST: name + 'DELETE_USER_REQUEST',
+    DELETE_USER_FAILURE: name + 'DELETE_USER_FAILURE',
+    DELETE_USER_SUCCESS: name + 'DELETE_USER_SUCCESS',
+
     LOGIN_CLEAR: name + 'LOGIN_CLEAR',
 
     loadLogin: (params) => ({
@@ -54,6 +62,16 @@ const actions = {
 
     changePassword: (params) => ({
         type: actions.CHANGE_PASSWORD_REQUEST,
+        params: params
+    }),
+
+    getListUser: (params) => ({
+        type: actions.GET_LIST_USER_REQUEST,
+        params: params
+    }),
+
+    deleteUser: (params) => ({
+        type: actions.DELETE_USER_REQUEST,
         params: params
     }),
 

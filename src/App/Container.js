@@ -4,22 +4,24 @@ import { Switch, Route, useHistory, withRouter, Link, useLocation, matchPath, Re
 
 import { MAIN } from "../routes";
 import { Animated } from 'react-animated-css';
+import PageNotFound from 'templates/ErrorPage/PageNotFound';
 
 const Container = () => {
     return (
         <div className="container-fluid">
-        <Suspense fallback={''}>
-        <Switch >
-            {MAIN.map((data, idx) => (
-                <Route exact key={idx} path={data.path}>
-                    <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                        <data.component />
-                    </Animated>
-                </Route>
-            ))}
-        </Switch>
-    </Suspense>
-    </div>
+            <Suspense fallback={''}>
+                <Switch >
+                    {MAIN.map((data, idx) => (
+                        <Route exact key={idx} path={data.path}>
+                            <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+                                <data.component />
+                            </Animated>
+                        </Route>
+                    ))}
+                    <Route component={PageNotFound} />
+                </Switch>
+            </Suspense>
+        </div>
     );
 }
 

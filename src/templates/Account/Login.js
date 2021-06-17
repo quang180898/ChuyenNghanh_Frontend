@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import { Form } from 'antd';
 import { accountAction } from '../../store/action';
-import { RULES , showNotification} from "functions/Utils";
-import { PAGES_URL, NOTIFICATION_TYPE} from "contant";
+import { RULES, showNotification, TOKEN } from "functions/Utils";
+import { PAGES_URL, NOTIFICATION_TYPE } from "contant";
 import { InputBase, InputPassword } from "../../components/base/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonStyle } from "components/base/Button";
@@ -22,15 +22,6 @@ const Login = () => {
 
     const [loading, setLoading] = useState(false)
 
-    // check login fail and off loading
-    useEffect(()=>{
-        if(dataLogin && dataLogin.error && dataLogin.error.err){
-            setLoading(false);
-        }
-    },[dataLogin])
-
-    console.log("login", login)
-
     useEffect(() => {
         const auth = localStorage.getItem('auth')
         if (auth) {
@@ -48,32 +39,32 @@ const Login = () => {
         } else {
             localStorage.removeItem('auth')
         }
-
         dispatch(accountAction.loadLogin({ user_name: username, pass_word: password }))
-
         setLoading(true)
     }
 
     useEffect(() => {
         if (login) {
-            setTimeout(() => {
-                setLoading(false)
-            }, 2000)
-
             if (login.success === false) {
+                setLoading(false)
                 setTimeout(() => {
-                    showNotification({ type: NOTIFICATION_TYPE.error, title: "Có lỗi xảy ra", message: login && login.detail, duration: 1.8 })
-                }, 2100)
-            }
-
-            dispatch(accountAction.requestClearAction())
+                    dispatch(accountAction.requestClearAction())
+                }, 5000)
+            } else {
+                 if (login && login.detail.permission_code === 1)  {
+                    window.location.replace('/admin')
+                } 
+                else {
+                    window.location.replace('/')
+                }
+            }    
         }
     }, [login])
 
     return (
         <div className="login scb-login">
             {loading && <StaticLoading />}
-            <div className="login__bg"/>
+            <div className="login__bg" />
             <div className="login__right">
                 <div className="login__form">
                     <Form

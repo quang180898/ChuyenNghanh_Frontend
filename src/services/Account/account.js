@@ -12,11 +12,11 @@ export const accountService = {
         };
 
         const url = getUrl(api.LOGIN)
-        return handleRequest(url, requestOptions)
+        return handleRequest(url, requestOptions) 
             .then(data => {
                 if (data && data.success === true) {
                     localStorage.setItem('user', JSON.stringify(data['detail']));
-                    window.location.replace('/')
+                    window.location.reload()
                 }
                 return data;
             })
@@ -39,7 +39,6 @@ export const accountService = {
     },
 
     getInfoProfile({params}) {
-        console.log({params})
         const requestOptions = {
             method: "GET",
             headers: getHeader(CONTENT_TYPE),
@@ -62,5 +61,26 @@ export const accountService = {
         const url = getUrl(api.CHANGE_PASSWORD);
         return handleRequest(url, requestOptions);
     },
+
+    getListUser() {
+        const requestOptions = {
+            method: "GET",
+            headers: getHeader(CONTENT_TYPE),
+        };
+        const url = getUrl(api.LIST_USER);
+        return handleRequest(url, requestOptions);
+    },
+
+    deleteUser({params}) {
+        const requestOptions = {
+            method: "POST",
+            headers: getHeader(CONTENT_TYPE),
+            body: params,
+        };
+        const url = getUrl(api.DELETE_USER);
+        return handleRequest(url, requestOptions);
+    },
+    
+    
 }
 

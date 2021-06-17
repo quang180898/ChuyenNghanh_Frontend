@@ -5,13 +5,14 @@ import { getValueAndSetDefault } from '../../../functions/Utils';
 
 const ButtonStyle = (props) => {
 
-    const { className, label, onClick, isButton = true, iconClassname, url, htmlType } = props
+    const { className, label, onClick, isButton = true, iconClassname, url, htmlType, style } = props
     return (
         isButton    
             ?
             <Button
                 className={`btn ${getValueAndSetDefault(className, '')}`}
                 onClick={onClick}
+                style={style}
                 htmlType={getValueAndSetDefault(htmlType, '')}
             
             >

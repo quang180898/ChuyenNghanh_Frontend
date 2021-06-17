@@ -78,6 +78,7 @@ const SliderImg = () => {
                         if (index < 5) { 
                         return (
                             <CardBook
+                                id={value.id}
                                 key={index}
                                 title={value.name}
                                 image={value.image_bytes}

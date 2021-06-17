@@ -23,6 +23,12 @@ export const FILE_CONTENT_TYPE = {
     DWG: 'image/vnd.dwg',
 }
 
+export const LANGUAGE_TYPE = [
+    { value: "1", text: "VIETNAMESE", label: "vi" },
+    { value: "2", text: "ENGLISH", label: "en" },
+    { value: "3", text: "CHINA", label: "zh-hans" },
+]
+
 export const NOTIFICATION_TYPE = {
     success: 'success',
     info: 'info',
@@ -74,6 +80,22 @@ export const PAGES_URL = {
     },
     admin: {
         url: '/admin',
-        title: 'Admin'
+        title: 'admin'
     },
+    user: {
+        url: '/user',
+        title: 'user'
+    },
+    author: {
+        url: '/author',
+        title: 'author'
+    },
+    category: {
+        url: '/categories',
+        title: 'categories'
+    },
+    book: {
+        url: '/book',
+        title: 'book'
+    }
 }

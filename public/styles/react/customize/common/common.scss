@@ -89,3 +89,34 @@
 .slick-track {
 	display: flex;
 }
+
+.related-book {
+	position: relative;
+    .slick-track {
+        display: flex;
+    }
+	.ant-card {
+        padding: 10px 15px;
+    }
+	.card-related {
+		.title {
+			font-size: 14px;
+		}
+		.price {
+			font-size: 16px;
+		}
+		.image {
+			height: 250px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+	}
+	.slider {
+		img {
+			max-height: 100%;
+			max-width: 100%;
+		}
+	}
+}
