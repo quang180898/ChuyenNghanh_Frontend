@@ -3,6 +3,8 @@ import { homeService } from "./Home/home";
 import { bookService } from "./Book/book";
 import { authorService } from "./Author/author";
 import { categoryService } from "./Category/category";
+import { publishingService } from "./Publishing/publishing";
+
 
 export {
     accountService,
@@ -10,4 +12,5 @@ export {
     bookService,
     authorService,
     categoryService,
+    publishingService,
 }

@@ -23,6 +23,11 @@ export default {
     LIST_BOOK: '/api/backend/v1/book/',
     SAME_CATEGORY: '/api/backend/v1/book/same_category/',
     DETAIL_BOOK: '/api/backend/v1/book/detail/',
-    DELETE_BOOK: 'api/backend/v1/book/delete/',
-    CREATE_UPDATE_BOOK: 'api/backend/v1/book/create_or_update/',
+    DELETE_BOOK: '/api/backend/v1/book/delete/',
+    CREATE_UPDATE_BOOK: '/api/backend/v1/book/create_or_update/',
+
+    // Publishing company
+    LIST_PUBLISHING_COMPANY: '/api/backend/v1/publishing_company/',
+    CREATE_PUBLISHING_COMPANY: '/api/backend/v1/publishing_company/create_or_update/',
+    DELETE_PUBLISHING_COMPANY: '/api/backend/v1/publishing_company/delete/',
 }

@@ -1,0 +1,37 @@
+const name = 'PUBLISHING_COMPANY_';
+const actions = {
+
+    LIST_PUBLISHING_COMPANY_REQUEST: name + 'LIST_PUBLISHING_COMPANY_REQUEST',
+    LIST_PUBLISHING_COMPANY_FAILURE: name + 'LIST_PUBLISHING_COMPANY_FAILURE',
+    LIST_PUBLISHING_COMPANY_SUCCESS: name + 'LIST_PUBLISHING_COMPANY_SUCCESS',
+
+    CREATE_PUBLISHING_COMPANY_REQUEST: name + 'CREATE_PUBLISHING_COMPANY_REQUEST',
+    CREATE_PUBLISHING_COMPANY_FAILURE: name + 'CREATE_PUBLISHING_COMPANY_FAILURE',
+    CREATE_PUBLISHING_COMPANY_SUCCESS: name + 'CREATE_PUBLISHING_COMPANY_SUCCESS',
+
+    DELETE_PUBLISHING_COMPANY_REQUEST: name + 'DELETE_AUTHOR_REQUEST',
+    DELETE_PUBLISHING_COMPANY_FAILURE: name + 'DELETE_AUTHOR_FAILURE',
+    DELETE_PUBLISHING_COMPANY_SUCCESS: name + 'DELETE_AUTHOR_SUCCESS',
+
+    PUBLISHING_CLEAR: name + 'PUBLISHING_CLEAR',
+
+    getListPublishing: (params) => ({
+        type: actions.LIST_PUBLISHING_COMPANY_REQUEST,
+        params: params
+    }),
+
+    createPublishing: (params) => ({
+        type: actions.CREATE_PUBLISHING_COMPANY_REQUEST,
+        params: params
+    }),
+
+    deletePublishing: (params) => ({
+        type: actions.DELETE_PUBLISHING_COMPANY_REQUEST,
+        params: params
+    }),
+
+    requestClearAction: (params) => ({
+        type: actions.PUBLISHING_CLEAR,
+    }),
+};
+export default actions;

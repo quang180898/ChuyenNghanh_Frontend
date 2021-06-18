@@ -5,6 +5,7 @@ import homeSaga from "./homeSaga";
 import bookSaga from "./bookSaga";
 import authorSaga from "./authorSaga";
 import categorySaga from "./categorySaga";
+import publishingSaga from "./publishingSaga";
 
 function* allSaga() {
   yield all([
@@ -13,6 +14,7 @@ function* allSaga() {
     bookSaga(),
     authorSaga(),
     categorySaga(),
+    publishingSaga(),
   ]);
 }
 

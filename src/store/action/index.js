@@ -4,6 +4,8 @@ import bookAction from "./bookAction";
 import commonAction from "./commonAction";
 import authorAction from "./authorAction";
 import categoryAction from "./categoryAction";
+import publishingAction from "./publishingAction";
+
 
 export {
     accountAction, 
@@ -12,4 +14,5 @@ export {
     commonAction,
     authorAction,
     categoryAction,
+    publishingAction,
 };

@@ -33,13 +33,8 @@ export const bookService = {
     },
 
     createUpdateBook({params}) {
-        const requestOptions = {
-            method: "POST",
-            headers: getHeader(CONTENT_TYPE),
-            body: params
-        };
         const url = getUrl(api.CREATE_UPDATE_BOOK);
-        return handleRequest(url, requestOptions);
+        return postWithFormData(params, url)
     }
 }
 

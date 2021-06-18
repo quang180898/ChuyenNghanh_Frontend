@@ -6,7 +6,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
         //list book
         case homeAction.LIST_BOOK_REQUEST:
-            return { ...state, isFetching: true, success: false, error: false };
+            return { ...state, isFetching: true, listBook: null,success: false, error: false };
         case homeAction.LIST_BOOK_SUCCESS:
             return { ...state, isFetching: false, success: true, listBook: action.response, error: false };
         case homeAction.LIST_BOOK_FAILURE:
@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
 
          //list book
          case homeAction.LIST_CATEGORY_REQUEST:
-            return { ...state, isFetching: true, success: false, error: false };
+            return { ...state, isFetching: true, listCategory: null,success: false, error: false };
         case homeAction.LIST_CATEGORY_SUCCESS:
             return { ...state, isFetching: false, success: true, listCategory: action.response, error: false };
         case homeAction.LIST_CATEGORY_FAILURE:

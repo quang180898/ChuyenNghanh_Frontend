@@ -111,6 +111,7 @@ const Avatar = ({ data, setDataImage }) => {
                 openCrop: false
             })
             setImgTest(file)
+            console.log(file)
         }
     }
 

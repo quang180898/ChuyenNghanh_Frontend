@@ -216,6 +216,23 @@ export const getValueAndSetDefault = (value, symbol = '-') => {
     return symbol
 }
 
+export const createDataSelect = ({ value, label, text, data }) => {
+    return { value, label, text: getValueAndSetDefault(text, ""), data: getValueAndSetDefault(data, "") }
+}
+
+export const getValueNumber = (value) => {
+    return getValueAndSetDefault(value, 0)
+}
+
+export const getValueText = (value) => {
+    return getValueAndSetDefault(value, "")
+}
+
+export const getValueShow = (value) => {
+    return getValueAndSetDefault(value, "-")
+}
+
+
 
 /**
  * Load data pagination
