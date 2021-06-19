@@ -7,7 +7,7 @@ import MainLogin from './MainLogin';
 import MainPage from "./MainPage";
 import MainAdmin from "./MainAdmin";
 import { PAGES_URL } from 'contant';
-import { TOKEN } from '../functions/Utils';
+import { TOKEN, TOKENADMIN } from '../functions/Utils';
 
 const PrivateLoginRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
@@ -23,7 +23,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const PrivateAdminRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
         //check nếu chưa login thì ko được vào mainPage
-        TOKEN
+        TOKENADMIN
             ? <MainAdmin />
             : <Redirect to={PAGES_URL.login.url} />
     )} />

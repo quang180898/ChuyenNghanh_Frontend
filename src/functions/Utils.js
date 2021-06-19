@@ -43,7 +43,7 @@ export const getLocalStore = (text, remove = false) => {
 }
 
 // token 
-const token = () => {
+const tokenAdmin = () => {
     if (getLocalStore('user')) {
         let token = getLocalStore('user').permission_code;
         if (token === 1) { 
@@ -52,6 +52,15 @@ const token = () => {
         } else {
             return null
         }
+    }
+    return null
+}; // Production
+export const TOKENADMIN = tokenAdmin()
+
+const token = () => {
+    if (getLocalStore('user')) {
+        let token = getLocalStore('user');
+        if (token) { return token }
     }
     return null
 }; // Production
