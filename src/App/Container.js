@@ -20,7 +20,7 @@ const Container = () => {
                             </Animated>
                             {TOKEN == null
                                 &&
-                                <Redirect from={PAGES_URL.profile.url + "/:accountId"} to={PAGES_URL.home.url} />
+                                <Redirect from={PAGES_URL.profile.url + "/:accountId"} to={PAGES_URL.login.url} />
                             }
                         </Route>
                     ))}
