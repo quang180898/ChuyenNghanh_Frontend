@@ -5,6 +5,8 @@ import commonReducer from "./commonReducer";
 import authorReducer from "./authorReducer";
 import categoryReducer from "./categoryReducer";
 import publishingReducer from "./publishingReducer"
+import cartReducer from "./cartReducer"
+import momoReducer from "./momoReducer"
 
 import { combineReducers } from 'redux';
 
@@ -16,6 +18,8 @@ const allReducers = combineReducers({
     authorReducer,
     categoryReducer,
     publishingReducer,
+    cartReducer,
+    momoReducer,
 });
 
 export default allReducers;

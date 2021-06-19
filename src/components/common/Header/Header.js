@@ -6,7 +6,7 @@ import { PAGES_URL, SETTING_USER } from 'contant';
 import { getLocalStore } from 'functions/Utils';
 import { DropdownIcon } from 'components/base/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
-import { homeAction } from 'store/action';
+import { commonAction, homeAction } from 'store/action';
 
 const { Search } = Input;
 const { SubMenu } = Menu;
@@ -15,23 +15,37 @@ const Header = (props) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [state , setState ] = useState()
-    const homeReducer = useSelector(state => state.homeReducer);
-    const { listCategory } = homeReducer;
+    const [product, setProduct] = useState()
+
+    const store = useSelector(state => state);
+    const { listCategory } = store.homeReducer;
+    const { addCart } = store.cartReducer
 
     useEffect(() => {
+        const cart =  JSON.parse(localStorage.getItem('cart'));
+        setProduct(cart)
         dispatch(homeAction.loadListCategory())
     }, [])
+
+    useEffect(() => {
+        if (addCart) {
+            setProduct(addCart)
+        }
+    }, [addCart])
 
     useEffect(() => {
         if (listCategory) {
             setState(listCategory.detail)
         }
     }, [listCategory])
+
     const userLocal = getLocalStore('user')
 
     const [user, setUser] = useState(userLocal)
 
-    const onSearch = value => console.log(value);
+    const onSearch = value => {
+        dispatch(commonAction.filterHeader(value))
+    };
     
     const handleClick = (e) => {
         history.push(PAGES_URL.home.url +"category/"+ e);
@@ -59,6 +73,10 @@ const Header = (props) => {
         getLocalStore('user', true)
         //reload page and auto run /login
         window.location.reload()
+    }
+
+    const onMoveCart = () => {
+        history.push(PAGES_URL.cart.url)
     }
     return (
         <div className="background">
@@ -109,12 +127,13 @@ const Header = (props) => {
                             </Link> </>
                         }
                     </div>
-                    <div className="cart">
-                        <div className="cart__number">
-                            <i className="las la-shopping-cart cart__number--cartIcon" />
-                            <span class="cart__number--num"><span>1</span></span>
+                        <div className="cart" onClick={onMoveCart}>
+                            <div className="cart__number">
+                                <i className="las la-shopping-cart cart__number--cartIcon" />
+                                <span class="cart__number--num"><span>{product ? product.length : 0}</span></span>
+                            </div>
                         </div>
-                    </div>
+                   
                 </div>
             </div>
 

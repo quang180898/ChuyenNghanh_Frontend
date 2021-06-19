@@ -25,9 +25,16 @@ export default {
     DETAIL_BOOK: '/api/backend/v1/book/detail/',
     DELETE_BOOK: '/api/backend/v1/book/delete/',
     CREATE_UPDATE_BOOK: '/api/backend/v1/book/create_or_update/',
+    LIST_ACCOUNT_BOOK: '/api/backend/v1/account_book/',
+    CREATE_ACCOUNT_BOOK: '/api/backend/v1/account_book/create/',
+    UPDATE_ACCOUNT_BOOK: 'api/backend/v1/account_book/update/',
+    DELETE_ACCOUNT_BOOK: 'api/backend/v1/account_book/delete/',
 
     // Publishing company
     LIST_PUBLISHING_COMPANY: '/api/backend/v1/publishing_company/',
     CREATE_PUBLISHING_COMPANY: '/api/backend/v1/publishing_company/create_or_update/',
     DELETE_PUBLISHING_COMPANY: '/api/backend/v1/publishing_company/delete/',
+
+    // Momo
+    PAY_MOMO: '/api/backend/v1/momo/pay/',
 }

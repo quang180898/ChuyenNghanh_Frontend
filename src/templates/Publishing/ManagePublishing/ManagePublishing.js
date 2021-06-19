@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DropdownBase } from 'components/base/Dropdown';
 import { Link } from 'react-router-dom';
 import { PAGES_URL } from 'contant';
-import { authorAction } from 'store/action';
-import { ModalDeleteAuthor } from './Layout';
+import { publishingAction } from 'store/action';
 import { showNotification } from 'functions/Utils';
+import { ModalDeletePublishing } from './Layout';
 
-const ManageAuthor = () => {
+const ManagePublishing = () => {
 
     const dispatch = useDispatch();
     const [state, setState] = useState()
@@ -17,44 +17,45 @@ const ManageAuthor = () => {
         saveData: null,
         isShowModal: false,
     })
-    const store = useSelector(state => state.authorReducer)
-    const { listAuthor, deleteAuthor } = store
+    const store = useSelector(state => state.publishingReducer)
+    const { listPublishing, deletePublishing } = store
 
     useEffect(() => {
-        dispatch(authorAction.getListAuthor())
+        dispatch(publishingAction.getListPublishing())
     }, [])
 
     useEffect(() => {
-        if (listAuthor) {
-            if (listAuthor.success) {
-                setState(listAuthor.detail)
+        if (listPublishing) {
+            console.log(listPublishing)
+            if (listPublishing.success) {
+                setState(listPublishing.detail)
             }
         }
-    }, [listAuthor])
+    }, [listPublishing])
 
     useEffect(() => {
-        if (deleteAuthor) {
-            if (deleteAuthor.success) {
+        if (deletePublishing) {
+            if (deletePublishing.success) {
                 setState(stateLocal.saveData)
                 setStateLocal(e => ({...e, isShowModal: false}))
                 showNotification.success({ message: 'Xoá thành công', title: 'success' })
             }
         }
 
-    }, [deleteAuthor])
+    }, [deletePublishing])
 
 
-    const handleDeleteAuthor = (id) => {
+    const handleDeletePublishing = (id) => {
         const newArray = [].concat(state)
-        const newData = newArray.filter(i => i.author_id !== id)
+        const newData = newArray.filter(i => i.publishing_company_id !== id)
         let params = {
             id: null,
             name: null,
         }
         for (let i = 0; i < newArray.length; i++) {
-            if (newArray[i].author_id === id) {
-                params.id = newArray[i].author_id
-                params.name = newArray[i].author_name
+            if (newArray[i].publishing_company_id === id) {
+                params.id = newArray[i].publishing_company_id
+                params.name = newArray[i].publishing_company_name
             }
         }
         setStateLocal(e => ({ ...e, saveParams: params, saveData: newData, isShowModal: true }))
@@ -63,7 +64,7 @@ const ManageAuthor = () => {
     const optionsAction = [
         {
             label: <div className='d-flex'>
-                <Link to={PAGES_URL.author.url + '/add'}> + Thêm tác giả</Link>
+                <Link to={PAGES_URL.publishing.url + '/add'}> + Thêm nhà xuất bản</Link>
             </div>,
         },
     ]
@@ -91,27 +92,31 @@ const ManageAuthor = () => {
     }
 
     return (
-        <CardWrap isHeight title="Tác giả" childrenHeading={Heading()}>
+        <CardWrap isHeight title="Nhà xuất bản" childrenHeading={Heading()}>
             <div class="cus-table">
                 <table>
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th scope="col">Tên tác giả</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Số điện thoại</th>
-                            <th scope="col"><i class="fas fa-cog"></i></th>
+                            <th style={{width: '5%'}}>STT</th>
+                            <th style={{width: '15%'}} scope="col">Tên nhà xuất bản</th>
+                            <th style={{width: '10%'}} scope="col">Số điện thoại</th>
+                            <th style={{width: '15%'}} scope="col">Email</th>
+                            <th style={{width: '20%'}} scope="col">Địa chỉ</th>
+                            <th style={{width: '20%'}} scope="col">Mô tả</th>
+                            <th style={{width: '10%'}} scope="col"><i class="fas fa-cog"></i></th>
                         </tr>
                     </thead>
                     <tbody>
                         {state && state.map((item, index) => {
                             return (
                                 <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{item.author_name}</td>
-                                    <td>{item.author_mail}</td>
-                                    <td>{item.author_mobile}</td>
-                                    <td><i className="click-action fas fa-trash-alt" onClick={() => handleDeleteAuthor(item.author_id)}></i></td>
+                                    <td style={{width: '5%'}}>{index + 1}</td>
+                                    <td style={{width: '15%'}}>{item.publishing_company_name}</td>
+                                    <td style={{width: '10%'}}>{item.publishing_company_mobile}</td>
+                                    <td style={{width: '15%'}}>{item.publishing_company_mail}</td>
+                                    <td style={{width: '20%'}}>{item.publishing_company_address}</td>
+                                    <td style={{width: '20%'}}>{item.publishing_company_description}</td>
+                                    <td style={{width: '10%'}}><i className="click-action fas fa-trash-alt" onClick={() => handleDeletePublishing(item.publishing_company_id)}></i></td>
                                 </tr>
                             )
                         })
@@ -119,8 +124,8 @@ const ManageAuthor = () => {
                     </tbody>
                 </table>
             </div>
-            <ModalDeleteAuthor state={stateLocal} setState={setStateLocal}/>
+            <ModalDeletePublishing state={stateLocal} setState={setStateLocal}/>
         </CardWrap>
     )
 }
-export default ManageAuthor;
+export default ManagePublishing;

@@ -28,6 +28,18 @@ export default (state = initialState, action) => {
         case publishingAction.DELETE_PUBLISHING_COMPANY_FAILURE:
             return { ...state, isLoading: false, error: action.err, deletePublishing: action.response };
 
+         //clear
+         case publishingAction.PUBLISHING_CLEAR:
+            return {
+                ...state,
+                createPublishing: null,
+                deletePublishing: null,
+                isLoading: false,
+                success: false,
+                error: false,
+            };
+
+
         default:
             return state;    
     }

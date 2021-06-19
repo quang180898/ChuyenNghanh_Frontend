@@ -74,11 +74,87 @@ export function* deleteBookWatcher() {
     yield takeLatest(bookAction.DELETE_BOOK_REQUEST, deleteBook);
 }
 
+export function* listAccountBook(payload) {
+    try {
+        const response = yield bookService.listAccountBook({ params: payload.params });
+        if (response.success) {
+            yield put({ type: bookAction.LIST_ACCOUNT_BOOK_SUCCESS, response })
+        }
+        else {
+            yield put({ type: bookAction.LIST_ACCOUNT_BOOK_FAILURE, response });
+        }
+    } catch (err) {
+        yield put({ type: bookAction.LIST_ACCOUNT_BOOK_FAILURE, err: { err } });
+    }
+}
+
+export function* listAccountBookWatcher() {
+    yield takeLatest(bookAction.LIST_ACCOUNT_BOOK_REQUEST, listAccountBook);
+}
+
+export function* updateAccountBook(payload) {
+    try {
+        const response = yield bookService.updateAccountBook({ params: payload.params });
+        if (response.success) {
+            yield put({ type: bookAction.UPDATE_ACCOUNT_BOOK_SUCCESS, response })
+        }
+        else {
+            yield put({ type: bookAction.UPDATE_ACCOUNT_BOOK_FAILURE, response });
+        }
+    } catch (err) {
+        yield put({ type: bookAction.UPDATE_ACCOUNT_BOOK_FAILURE, err: { err } });
+    }
+}
+
+export function* updateAccountBookWatcher() {
+    yield takeLatest(bookAction.UPDATE_ACCOUNT_BOOK_REQUEST, updateAccountBook);
+}
+
+export function* createAccountBook(payload) {
+    try {
+        const response = yield bookService.createAccountBook({ params: payload.params });
+        if (response.success) {
+            yield put({ type: bookAction.CREATE_ACCOUNT_BOOK_SUCCESS, response })
+        }
+        else {
+            yield put({ type: bookAction.CREATE_ACCOUNT_BOOK_FAILURE, response });
+        }
+    } catch (err) {
+        yield put({ type: bookAction.CREATE_ACCOUNT_BOOK_FAILURE, err: { err } });
+    }
+}
+
+export function* createAccountBookWatcher() {
+    yield takeLatest(bookAction.CREATE_ACCOUNT_BOOK_REQUEST, createAccountBook);
+}
+
+export function* deleteAccountBook(payload) {
+    try {
+        const response = yield bookService.deleteAccountBook({ params: payload.params });
+        if (response.success) {
+            yield put({ type: bookAction.DELETE_ACCOUNT_BOOK_SUCCESS, response })
+        }
+        else {
+            yield put({ type: bookAction.DELETE_ACCOUNT_BOOK_FAILURE, response });
+        }
+    } catch (err) {
+        yield put({ type: bookAction.DELETE_ACCOUNT_BOOK_FAILURE, err: { err } });
+    }
+}
+
+export function* deleteAccountBookWatcher() {
+    yield takeLatest(bookAction.DELETE_ACCOUNT_BOOK_REQUEST, deleteAccountBook);
+}
+
 export default function* rootSaga() {
     yield all([
         fork(getDetailBookWatcher),
         fork(getSameCategoryWatcher),
         fork(createUpdateBookWatcher),
         fork(deleteBookWatcher),
+        fork(listAccountBookWatcher),
+        fork(updateAccountBookWatcher),
+        fork(createAccountBookWatcher),
+        fork(deleteAccountBookWatcher),
     ]);
 }

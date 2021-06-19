@@ -10,6 +10,9 @@ export const MNV_LANGUAGE = getLocalStore('language');
 export const ERROR_SERVER = 'Đã xảy ra lỗi'; //check status error fail
 export const CARD_EQUAL = "d-flex flex-column"; //for 2 card equal
 
+export const FORMAT_DATE_API = "YYYY-MM-DD"
+export const FORMAT_HOUR_API = "DD/MM/YYYY HH:mm:ss"
+
 export const FILE_CONTENT_TYPE = {
     DEFAULT: 'application/octet-stream',
     PDF: 'application/pdf',
@@ -97,5 +100,17 @@ export const PAGES_URL = {
     book: {
         url: '/book',
         title: 'book'
-    }
+    },
+    publishing: {
+        url: '/publishing',
+        title: 'publishing-company'
+    },
+    cart: {
+        url: '/cart',
+        title: 'shopping-cart'
+    },
+    accountBook: {
+        url: '/account-book',
+        title: 'account-book'
+    },
 }

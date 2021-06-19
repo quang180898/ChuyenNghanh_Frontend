@@ -2,7 +2,7 @@
     @include justify-content(space-around);
     @include flexbox;
     @include align-items(center);
-    @include flex-wrap (wrap);
+    @include flex-wrap(wrap);
     min-height: 40px;
     padding: 14px 0;
 
@@ -28,7 +28,6 @@
     }
 
     &__menu {
-
         .ant-menu-horizontal {
             border-bottom: unset;
         }
@@ -52,7 +51,7 @@
 
     &__login {
         @include flex_center;
-        
+
         @media (max-width: 767px) {
             padding-top: 10px;
         }
@@ -65,17 +64,16 @@
             color: white;
             font-size: 15px;
         }
-            
     }
 
     .cart {
         display: flex;
         justify-content: center;
+        cursor: pointer;
 
         @media (max-width: 767px) {
             padding-top: 10px;
         }
-
         &__number {
             display: flex;
             justify-content: center;
@@ -83,18 +81,26 @@
             position: relative;
 
             &--cartIcon {
-                font-size: 25px;
+                font-size: 50px;
                 margin-right: 5px;
             }
 
             &--num {
                 position: absolute;
-                cursor: pointer;
-                top: -12px;
-                right: 4px;
+                
+                top: 2px;
+                right: 2px;
                 transition: all 0.3s ease-out;
 
                 span {
+                    @include flex_center;
+                    @include fw-normal;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    font-size: 13px;
+                    background: #f46565;
+                    border-radius: 50%;
                     width: 20px;
                     height: 20px;
                     padding: 0px 5px;
@@ -485,7 +491,7 @@
     font-weight: normal;
 }
 
-.header__topbar .navbar-nav .nav-link>i {
+.header__topbar .navbar-nav .nav-link > i {
     padding-left: 10px;
 }
 
@@ -1039,8 +1045,8 @@
     color: #efeeff !important;
 }
 
-.left-sidebar .sidebar-nav .active>a>.hide-menu,
-.left-sidebar .sidebar-nav li>.active span {
+.left-sidebar .sidebar-nav .active > a > .hide-menu,
+.left-sidebar .sidebar-nav li > .active span {
     color: #6d30ab;
     /*font-weight: 500 !important;*/
     padding-right: 10px;
@@ -1050,6 +1056,6 @@
     color: #6d30ab;
 }
 
-.left-sidebar .sidebar-item.active>.sidebar-link {
+.left-sidebar .sidebar-item.active > .sidebar-link {
     color: #6d30ab;
 }

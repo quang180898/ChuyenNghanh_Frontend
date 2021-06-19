@@ -1,18 +1,22 @@
 import { CardStyle } from "components/base/Card";
 import { StaticLoading } from "components/base/Loading";
 import { PaginationSingle } from "components/base/Pagination";
-import { getLocalStore, LoadDataPaging } from "functions/Utils";
+import { PAGES_URL } from "contant";
+import { LoadDataPaging } from "functions/Utils";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router";
+import {  useParams } from "react-router";
+import { useHistory, useLocation } from "react-router-dom";
 import { homeAction } from "store/action";
 import { CardBook, SliderImg } from "./Layout";
 
 const Home = () => {
     const dispatch = useDispatch()
-    const categoryParam = useParams();
-    const { categoryId } = categoryParam;
-    const homeReducer = useSelector(state => state.homeReducer);
+    const paramss = useParams();
+    const history = useHistory();
+    let location = useLocation();
+    let listLocation = location.search.split("&")[11];
+    const { categoryId } = paramss;
     const [state, setState] = useState({
         listBook: null,
         total_record: 0,
@@ -21,11 +25,18 @@ const Home = () => {
     })
 
     const [isLoading, setLoading] = useState(false);
-    const { listBook, total_page, total_record, page } = homeReducer;
+    
+    const store = useSelector(state => state);
+    const { filterHeader } = store.commonReducer;
+    const { listBook } = store.homeReducer;
 
     const limit = 6;
 
     useEffect(() => {
+        if(listLocation === "errorCode=49") {
+            console.log("yeah")
+        }
+        history.push(PAGES_URL.home.url)
         loadListBook()
     }, [])
 
@@ -42,6 +53,15 @@ const Home = () => {
             setLoading(false)
         }
     }, [listBook])
+
+    useEffect(() => {
+        if(filterHeader) {
+            console.log(filterHeader)
+            dispatch(homeAction.loadListBook({ limit: limit , page: state.page, category_id: categoryId, book_name: filterHeader}))
+        } else {
+            dispatch(homeAction.loadListBook({ limit: limit , page: state.page, category_id: categoryId}))
+        }
+    }, [filterHeader])
     
     useEffect(() => {
         if (categoryId) {
@@ -66,16 +86,20 @@ const Home = () => {
         callListBook({ page: value})
     }
     return (
-        <div className="home">  
-            <SliderImg />
+        <div className="home"> 
+            {!filterHeader ? 
+                <SliderImg />
+                : null
+            }
             <div className="home__content">
             <CardStyle title="Danh sách">
                 <div className="row">
                 {isLoading && <StaticLoading />}          
-                {state.listBook && state.listBook.map((value, index)  => {
+                {state.listBook && state.listBook.length > 0 && state.listBook.map((value)  => {
                     return (
-                        <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12" key={index}>
+                        <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12" key={value.id}>
                             <CardBook
+                                product={value}
                                 id={value.id}
                                 title={value.name}
                                 image={value.image_bytes}

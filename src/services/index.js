@@ -4,7 +4,7 @@ import { bookService } from "./Book/book";
 import { authorService } from "./Author/author";
 import { categoryService } from "./Category/category";
 import { publishingService } from "./Publishing/publishing";
-
+import { momoService } from "./Momo/momo";
 
 export {
     accountService,
@@ -13,4 +13,5 @@ export {
     authorService,
     categoryService,
     publishingService,
+    momoService,
 }

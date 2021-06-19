@@ -18,6 +18,14 @@ const Category = lazy(() => import('./templates/Category/ManageCategory/ManageCa
 const CreateCategory = lazy(() => import('./templates/Category/CreateCategory/CreateCategory'));
 const Book = lazy(() => import('./templates/Book/ManageBook/ManageBook'));
 const CreateEditBook = lazy(() => import('./templates/Book/CreateEditBook/CreateEditBook'));
+const ManagePublishing = lazy(() => import('./templates/Publishing/ManagePublishing/ManagePublishing'));
+const CreatePublishing = lazy(() => import('./templates/Publishing/CreatePublishing/CreatePublishing'));
+
+const ManageBookAccount = lazy(() => import('./templates/BookUser/ManageBookAccount/ManageBookAccount'));
+const CreateBookAccount = lazy(() => import('./templates/BookUser/CreateBookAccount/CreateBookAccount'));
+
+const ManageCart = lazy(() => import('./templates/Cart/ManageCart'));
+
 
 const LOGINS = [
     {
@@ -50,6 +58,10 @@ const MAIN = [
     {
         "path": PAGES_URL.product.url + "/:bookId",
         "component": Product
+    },
+    {
+        "path": PAGES_URL.cart.url,
+        "component": ManageCart
     },
 ]
 
@@ -113,6 +125,26 @@ const ADMIN = [
         "path": PAGES_URL.book.url + "/:bookId",
         "component": CreateEditBook,
         "label": "Sửa sách"
+    },
+    {
+        "path": PAGES_URL.publishing.url,
+        "component": ManagePublishing,
+        "label": "Quản lý nhà xuất bản"
+    },
+    {
+        "path": PAGES_URL.publishing.url + "/add",
+        "component": CreatePublishing,
+        "label": "Thêm nhà xuất bản"
+    },
+    {
+        "path": PAGES_URL.accountBook.url,
+        "component": ManageBookAccount,
+        "label": "Quản lý sách người dùng"
+    },
+    {
+        "path": PAGES_URL.accountBook.url + "/add",
+        "component": CreateBookAccount,
+        "label": "Thêm sách người dùng"
     },
 ]
 

@@ -23,6 +23,12 @@ export default (state = initialState, action) => {
                 labelHeader: action.params,
             };
 
+        case commonAction.FILTER_HEADER:
+            return {
+                ...state,
+                filterHeader: action.params,
+            };
+
 
         default:
             return state;

@@ -189,9 +189,12 @@ export const convertDateHHmmss = (date) => {
     }
 }
 
-export const formatDate = (date, type = "DD/MM/YYYY") => {
+export const formatDate = ({ date, type = "DD/MM/YYYY", format = "" }) => {
     if (type == "") {
         return moment(date)
+    }
+    if (format != "") {
+        return moment(date, format).format(type)
     }
     return moment(date).format(type)
 }
@@ -683,7 +686,7 @@ export const RULES = {
     email: {
         //truyền isRequired để xác nhận có kiểm tra hay không
         // kiểm tra tính hợp lệ của email
-        form: (isRequired = true, e = "invalid_email") => {
+        form: (isRequired = true, e = "Email không hợp lệ") => {
             if (e) {
                 return [
                     ({ }) => ({

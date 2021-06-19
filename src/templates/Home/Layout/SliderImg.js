@@ -6,11 +6,11 @@ import Slider from "react-slick";
 import { accountAction } from "store/action";
 import { CardBook } from "../Layout";
 
-const SliderImg = () => {
+const SliderImg = ({ product }) => {
     const dispatch = useDispatch();
     const accountReducer = useSelector(state => state.accountReducer)
     const { listBorrow } = accountReducer;
-    const [ mostBorrow, setMostBorrow] = useState()
+    const [mostBorrow, setMostBorrow] = useState()
     const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -66,25 +66,26 @@ const SliderImg = () => {
     );
     return (
         <CardStyle title="Sách nổi bật">
-            {isLoading && <StaticLoading/>}
+            {isLoading && <StaticLoading />}
             <div className="home__slider">
                 <Slider {...settings}
                     className="slider"
                     nextArrow={<NextArrow />}
                     prevArrow={<PrevArrow />}
                     swipeToSlide={true}
-                    >
+                >
                     {mostBorrow && mostBorrow.map((value, index) => {
-                        if (index < 5) { 
-                        return (
-                            <CardBook
-                                id={value.id}
-                                key={index}
-                                title={value.name}
-                                image={value.image_bytes}
-                                totalBorrow={value.count_borrow}       
-                            />
-                        )
+                        if (index < 5) {
+                            return (
+                                <CardBook
+                                    product={value}
+                                    id={value.id}
+                                    key={index}
+                                    title={value.name}
+                                    image={value.image_bytes}
+                                    totalBorrow={value.count_borrow}
+                                />
+                            )
                         }
                     })}
                 </Slider>
