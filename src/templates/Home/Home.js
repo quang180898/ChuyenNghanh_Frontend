@@ -34,7 +34,7 @@ const Home = () => {
 
     useEffect(() => {
         if(listLocation === "errorCode=49") {
-            console.log("yeah")
+
         }
         history.push(PAGES_URL.home.url)
         loadListBook()
