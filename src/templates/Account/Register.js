@@ -28,6 +28,16 @@ const Register = () => {
         // permission_code: convertContant('user', PERMISSION, "label").value
     })
 
+    useEffect(() => {
+        if(newAccount) {
+            if(newAccount.success) {
+                showNotification.success({ message: 'Thêm thành công', title: 'success' })
+            } else {
+                showNotification.error({ message: newAccount.detail, title: 'error' })
+            }
+        }
+    },[newAccount])
+
     const onSubmitInfo = (data) => {
         if (data) {
             const {name , userName, email, password, rePassword, phone} = data
