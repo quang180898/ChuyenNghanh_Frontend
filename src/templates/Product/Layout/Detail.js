@@ -20,7 +20,7 @@ const Detail = () => {
 
     useEffect(() => {
         dispatch(bookAction.getDetailBook({book_id: bookId}))
-    }, [])
+    }, [bookId])
 
     useEffect(() => {
         if(detailBook) {

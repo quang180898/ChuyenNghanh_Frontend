@@ -5,6 +5,7 @@ import CardRelated from './CardRelated';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { bookAction } from 'store/action';
+import { SpinLoading } from 'components/base/Loading';
 
 const Related = () => {
 
@@ -14,11 +15,11 @@ const Related = () => {
     const [state, setState] = useState()
 
     const store = useSelector(state => state.bookReducer)
-    const { sameCategory } = store
+    const { sameCategory , isFetching } = store
 
     useEffect(() => {
         dispatch(bookAction.getSameCategory({ book_id: bookId }))
-    }, [])
+    }, [bookId])
 
     useEffect(() => {
         if (sameCategory) {
@@ -44,8 +45,8 @@ const Related = () => {
     );
 
     return (
+        <SpinLoading spinning={isFetching} className="loading_full t-0 l-0">
         <CardWrap isHeigth title="Sản phẩm tương tự">
-
             <div className="related-book">
                 <Slider {...settings}
                     className="slider"
@@ -56,6 +57,7 @@ const Related = () => {
                     {state && state.map((value, index) => {
                         return (
                             <CardRelated
+                                id={value.id}
                                 image={value.image_bytes}
                                 title={value.name}
                                 price={value.price}
@@ -66,6 +68,7 @@ const Related = () => {
                 </Slider>
             </div>
         </CardWrap>
+        </SpinLoading>
     )
 }
 export default Related;

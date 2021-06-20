@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import { accountAction } from "store/action";
 import { CardBook } from "../Layout";
+import { SpinLoading } from "components/base/Loading";
 
 const SliderImg = ({ product }) => {
     const dispatch = useDispatch();
@@ -71,7 +72,7 @@ const SliderImg = ({ product }) => {
     );
     return (
         <CardStyle title="Sách nổi bật">
-            {isLoading && <StaticLoading />}
+            <SpinLoading spinning={isLoading} className="loading_full t-0 l-0">
             <div className="home__slider">
                 <Slider {...settings}
                     className="slider"
@@ -95,6 +96,7 @@ const SliderImg = ({ product }) => {
                     })}
                 </Slider>
             </div>
+            </SpinLoading>
         </CardStyle>
     )
 }

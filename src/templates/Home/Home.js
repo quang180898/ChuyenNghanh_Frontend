@@ -10,6 +10,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { homeAction } from "store/action";
 import { CardBook, SliderImg } from "./Layout";
 import { CardNodata } from "components/common/Card";
+import { SpinLoading } from "components/base/Loading";
 
 const Home = () => {
     const dispatch = useDispatch()
@@ -87,6 +88,7 @@ const Home = () => {
         callListBook({ page: value })
     }
     return (
+        <SpinLoading spinning={isLoading} className="loading_full t-0 l-0">
         <div className="home">
             {!filterHeader ?
                 <SliderImg />
@@ -95,7 +97,6 @@ const Home = () => {
             <div className="home__content">
                 <CardStyle title="Danh sách">
                     <div className="row">
-                        {isLoading && <StaticLoading />}
                         {state.listBook && state.listBook.length > 0 ? state.listBook.map((value) => {
                             return (
                                 <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12" key={value.id}>
@@ -118,6 +119,7 @@ const Home = () => {
                 </CardStyle>
             </div>
         </div>
+        </SpinLoading>
     )
 }
 

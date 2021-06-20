@@ -1,10 +1,19 @@
 import { Card } from 'antd';
+import { PAGES_URL } from 'contant';
 import React from 'react';
 import ReactStars from "react-rating-stars-component";
+import { useHistory } from 'react-router-dom';
 
-const CardRelated = ({title, image, price}) => {
+const CardRelated = ({id, title, image, price}) => {
+
+    const history = useHistory();
+
+    const onChangeBook = (id) => {
+        history.push(PAGES_URL.product.url + "/" + id)
+    }
+
     return (
-        <div className="card-related">
+        <div className="card-related" onClick={() => onChangeBook(id)}>
             <Card 
                 hoverable
                 cover
@@ -18,6 +27,7 @@ const CardRelated = ({title, image, price}) => {
                     count={5}
                     size={24}
                     activeColor="#ffd700"
+                    edit={false}
                 />
                 <span className="feedback">(Xem {123} đánh giá)</span>
             </div>
