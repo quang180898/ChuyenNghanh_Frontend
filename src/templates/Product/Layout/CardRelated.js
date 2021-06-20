@@ -9,10 +9,10 @@ const CardRelated = ({title, image, price}) => {
                 hoverable
                 cover
             >
-            <figure className="image">
-            <img src={`data:image/jpeg;base64,${image}`}/>
-            </figure>
-            <label class="title">{title}</label>
+            <div className="image mb-2">
+                <img src={`data:image/jpeg;base64,${image}`}/>
+            </div>
+            <div class="title">{title}</div>
             <div className="detail-product__rate-star">
                 <ReactStars
                     count={5}

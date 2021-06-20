@@ -19,7 +19,7 @@ const Description = () => {
 
     return (
         <CardWrap isHeight title="MÔ TẢ SẢN PHẨM">
-            <label> {state && state.description} </label>
+            <div className="desc-product"> {state && state.description} </div>
         </CardWrap>
     )
 }
