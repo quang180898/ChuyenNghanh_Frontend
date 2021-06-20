@@ -1,5 +1,6 @@
 import { CardStyle } from "components/base/Card";
 import { StaticLoading } from "components/base/Loading";
+import { IMAGE_URL } from "contant";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
@@ -59,10 +60,14 @@ const SliderImg = ({ product }) => {
         ]
     }
     const NextArrow = ({ currentSlide, slideCount, ...props }) => (
-        <div {...props}> <i class="las la-chevron-circle-right"></i></div>
+        <div {...props}>
+             <img src={IMAGE_URL + "slick-arrows.png"}></img>
+        </div>
     );
     const PrevArrow = ({ currentSlide, slideCount, ...props }) => (
-        <div {...props}> <i class="las la-chevron-circle-left"></i></div>
+        <div {...props}>
+            <img src={IMAGE_URL + "slick-arrows.png"}></img>  
+        </div>
     );
     return (
         <CardStyle title="Sách nổi bật">

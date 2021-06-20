@@ -1266,3 +1266,35 @@ body {
         }
     }
 }
+
+.data_null {
+	margin-top: 80px;
+	margin-bottom: 80px;
+	max-width: 245px;
+	margin-left: auto;
+	margin-right: auto;
+
+	&--image {
+		position: relative;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	&--text {
+		position: absolute;
+		height: 74px;
+		width: 100%;
+		background-color: #ffffff;
+		font-size: 20px;
+		text-align: center;
+		color: #6d6d6d;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}

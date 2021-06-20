@@ -9,6 +9,7 @@ import { useParams } from "react-router";
 import { useHistory, useLocation } from "react-router-dom";
 import { homeAction } from "store/action";
 import { CardBook, SliderImg } from "./Layout";
+import { CardNodata } from "components/common/Card";
 
 const Home = () => {
     const dispatch = useDispatch()
@@ -95,7 +96,7 @@ const Home = () => {
                 <CardStyle title="Danh sách">
                     <div className="row">
                         {isLoading && <StaticLoading />}
-                        {state.listBook && state.listBook.length > 0 && state.listBook.map((value) => {
+                        {state.listBook && state.listBook.length > 0 ? state.listBook.map((value) => {
                             return (
                                 <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12" key={value.id}>
                                     <CardBook
@@ -107,7 +108,10 @@ const Home = () => {
                                     />
                                 </div>
                             )
-                        })}
+                        })
+                    :
+                    <CardNodata/>
+                    }
                     </div>
                     {state.listBook?.length > 0 && <PaginationSingle data={LoadDataPaging(state.total_record, state.page, state.total_page, limit)} onChange={onPageChange} />}
 

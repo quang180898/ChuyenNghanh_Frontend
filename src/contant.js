@@ -1,6 +1,6 @@
 import { getLocalStore } from "functions/Utils";
 
-export const IMAGE_URL = "../"
+export const IMAGE_URL = "../../images/";
 
 export const CONTENT_TYPE = 'application/json; charset=utf-8';
 export const CONTENT_MULITPART = 'multipart/form-data';

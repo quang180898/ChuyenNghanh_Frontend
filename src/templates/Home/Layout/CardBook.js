@@ -12,11 +12,38 @@ const CardBook = ({ title, image, totalSize, id, totalBorrow, product }) => {
     const dispath = useDispatch();
     const history = useHistory();
 
-    const addProductToCart = () => {
+    const [state, setState] = useState()
+
+    const store = useSelector(state => state);
+    const { addCart } = store.cartReducer
+
+    useEffect(() => {
+        const products = JSON.parse(localStorage.getItem('cart'));
+        setState(products);
+    }, [])
+
+    useEffect(() => {
+        const products = JSON.parse(localStorage.getItem('cart'));
+        setState(products);
+    }, [addCart])
+
+    const addProductToCart = (id) => {
+
+        let cartCopy = [...state];
+
         const oldproduct = localStorage.getItem('cart') ? localStorage.getItem('cart') : "[]";
         const arrayproduct =  JSON.parse(oldproduct);  
         let products = product
-        arrayproduct.push(products);
+
+        let existingItem = cartCopy.find(cartItem => cartItem.id == id);
+
+        if (existingItem) {
+            showNotification.error({ message: 'Sách đã có trong giỏ', title: 'waring' })
+        } else { 
+            showNotification.success({ message: 'Sách đã được thêm vào giỏ hàng', title: 'success' })
+            arrayproduct.push(products);
+        }
+    
         localStorage.setItem('cart', JSON.stringify(arrayproduct));
         dispath(cartAction.addToCart(arrayproduct))                   
     } 
@@ -36,10 +63,10 @@ const CardBook = ({ title, image, totalSize, id, totalBorrow, product }) => {
                         <img src={`data:image/jpeg;base64,${image}`} />
                         <a className="link" onClick={() => onMoveDetail(id)}>Chi Tiết</a>
                     </figure>
-                    <span>{title}</span>
                 </div>
+                <div className="text-center">{title}</div>
                 <div className="support-book">
-                    <ButtonStyle className="btn-white" label="Mượn sách" onClick={addProductToCart}></ButtonStyle>
+                    <ButtonStyle className="btn-white" label="Mượn sách" onClick={() => addProductToCart(id)}></ButtonStyle>
                     {totalSize ? <span>Số lượng: {totalSize}</span> : <span>Lượt mượn: {totalBorrow}</span>}
                 </div>
             </Card>
