@@ -27,11 +27,13 @@ const ManageCart = () => {
         }
     }, [linkMomo])
 
-    const payMomo = () => {
+    const payMomo = (item) => {
         let params = {
-            amount: 1000000,
-            orderInfo: "test",
+            amount: item.price,
+            orderInfo: item.name,
         }
+        let dataMomo = JSON.stringify(item)
+        localStorage.setItem('payment', dataMomo)
         dispatch(momoAction.payToMomo(params))
     }
 
@@ -63,7 +65,7 @@ const ManageCart = () => {
                                 </div>
                                 <div className="cart-product__detail">
                                     <div className="qty">
-                                        <ButtonStyle className="btn-blue-outline" label="Mượn sách" onClick={payMomo}></ButtonStyle>
+                                        <ButtonStyle className="btn-blue-outline" label="Thanh toán" onClick={() => payMomo(item)}></ButtonStyle>
                                     </div>
                                 </div>
                             </div>

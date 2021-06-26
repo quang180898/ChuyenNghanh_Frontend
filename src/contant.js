@@ -113,4 +113,8 @@ export const PAGES_URL = {
         url: '/account-book',
         title: 'account-book'
     },
+    payment: {
+        url: '/payment',
+        title: 'payment'
+    },
 }

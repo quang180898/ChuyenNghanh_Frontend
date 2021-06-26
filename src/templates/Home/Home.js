@@ -15,9 +15,6 @@ import { SpinLoading } from "components/base/Loading";
 const Home = () => {
     const dispatch = useDispatch()
     const paramss = useParams();
-    const history = useHistory();
-    let location = useLocation();
-    let listLocation = location.search.split("&")[11];
     const { categoryId } = paramss;
     const [state, setState] = useState({
         listBook: null,
@@ -35,10 +32,6 @@ const Home = () => {
     const limit = 6;
 
     useEffect(() => {
-        if (listLocation === "errorCode=49") {
-            history.push(PAGES_URL.home.url)
-        }
-
         loadListBook()
     }, [])
 
@@ -58,7 +51,6 @@ const Home = () => {
 
     useEffect(() => {
         if (filterHeader) {
-            console.log(filterHeader)
             dispatch(homeAction.loadListBook({ limit: limit, page: state.page, category_id: categoryId, book_name: filterHeader }))
         } else {
             dispatch(homeAction.loadListBook({ limit: limit, page: state.page, category_id: categoryId }))

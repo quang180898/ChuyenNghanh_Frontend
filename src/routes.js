@@ -27,6 +27,7 @@ const CreateBookAccount = lazy(() => import('./templates/BookUser/CreateBookAcco
 const ManageCart = lazy(() => import('./templates/Cart/ManageCart'));
 
 
+
 const LOGINS = [
     {
         "path": PAGES_URL.login.url,
@@ -62,7 +63,7 @@ const MAIN = [
     {
         "path": PAGES_URL.cart.url,
         "component": ManageCart
-    },
+    }
 ]
 
 const ADMIN = [

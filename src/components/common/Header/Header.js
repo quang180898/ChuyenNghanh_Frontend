@@ -98,7 +98,7 @@ const Header = (props) => {
                     </div>
                     <div className="header__search">
                         <Search
-                            placeholder="input search text"
+                            placeholder="Nhập tìm kiếm"
                             allowClear
                             enterButton="Search"
                             size="large"
