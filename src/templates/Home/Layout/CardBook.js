@@ -9,7 +9,7 @@ import { cartAction } from "store/action";
 
 const CardBook = ({ title, image, totalSize, id, totalBorrow, product }) => {
 
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     const history = useHistory();
 
     const [state, setState] = useState()
@@ -45,7 +45,7 @@ const CardBook = ({ title, image, totalSize, id, totalBorrow, product }) => {
         }
     
         localStorage.setItem('cart', JSON.stringify(arrayproduct));
-        dispath(cartAction.addToCart(arrayproduct))                   
+        dispatch(cartAction.addToCart(arrayproduct))                   
     } 
 
     const onMoveDetail = (id) => {

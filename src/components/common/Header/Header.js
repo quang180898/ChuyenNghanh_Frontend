@@ -19,7 +19,7 @@ const Header = (props) => {
 
     const store = useSelector(state => state);
     const { listCategory } = store.homeReducer;
-    const { addCart } = store.cartReducer
+    const { addCart , deleteCart} = store.cartReducer
 
     useEffect(() => {
         const cart =  JSON.parse(localStorage.getItem('cart'));
@@ -28,10 +28,22 @@ const Header = (props) => {
     }, [])
 
     useEffect(() => {
+        if (product) {
+            console.log(product)
+        }
+    }, [product])
+
+    useEffect(() => {
         if (addCart) {
             setProduct(addCart)
         }
     }, [addCart])
+
+    useEffect(() => {
+        if (deleteCart) {
+            setProduct(deleteCart)
+        }
+    }, [deleteCart])
 
     useEffect(() => {
         if (listCategory) {

@@ -6,17 +6,25 @@ import { CARD_EQUAL } from "contant";
 import { InputUpDown } from "components/base/Input";
 import CardWrap from "components/common/Card/CardWarp";
 import { useDispatch, useSelector } from "react-redux";
-import { bookAction } from "store/action";
+import { bookAction, cartAction } from "store/action";
 import { useParams } from "react-router-dom";
+import { showNotification } from "functions/Utils";
 
 const Detail = () => {
 
     const dispatch = useDispatch();
     const { bookId } = useParams()
     const [ state, setState ] = useState()
+    const [ cartBook, setCartBook] = useState()
 
-    const store = useSelector(state => state.bookReducer) 
-    const { detailBook } = store
+    const store = useSelector(state => state) 
+    const { detailBook } = store.bookReducer
+    const { addCart } = store.cartReducer
+
+    useEffect(() => {
+        const products = JSON.parse(localStorage.getItem('cart'));
+        setCartBook(products);
+    }, [])
 
     useEffect(() => {
         dispatch(bookAction.getDetailBook({book_id: bookId}))
@@ -31,10 +39,31 @@ const Detail = () => {
     }, [detailBook])
 
     useEffect(() => {
-        if(state) {
-            console.log(state)
+        const products = JSON.parse(localStorage.getItem('cart'));
+        setCartBook(products);
+    }, [addCart])
+
+    const addProductToCart = (id) => {
+
+        let cartCopy = [...cartBook];
+
+        const oldproduct = localStorage.getItem('cart') ? localStorage.getItem('cart') : "[]";
+        const arrayproduct = JSON.parse(oldproduct);  
+
+        let products = state
+
+        let existingItem = cartCopy.find(cartItem => cartItem.id == id);
+
+        if (existingItem) {
+            showNotification.error({ message: 'Sách đã có trong giỏ', title: 'waring' })
+        } else { 
+            showNotification.success({ message: 'Sách đã được thêm vào giỏ hàng', title: 'success' })
+            arrayproduct.push(products);
         }
-    }, [state])
+    
+        localStorage.setItem('cart', JSON.stringify(arrayproduct));
+        dispatch(cartAction.addToCart(arrayproduct))                   
+    } 
 
     return (
         <CardWrap isHeigth title="Sản phẩm">
@@ -85,6 +114,7 @@ const Detail = () => {
                         <ButtonStyle
                             className="btn-red"
                             label="Chọn sách"
+                            onClick={() => addProductToCart(bookId)}
                         >
 
                         </ButtonStyle>

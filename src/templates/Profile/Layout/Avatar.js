@@ -151,10 +151,10 @@ const Avatar = ({ data, setDataImage }) => {
         <CardWrap title="Ảnh đại diện" isHeigth>
             {//has avatar
                 state.imgOld ?
-                    <div id="div_image_preview">
+                    <div id="div_image_preview" className="avatar-news">
                         <img className="img-thumbnail user_avatar" src={`data:image/jpeg;base64,${state.imgOld}`}/>
                         <small className="mt-2 mb-1 fs-13">
-                            <u onClick={changeAvatar} className="cursor-pointer fw-medium uni_text_6d30ab change_avatar_profile">setting_change_avatar</u>
+                            <u onClick={changeAvatar} className="cursor-pointer fw-medium uni_text_6d30ab change_avatar_profile">Cập nhật ảnh đại diện</u>
                         </small>
                     </div>
                     :

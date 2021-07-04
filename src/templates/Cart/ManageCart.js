@@ -1,10 +1,8 @@
 import { ButtonStyle } from "components/base/Button";
-import { InputUpDown } from "components/base/Input";
-import { CardWarp } from "components/common/Card";
+import { CardNodata, CardWarp } from "components/common/Card";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { momoAction } from "store/action";
+import { cartAction, momoAction } from "store/action";
 
 const ManageCart = () => {
 
@@ -39,15 +37,18 @@ const ManageCart = () => {
 
     const removeItem = (itemId) => {
         let cartCopy = [].concat(state)
-        cartCopy = cartCopy.filter(item => item.id != itemId);
-        setState(cartCopy);
-        let cartString = JSON.stringify(cartCopy)
-        localStorage.setItem('cart', cartString)
+
+        let cartSort = cartCopy.filter(item => item.id != itemId);
+
+        setState(cartSort);
+
+        localStorage.setItem('cart', JSON.stringify(cartSort))
+        dispatch(cartAction.deleteToCart(cartSort))  
       }
 
     return (
         <CardWarp title="Giỏ hàng">
-            {state && state.map((item, index) => {
+            {state && state.length > 0 ? state.map((item, index) => {
                 return (
                     <div className="cart-product" key={index}>
                         <div className="cart-product__img">
@@ -72,7 +73,10 @@ const ManageCart = () => {
                         </div>
                     </div>
                 )
-            })}
+            })
+            : 
+            <CardNodata/>
+        }
         </CardWarp>
     )
 }

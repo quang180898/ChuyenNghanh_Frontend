@@ -7,7 +7,7 @@ import { formatDate, removeEmptyFromObj, RULES, showNotification } from 'functio
 import { authorAction, bookAction } from 'store/action';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { FORMAT_DATE_API, FORMAT_HOUR_API } from 'contant';
+import { FORMAT_DATE_API, FORMAT_HOUR_API, PAGES_URL } from 'contant';
 
 const CreateBookAccount = () => {
 
@@ -21,11 +21,12 @@ const CreateBookAccount = () => {
     useEffect(() => {
         if (addAccount) {
             if (addAccount.success) {
-                showNotification.success({ message: 'Thêm thành công', title: 'success' })
-                dispatch(authorAction.requestClearAction())
+                showNotification.success({ message: 'Thêm thành công', title: 'Thành công' })
+                history.push(PAGES_URL.accountBook.url)
             } else {
-                showNotification.error({ message: addAccount.detail, title: 'error' })
+                showNotification.error({ message: addAccount.detail, title: 'Thất bại' })
             }
+            dispatch(authorAction.requestClearAction())
         }
     }, [addAccount])
 
@@ -48,35 +49,28 @@ const CreateBookAccount = () => {
                 <Form
                     form={formcreateAccountBook}
                     onFinish={onSubmitInfo}
+                    layout="vertical"
                 >
                     <div className="row">
                         <div className="col-12 col-sm-6 col-xl-6">
-                            <div className="cus-input">
-                                <Form.Item name="book_id" rules={RULES.number.form()} >
-                                    <InputBase label="Mã sách" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="book_id" label="Mã sách" className="form-group" rules={RULES.number.form()} >
+                                <InputBase />
+                            </Form.Item>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-6">
-                            <div className="cus-input">
-                                <Form.Item name="user_id" rules={RULES.number.form()}>
-                                    <InputBase label="Mã người dùng" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="user_id" label="Mã người dùng" className="form-group" rules={RULES.number.form()}>
+                                <InputBase />
+                            </Form.Item>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-6">
-                            <div className="cus-input">
-                                <Form.Item name="date_borrow" rules={RULES.text.form()}>
-                                    <InputDatePicker label="Ngày mượn" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="date_borrow" label="Ngày mượn" className="form-group" rules={RULES.text.form()}>
+                                <InputDatePicker />
+                            </Form.Item>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-6">
-                            <div className="cus-input">
-                                <Form.Item name="date_return" rules={RULES.text.form()} >
-                                    <InputDatePicker label="Ngày trả" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="date_return" label="Ngày trả" className="form-group" rules={RULES.text.form()} >
+                                <InputDatePicker />
+                            </Form.Item>
                         </div>
                     </div>
                     <div className="text-right">
@@ -84,6 +78,7 @@ const CreateBookAccount = () => {
                             className="btn-purple"
                             label="Thêm sách người dùng"
                             htmlType="submit"
+                            style={{ minWidth: "190px" }}
                         />
                     </div>
                 </Form>

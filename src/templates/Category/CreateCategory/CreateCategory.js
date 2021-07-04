@@ -7,6 +7,7 @@ import { removeEmptyFromObj, RULES, showNotification } from 'functions/Utils';
 import { categoryAction } from 'store/action';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { PAGES_URL } from 'contant';
 
 const CreateCategory = () => {
 
@@ -20,9 +21,13 @@ const CreateCategory = () => {
     useEffect(() => {
         if (createCategory) {
             if (createCategory.success) {
-                showNotification.success({ message: 'Thêm thành công', title: 'success' })
-                dispatch(categoryAction.requestClearAction())
+                showNotification.success({ message: 'Thêm thành công', title: 'Thành công' })
+                history.push(PAGES_URL.category.url)
             }
+            else {
+                showNotification.error({ message: createCategory.detail, title: 'Thất bại' })
+            }
+            dispatch(categoryAction.requestClearAction())
         }
     }, [createCategory])
 
@@ -39,16 +44,17 @@ const CreateCategory = () => {
                 <Form
                     form={formCreateCategory}
                     onFinish={onSubmitInfo}
+                    layout="vertical"
                 >
                     <div className="cus-input">
-                        <Form.Item name="name" rules={RULES.textFullName.form()} >
-                            <InputBase label="Tên danh mục" />
+                        <Form.Item name="name" label="Tên danh mục" className="form-group" rules={RULES.textFullName.form()} >
+                            <InputBase  />
                         </Form.Item>
                     </div>
 
                     <div className="cus-input">
-                        <Form.Item name="desctription" >
-                            <InputTextArea label="Mô tả" />
+                        <Form.Item label="Mô tả" name="desctription" >
+                            <InputTextArea  />
                         </Form.Item>
                     </div>
                     <div className="text-right">
@@ -56,6 +62,7 @@ const CreateCategory = () => {
                             className="btn-purple"
                             label="Thêm danh mục"
                             htmlType="submit"
+                            style={{ minWidth: "190px" }}
                         />
                     </div>
                 </Form>

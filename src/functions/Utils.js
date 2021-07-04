@@ -561,6 +561,7 @@ export const RULES = {
         form: (isRequired = true) => {
             return [
                 ({ }) => ({
+                    required: true,
                     validator: (rule, value) => {
                         if (isRequired) {
                             if (value) {
@@ -595,6 +596,7 @@ export const RULES = {
         form: (isRequired = true, text = "vui lòng nhập!") => {
             return [
                 ({ }) => ({
+                    required: true,
                     validator: (rule, value) => {
                         if (isRequired) {
                             // text là input muốn show khi không thỏa dk, mặc định là vui lòng nhập!
@@ -633,6 +635,7 @@ export const RULES = {
         form: (isRequired = true, text = "vui lòng nhập!") => {
             return [
                 ({ }) => ({
+                    required: true,
                     validator: (rule, value) => {
                         if (isRequired) {
                             // text là input muốn show khi không thỏa dk, mặc định là vui lòng nhập!
@@ -699,6 +702,7 @@ export const RULES = {
             if (e) {
                 return [
                     ({ }) => ({
+                        required: true,
                         validator: (rule, value) => {
                             if (isRequired) {
                                 //nếu chưa nhập text thì thông báo lỗi
@@ -733,17 +737,17 @@ export const RULES = {
                 //password phải được nhập
                 {
                     required: isRequired,
-                    message: ('input_pass_null')
+                    message: ('Vui lòng nhập mật khẩu')
                 },
                 // password tối thiểu 8 ký tự
                 {
                     min: 8,
-                    message: ("input_pass_min")
+                    message: ("Mật khẩu quá ngắn!")
                 },
                 // password tối đa 25 ký tự
                 {
                     max: 25,
-                    message: ("input_pass_max")
+                    message: ("Mật khẩu quá dài!")
                 }
             ]
         },
@@ -764,6 +768,7 @@ export const RULES = {
         //kiểm tra ngày sinh
         form: (isRequired = true) => [
             ({ }) => ({
+                required: true,
                 validator: (rule, value) => {
                     if (isRequired) {
                         if (value) {

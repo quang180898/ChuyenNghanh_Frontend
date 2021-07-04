@@ -5,7 +5,7 @@ import CardWrap from "components/common/Card/CardWarp";
 import { RULES, showNotification } from "functions/Utils";
 import { InputBase, InputPassword } from "components/base/Input";
 import { ButtonStyle } from "components/base/Button";
-import { FILE_CONTENT_TYPE, MAX_SIZE_IMAGE, NOTIFICATION_TYPE } from "contant";
+import { FILE_CONTENT_TYPE, MAX_SIZE_IMAGE, NOTIFICATION_TYPE, PAGES_URL } from "contant";
 import { accountAction } from "store/action";
 import { useHistory } from "react-router";
 
@@ -17,6 +17,7 @@ const CreateUser = () => {
     const { newAccount } = accountReducer;
     const refFile = useRef()
     const [state, setState] = useState({ file: null, data: null, showPassword: false })
+    const [isShowAlert, setShowAlert] = useState(false)
     const [dataUser, setDataUser] = useState({
         name: '',
         user_name: '',
@@ -27,15 +28,27 @@ const CreateUser = () => {
     })
 
     useEffect(() => {
-        if(newAccount) {
-            if(newAccount.success) {
+        if (newAccount) {
+            if (newAccount.success) {
                 formCreateEditAccount.resetFields()
-                setState(e => ({...e, file: null}))
-                showNotification({ message: 'Đăng ký thành công', title: 'Thành công', type: NOTIFICATION_TYPE.error })
+                setState(e => ({ ...e, file: null }))
+                history.push(PAGES_URL.user.url)
+                showNotification.success({ message: 'Đăng ký thành công', title: 'Thành công' })
             }
+            else {
+                showNotification.error({ message: newAccount.detail, title: 'Thất bại' })
+            }
+            dispatch(accountAction.requestClearAction())
         }
 
     }, [newAccount])
+
+    const onClickCreateUser = () => {
+        if (state.file == null) {
+            setShowAlert(true)
+        }
+        formCreateEditAccount.submit()
+    }
 
     const onSubmitInfo = (data) => {
         if (data) {
@@ -52,10 +65,8 @@ const CreateUser = () => {
                 params.image = state.file
                 params.image_name = state.file.name
             }
-            if (password === rePassword) {
+            if (password === rePassword && state.file) {
                 dispatch(accountAction.createOrUpdateAccount(params))
-            } else {
-                showNotification({ message: 'Mật khẩu không trùng nhau', title: 'waring', type: NOTIFICATION_TYPE.error })
             }
         }
     }
@@ -68,86 +79,77 @@ const CreateUser = () => {
             }
             if (files && files.length > 0) {
                 setState({ ...state, file: files[0] })
+                setShowAlert(false)
+            } else {
+                setShowAlert(true)
             }
         }
     }
 
     return (
         <>
-        <CardWrap title="Thêm người dùng">
-            <div className="login__form register">
+            <CardWrap title="Thêm người dùng">
                 <Form
                     form={formCreateEditAccount}
                     onFinish={onSubmitInfo}
+                    layout="vertical"
                 >
                     <div className="row">
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="name" rules={RULES.textFullName.form()} >
-                                    <InputBase label="Họ tên" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="name" label="Họ tên" className="form-group" rules={RULES.textFullName.form()} >
+                                <InputBase />
+                            </Form.Item>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="userName" rules={RULES.text.form()} >
-                                    <InputBase label="Tên tài khoản" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="userName" label="Tên tài khoản" className="form-group" rules={RULES.text.form(true)} >
+                                <InputBase />
+                            </Form.Item>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="email" rules={RULES.email.form()} >
-                                    <InputBase label="Email" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="email" label="Email" className="form-group" rules={RULES.email.form(true)} >
+                                <InputBase />
+                            </Form.Item>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="phone" rules={RULES.phone.form()} >
-                                    <InputBase label="Số điện thoại" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="phone" label="Số điện thoại" className="form-group" rules={RULES.phone.form(true)} >
+                                <InputBase />
+                            </Form.Item>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="password" rules={RULES.password.form()} >
-                                    <InputPassword label="Mật khẩu" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="password" label="Mật khẩu" className="form-group" rules={RULES.password.form(true)} >
+                                <InputPassword />
+                            </Form.Item>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="rePassword" rules={RULES.password.form()} >
-                                    <InputPassword label="Nhập lại mật khẩu" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="rePassword" label="Nhập lại mật khẩu" className="form-group" rules={RULES.password.form(true)} >
+                                <InputPassword />
+                            </Form.Item>
                         </div>
-                        <div className="col-12">
-                            <div className="cus-input mb-3">
-                                <input type="file"
-                                    ref={refFile}
-                                    onChange={onChangeFile}
-                                    accept={`${FILE_CONTENT_TYPE.XPNG, FILE_CONTENT_TYPE.GIF, FILE_CONTENT_TYPE.JPEG}`}
-                                    required
-                                />
-                            </div>
+                        <div className="col-12 mb-3">
+                            <div class="fw-medium mb-1">Hình ảnh<span class="uni_star_e94c4c"> *</span></div>
+                            <input type="file"
+                                ref={refFile}
+                                onChange={onChangeFile}
+                                accept={`${FILE_CONTENT_TYPE.XPNG, FILE_CONTENT_TYPE.GIF, FILE_CONTENT_TYPE.JPEG}`}
+                            />
+                            <div className={`show-alert-upload ${isShowAlert ? "active" : ""}`}>Vui lòng chọn hình!</div>
                         </div>
-                    </div>
-                    <div className="text-right">
-                        <ButtonStyle
-                            className="btn-purple btn-create-user"
-                            label="Tạo tài khoản"
-                            htmlType="submit"
-                        />
+
                     </div>
                 </Form>
+                <div className="text-right">
+                    <ButtonStyle
+                        className="btn-purple btn-create-user"
+                        label="Tạo tài khoản"
+                        onClick={onClickCreateUser}
+                        style={{ minWidth: "190px" }}
+                    />
+                </div>
+            </CardWrap>
+            <div class="text-right mt-3">
+                <ButtonStyle className="btn-white" label="Trở về" onClick={() => history.goBack()} style={{ minWidth: "190px" }} />
             </div>
-        </CardWrap>
-        <div class="text-right mt-3">
-            <ButtonStyle className="btn-white" label="Trở về" onClick={() => history.goBack()} style={{ minWidth: "190px" }} />
-    </div>
-    </>
+        </>
     )
 }
 

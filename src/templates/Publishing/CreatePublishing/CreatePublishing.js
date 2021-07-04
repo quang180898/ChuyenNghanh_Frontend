@@ -7,6 +7,7 @@ import { removeEmptyFromObj, RULES, showNotification } from 'functions/Utils';
 import { publishingAction } from 'store/action';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { PAGES_URL } from 'contant';
 
 const CreatePublishing = () => {
 
@@ -20,9 +21,13 @@ const CreatePublishing = () => {
     useEffect(() => {
         if (createPublishing) {
             if (createPublishing.success) {
-                showNotification.success({ message: 'Thêm thành công', title: 'success' })
-                dispatch(publishingAction.requestClearAction())
+                showNotification.success({ message: 'Thêm thành công', title: 'Thành công' })
+                history.push(PAGES_URL.publishing.url)
+
+            } else {
+                showNotification.error({ message: createPublishing.detail, title: 'Thất bại' })
             }
+            dispatch(publishingAction.requestClearAction())
         }
     }, [createPublishing])
 
@@ -39,62 +44,50 @@ const CreatePublishing = () => {
                 <Form
                     form={formCreateAuthor}
                     onFinish={onSubmitInfo}
+                    layout="vertical"
                 >
                     <div className="row">
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="name" rules={RULES.textFullName.form()} >
-                                    <InputBase label="Tên nhà xuất bản" />
-                                </Form.Item>
-                            </div>
+                            <Form.Item name="name" label="Tên nhà xuất bản" className="form-group" rules={RULES.textFullName.form()} >
+                                <InputBase />
+                            </Form.Item>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="mobile" rules={RULES.phone.form()}>
-                                    <InputBase label="Số điện thoại" />
+                                <Form.Item name="mobile" label="Số điện thoại" className="form-group" rules={RULES.phone.form()}>
+                                    <InputBase  />
                                 </Form.Item>
-                            </div>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="mail">
-                                    <InputBase label="Email" />
+                                <Form.Item name="mail" className="form-group" label="Email">
+                                    <InputBase  />
                                 </Form.Item>
-                            </div>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="address" rules={RULES.text.form()}>
-                                    <InputBase label="Địa chỉ" />
+                                <Form.Item name="address" label="Địa chỉ" className="form-group" rules={RULES.text.form()}>
+                                    <InputBase  />
                                 </Form.Item>
-                            </div>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="fax">
-                                    <InputBase label="Fax" />
+                                <Form.Item name="fax" label="Fax" className="form-group">
+                                    <InputBase  />
                                 </Form.Item>
-                            </div>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="website">
-                                    <InputBase label="Website" />
+                                <Form.Item name="website" label="Website" className="form-group">
+                                    <InputBase  />
                                 </Form.Item>
-                            </div>
                         </div>
                         <div className="col-12">
-                            <div className="cus-input">
-                                <Form.Item name="description">
-                                    <InputTextArea label="Mô tả" />
+                                <Form.Item name="description" label="Mô tả" className="form-group">
+                                    <InputTextArea  />
                                 </Form.Item>
-                            </div>
                         </div>
                     </div>
                     <div className="text-right">
                         <ButtonStyle
                             className="btn-purple"
                             label="Thêm nhà xuất bản"
+                            style={{ minWidth: "190px" }}
                             htmlType="submit"
                         />
                     </div>

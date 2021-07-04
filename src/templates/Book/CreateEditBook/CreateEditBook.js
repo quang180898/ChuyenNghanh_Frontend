@@ -10,6 +10,7 @@ import { authorAction, bookAction, homeAction, publishingAction } from 'store/ac
 import { ListAuthorMapping, ListCategoryMapping, ListPublishingMapping } from './MapData';
 import { b64toBlob, RULES, showNotification } from 'functions/Utils';
 import { useHistory } from 'react-router-dom';
+import { PAGES_URL } from 'contant';
 
 const CreateEditBook = () => {
 
@@ -102,7 +103,10 @@ const CreateEditBook = () => {
         if (createUpdateBook) {
             if (createUpdateBook.success) {
                 showNotification.success({ title: "Thành công", message: 'Cập nhật thành công' })
+                history.push(PAGES_URL.book.url)
                 dispatch(bookAction.requestClearAction())
+            } else {
+                showNotification.error({ title: "Thất bại", message: createUpdateBook.detail })
             }
         }
     }, [createUpdateBook])
@@ -249,7 +253,7 @@ const CreateEditBook = () => {
                         name="description"
                         className="form-group"
                         label="Mô tả"
-                        rules={RULES.text.form()}
+                        rules={RULES.text.form(false)}
                     >
                         <InputTextArea />
                     </Form.Item>

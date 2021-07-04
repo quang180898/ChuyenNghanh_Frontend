@@ -7,6 +7,7 @@ import { removeEmptyFromObj, RULES, showNotification } from 'functions/Utils';
 import { authorAction } from 'store/action';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { PAGES_URL } from 'contant';
 
 const CreateAuthor = () => {
 
@@ -20,9 +21,13 @@ const CreateAuthor = () => {
     useEffect(() => {
         if (createAuthor) {
             if (createAuthor.success) {
-                showNotification.success({ message: 'Thêm thành công', title: 'success' })
-                dispatch(authorAction.requestClearAction())
+                showNotification.success({ message: 'Thêm thành công', title: 'Thành công' })
+                history.push(PAGES_URL.author.url)    
             }
+            else {
+                showNotification.error({ message: createAuthor.detail, title: 'Thất bại' })
+            }
+            dispatch(authorAction.requestClearAction())
         }
     }, [createAuthor])
 
@@ -39,28 +44,23 @@ const CreateAuthor = () => {
                 <Form
                     form={formCreateAuthor}
                     onFinish={onSubmitInfo}
+                    layout="vertical"
                 >
                     <div className="row">
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="name" rules={RULES.textFullName.form()} >
-                                    <InputBase label="Họ tên" />
+                                <Form.Item name="name" label="Họ tên" className="form-group" rules={RULES.textFullName.form()} >
+                                    <InputBase />
                                 </Form.Item>
-                            </div>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="mobile" >
-                                    <InputBase label="Số điện thoại" />
+                                <Form.Item name="mobile" label="Số điện thoại" className="form-group" rules={RULES.phone.form()}>
+                                    <InputBase  />
                                 </Form.Item>
-                            </div>
                         </div>
                         <div className="col-12 col-sm-6 col-xl-4">
-                            <div className="cus-input">
-                                <Form.Item name="mail" >
-                                    <InputBase label="Email" />
+                                <Form.Item name="mail" label="Email" className="form-group" rules={RULES.email.form()}>
+                                    <InputBase  />
                                 </Form.Item>
-                            </div>
                         </div>
                     </div>
                     <div className="text-right">
@@ -68,6 +68,7 @@ const CreateAuthor = () => {
                             className="btn-purple"
                             label="Thêm tác giả"
                             htmlType="submit"
+                            style={{ minWidth: "190px" }}
                         />
                     </div>
                 </Form>

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { bookAction } from 'store/action';
 import { SpinLoading } from 'components/base/Loading';
+import { IMAGE_URL } from 'contant';
 
 const Related = () => {
 
@@ -24,6 +25,7 @@ const Related = () => {
     useEffect(() => {
         if (sameCategory) {
             if (sameCategory.success) {
+                window.scrollTo(0,0)
                 setState(sameCategory.detail)
             }
         }
@@ -38,10 +40,14 @@ const Related = () => {
         accessibility: true,
     }
     const NextArrow = ({ currentSlide, slideCount, ...props }) => (
-        <div {...props}> <i class="las la-chevron-circle-right"></i></div>
+        <div {...props}>
+             <img src={IMAGE_URL + "slick-arrows.png"}></img>
+        </div>
     );
     const PrevArrow = ({ currentSlide, slideCount, ...props }) => (
-        <div {...props}> <i class="las la-chevron-circle-left"></i></div>
+        <div {...props}>
+            <img src={IMAGE_URL + "slick-arrows.png"}></img>  
+        </div>
     );
 
     return (

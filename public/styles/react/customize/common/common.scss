@@ -92,6 +92,17 @@
 
 .related-book {
 	position: relative;
+	.slider {
+		.slick-prev {
+			top: 35%;
+			left: -20px;
+		}
+		.slick-next {
+			top: 35%;
+			right: -20px;
+		}
+
+	} 
     .slick-track {
         display: flex;
     }

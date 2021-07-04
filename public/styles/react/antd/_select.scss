@@ -6,16 +6,17 @@
 }
 
 .ant-select-selection-placeholder {
+    @include flexbox;
+    @include align-items(center);
     @include fw-light;
-    font-size: 16px;
-    color: #304460;
+    color: #8b8b8b;
+    font-style: italic;
 }
 
 .ant-select-selector {
     @include flexbox;
     @include align-items(center);
     @include fw-normal;
-    font-size: 16px;
     min-height: 40px;
     height: auto;
     width: 100%;
