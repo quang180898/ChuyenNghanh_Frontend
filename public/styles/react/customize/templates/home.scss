@@ -42,9 +42,8 @@
 
     .slick-disabled {
         .las {
-            opacity: .3;
+            opacity: 0.3;
         }
-
     }
 
     .slick-arrow {
@@ -75,7 +74,6 @@
 
     .slick-slide {
         padding: 2px 11px;
-        max-height: 400px;
         height: 100%;
     }
 
@@ -98,7 +96,7 @@
             &.slick-active {
                 button {
                     &::before {
-                        opacity: .75;
+                        opacity: 0.75;
                         color: #000;
                     }
                 }
@@ -123,7 +121,7 @@
                     height: 20px;
                     content: "\2022";
                     text-align: center;
-                    opacity: .25;
+                    opacity: 0.25;
                     color: #000;
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
@@ -131,7 +129,6 @@
             }
         }
     }
-
 }
 
 .home__slider {
@@ -147,41 +144,36 @@
     }
 }
 
-.item{
+.item {
     text-align: center;
     width: 100%;
+    height: 100%;
     position: relative;
     transition: all 0.3s;
     overflow: hidden;
-    // @media(max-width:1400px){
-    //     width: calc(33.3% - 25px);
-    // }
-    // @media(max-width:767px){
-    //     width: calc(50% - 25px);
-    // }
-    // @media(max-width:480px){
-    //     width: 100%;
-    //     margin-right: 0;
-    // }
-    .image{
-        height: 204px;
+    .image {
+        @include flex_center;
         margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 100%;
+        padding-top: 100%;
         position: relative;
-        img{
-            height: 100%;
+        img {
+            @include transform(translate(-50%, -50%));
+            object-fit: contain;
             width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
         }
-        .link{
+        .link {
             opacity: 0;
             z-index: -1;
             height: 40px;
             position: absolute;
             left: 50%;
             top: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             z-index: 1;
             height: 40px;
             width: 124px;
@@ -192,33 +184,29 @@
             align-items: center;
             justify-content: center;
         }
-        &::before{
+        &::before {
             position: absolute;
-            content: '';
+            content: "";
             background-color: rgba(0, 0, 0, 0.2);
             width: 100%;
             height: 0;
             left: 50%;
             top: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             transition: all 0.3s;
             z-index: 2;
         }
-
     }
-    &:hover{
-        .link{
+    &:hover {
+        .link {
             opacity: 1;
             z-index: 3;
         }
-        .image{
-            &::before{
+        .image {
+            &::before {
                 // border: solid 1px #1e9ff2;
                 height: 100%;
             }
         }
-
-   }
-
-
+    }
 }
