@@ -152,12 +152,12 @@
     transition: all 0.3s;
     overflow: hidden;
     .image {
+        @include flex_center;
         margin-bottom: 10px;
-        height: 300px;
         position: relative;
+        height: 280px;
         img {
-            width: 100%;
-            height: 100%;
+            max-width: 100%;
         }
         .link {
             opacity: 0;
@@ -197,7 +197,6 @@
         }
         .image {
             &::before {
-                // border: solid 1px #1e9ff2;
                 height: 100%;
             }
         }

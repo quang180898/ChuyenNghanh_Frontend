@@ -12,7 +12,6 @@ const CardStyle = (props) => {
                 title={getValueAndSetDefault(title, '')}>       {/*Text Card title  */}
                 {getValueAndSetDefault(action, '')}                      {/*Action nếu có */}
             </HeadingCard>
-
             {props.children}                                            {/*Content card */}
         </Card>
     )

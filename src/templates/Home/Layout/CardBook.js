@@ -55,19 +55,17 @@ const CardBook = ({ title, image, totalSize, id, totalBorrow, product }) => {
     return (
         <div className="book">
             <Card
-                hoverable
-                cover
             >
                 <div className="item">
-                    <div className="image">
-                        <img src={`data:image/jpeg;base64,${image}`} />
+                    <figure className="image">
+                        <img src={`data:image/png;base64,${image}`} />
                         <a className="link" onClick={() => onMoveDetail(id)}>Chi Tiết</a>
-                    </div>
-                    <div className="text-center">{title}</div>
-                    <div className="support-book">
-                        <ButtonStyle className="btn-white" label="Mượn sách" onClick={() => addProductToCart(id)}></ButtonStyle>
-                        {totalSize ? <span>Số lượng: {totalSize}</span> : <span>Lượt mượn: {totalBorrow}</span>}
-                    </div>
+                    </figure>
+                </div>
+                <div className="text-center">{title}</div>
+                <div className="support-book">
+                    <ButtonStyle className="btn-white" label="Mượn sách" onClick={() => addProductToCart(id)}></ButtonStyle>
+                    {totalSize ? <span>Số lượng: {totalSize}</span> : <span>Lượt mượn: {totalBorrow}</span>}
                 </div>
             </Card>
         </div>
