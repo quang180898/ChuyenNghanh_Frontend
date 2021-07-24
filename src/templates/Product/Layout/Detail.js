@@ -68,12 +68,12 @@ const Detail = () => {
     return (
         <CardWrap isHeigth title="Sản phẩm">
             <div className='row'>
-                <div className={`col-lg-5 col-md-5 col-sm-12 ${CARD_EQUAL}`}>
+                <div className={`col-lg-3 col-md-5 col-sm-12 ${CARD_EQUAL}`}>
                     <div className="list-image">
                         <img src={`data:image/jpeg;base64, ${state && state.image_bytes}`} />
                     </div>
                 </div>
-                <div className={`col-lg-7 col-md-7 col-sm-12 ${CARD_EQUAL}`}>
+                <div className={`col-lg-9 col-md-7 col-sm-12 ${CARD_EQUAL}`}>
                     <div className="detail-product">
                         <div className="detail-product__header">
                             <span className="label-author">Tác giả: </span>
