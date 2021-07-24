@@ -53,22 +53,23 @@ const CardBook = ({ title, image, totalSize, id, totalBorrow, product }) => {
     }
 
     return (
-        <div className="book">
-            <Card
-            >
+
+        <Card
+        >
+            <div className="book">
                 <div className="item">
-                    <figure className="image">
-                        <img src={`data:image/png;base64,${image}`} />
+                    <div className="image">
+                        <img src={`data:image/jpeg;base64,${image}`} />
                         <a className="link" onClick={() => onMoveDetail(id)}>Chi Tiết</a>
-                    </figure>
+                    </div>
                 </div>
-                <div className="text-center">{title}</div>
+                <div className="text-center mt-2">{title}</div>
                 <div className="support-book">
                     <ButtonStyle className="btn-white" label="Mượn sách" onClick={() => addProductToCart(id)}></ButtonStyle>
                     {totalSize ? <span>Số lượng: {totalSize}</span> : <span>Lượt mượn: {totalBorrow}</span>}
                 </div>
-            </Card>
-        </div>
+            </div>
+        </Card>
     )
 }
 

@@ -80,42 +80,36 @@ const Home = () => {
         callListBook({ page: value })
     }
     return (
-
-        <>
+        <SpinLoading spinning={isLoading} className="loading_full t-0 l-0">
             <div className="home">
                 {!filterHeader ?
                     <SliderImg />
                     : null
                 }
-            </div>
-            <div className="home">
-                <SpinLoading spinning={isLoading} className="loading_full t-0 l-0">
-                    <CardStyle title="Danh sách">
-                        <div className="row">
-                            {state.listBook && state.listBook.length > 0 ? state.listBook.map((value) => {
-                                return (
-                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex flex-column" >
-                                        <CardBook
-                                            key={value.id}
-                                            product={value}
-                                            id={value.id}
-                                            title={value.name}
-                                            image={value.image_bytes}
-                                            totalSize={value.quantity}
-                                        />
-                                    </div>
-                                )
-                            })
-                                :
-                                <CardNodata />
-                            }
-                        </div>
-                        {state.listBook?.length > 0 && <PaginationSingle data={LoadDataPaging(state.total_record, state.page, state.total_page, limit)} onChange={onPageChange} />}
-                    </CardStyle>
-                </SpinLoading>
-            </div>
-        </>
+                <CardStyle title="Danh sách">
+                    <div className="row">
+                        {state.listBook && state.listBook.length > 0 ? state.listBook.map((value) => {
+                            return (
+                                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex flex-column" key={value.id}>
+                                    <CardBook
+                                        product={value}
+                                        id={value.id}
+                                        title={value.name}
+                                        image={value.image_bytes}
+                                        totalSize={value.quantity}
+                                    />
+                                </div>
+                            )
+                        })
+                            :
+                            <CardNodata />
+                        }
+                    </div>
+                    {state.listBook?.length > 0 && <PaginationSingle data={LoadDataPaging(state.total_record, state.page, state.total_page, limit)} onChange={onPageChange} />}
 
+                </CardStyle>
+            </div>
+        </SpinLoading>
     )
 }
 
