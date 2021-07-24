@@ -12,13 +12,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bookAction } from 'store/action';
 
 const Container = () => {
+
     // const dispatch = useDispatch();
     // const location = useLocation();
     // const urlCurrent = location.pathname.split('/')[1]
 
     // const store = useSelector(state => state.bookReducer)
     // const { addAccount } = store;
-    
+
     // useEffect(() => {
     //     if (addAccount) {
     //         if (addAccount.success) {
@@ -45,24 +46,24 @@ const Container = () => {
     //         }
     //     }
     // },[urlCurrent])
-   
-    
+
+
     return (
         <div className="container-fluid">
             <Suspense fallback={''}>
                 <Switch >
+                    {TOKEN == null
+                        &&
+                        <Redirect from={"/profile/:id"} to={PAGES_URL.login.url} />
+                    }
                     {MAIN.map((data, idx) => (
                         <Route exact key={idx} path={data.path}>
                             <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                                 <data.component />
                             </Animated>
-                            {TOKEN == null
-                                &&
-                                <Redirect from={PAGES_URL.profile.url + "/:accountId"} to={PAGES_URL.login.url} />
-                            }
                         </Route>
                     ))}
-                    <Redirect from={PAGES_URL.payment.url} to={PAGES_URL.home.url}/>
+                    <Redirect from={PAGES_URL.payment.url} to={PAGES_URL.home.url} />
                     <Route component={PageNotFound} />
                 </Switch>
             </Suspense>

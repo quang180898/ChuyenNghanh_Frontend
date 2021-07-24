@@ -28,14 +28,14 @@ const CardBook = ({ title, image, totalSize, id, totalBorrow, product }) => {
     }, [addCart])
 
     const addProductToCart = (id) => {
-
-        let cartCopy = [...state];
-
+        let cartCopy = state;
         const oldproduct = localStorage.getItem('cart') ? localStorage.getItem('cart') : "[]";
         const arrayproduct = JSON.parse(oldproduct);
         let products = product
-
-        let existingItem = cartCopy.find(cartItem => cartItem.id == id);
+        let existingItem
+        if (cartCopy != null) {
+            existingItem = cartCopy.find(cartItem => cartItem.id == id);
+        }
 
         if (existingItem) {
             showNotification.error({ message: 'Sách đã có trong giỏ', title: 'waring' })

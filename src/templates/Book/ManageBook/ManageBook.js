@@ -116,7 +116,7 @@ const ManageBook = () => {
                                 <tr key={index}>
                                     <td style={{width: "5%"}}>{index + 1}</td>
                                     <td style={{width: "10%"}}><Link to={PAGES_URL.book.url + "/" + item.id} className="">{item.name}</Link></td>
-                                    <td style={{width: "15%"}}><img src={`data:image/jpeg;base64,${item.image_bytes}`}/></td>
+                                    <td style={{width: "15%"}}><img width="200px" height="200px" src={`data:image/jpeg;base64,${item.image_bytes}`}/></td>
                                     <td style={{width: "10%"}}>{item.price}</td>
                                     <td style={{width: "10%"}}>{item.quantity}</td>
                                     <td style={{width: "10%"}}>{item.category_name}</td>

@@ -14,10 +14,10 @@ const Detail = () => {
 
     const dispatch = useDispatch();
     const { bookId } = useParams()
-    const [ state, setState ] = useState()
-    const [ cartBook, setCartBook] = useState()
+    const [state, setState] = useState()
+    const [cartBook, setCartBook] = useState()
 
-    const store = useSelector(state => state) 
+    const store = useSelector(state => state)
     const { detailBook } = store.bookReducer
     const { addCart } = store.cartReducer
 
@@ -27,12 +27,12 @@ const Detail = () => {
     }, [])
 
     useEffect(() => {
-        dispatch(bookAction.getDetailBook({book_id: bookId}))
+        dispatch(bookAction.getDetailBook({ book_id: bookId }))
     }, [bookId])
 
     useEffect(() => {
-        if(detailBook) {
-            if(detailBook.success) {
+        if (detailBook) {
+            if (detailBook.success) {
                 setState(detailBook.detail)
             }
         }
@@ -44,33 +44,33 @@ const Detail = () => {
     }, [addCart])
 
     const addProductToCart = (id) => {
+            let cartCopy = cartBook;
 
-        let cartCopy = [...cartBook];
+            const oldproduct = localStorage.getItem('cart') ? localStorage.getItem('cart') : "[]";
+            const arrayproduct = JSON.parse(oldproduct);
 
-        const oldproduct = localStorage.getItem('cart') ? localStorage.getItem('cart') : "[]";
-        const arrayproduct = JSON.parse(oldproduct);  
+            let products = state
+            let existingItem
+            if (cartCopy != null) {
+                existingItem = cartCopy.find(cartItem => cartItem.id == id);
+            }
+            if (existingItem) {
+                showNotification.error({ message: 'Sách đã có trong giỏ', title: 'waring' })
+            } else {
+                showNotification.success({ message: 'Sách đã được thêm vào giỏ hàng', title: 'success' })
+                arrayproduct.push(products);
+            }
 
-        let products = state
-
-        let existingItem = cartCopy.find(cartItem => cartItem.id == id);
-
-        if (existingItem) {
-            showNotification.error({ message: 'Sách đã có trong giỏ', title: 'waring' })
-        } else { 
-            showNotification.success({ message: 'Sách đã được thêm vào giỏ hàng', title: 'success' })
-            arrayproduct.push(products);
-        }
-    
-        localStorage.setItem('cart', JSON.stringify(arrayproduct));
-        dispatch(cartAction.addToCart(arrayproduct))                   
-    } 
+            localStorage.setItem('cart', JSON.stringify(arrayproduct));
+            dispatch(cartAction.addToCart(arrayproduct))
+    }
 
     return (
         <CardWrap isHeigth title="Sản phẩm">
             <div className='row'>
                 <div className={`col-lg-5 col-md-5 col-sm-12 ${CARD_EQUAL}`}>
                     <div className="list-image">
-                        <img src={`data:image/jpeg;base64, ${state && state.image_bytes}`}/>
+                        <img src={`data:image/jpeg;base64, ${state && state.image_bytes}`} />
                     </div>
                 </div>
                 <div className={`col-lg-7 col-md-7 col-sm-12 ${CARD_EQUAL}`}>
