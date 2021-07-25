@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useHistory, useLocation } from "react-router-dom";
-import { homeAction } from "store/action";
+import { bookAction, homeAction } from "store/action";
 import { CardBook, SliderImg } from "./Layout";
 import { CardNodata } from "components/common/Card";
 import { SpinLoading } from "components/base/Loading";
@@ -65,6 +65,7 @@ const Home = () => {
             } else {
                 showNotification.error({ message: addAccount.detail, title: 'error' })
             }
+            dispatch(bookAction.requestClearAction())
         }
     }, [addAccount])
 
