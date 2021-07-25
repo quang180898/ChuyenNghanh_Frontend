@@ -17,19 +17,6 @@ const Container = () => {
     const location = useLocation();
     const urlCurrent = location.pathname.split('/')[1]
 
-    const store = useSelector(state => state.bookReducer)
-    const { addAccount } = store;
-
-    useEffect(() => {
-        if (addAccount) {
-            if (addAccount.success) {
-                showNotification.success({ message: 'Thanh toán sách thành công', title: 'success' })
-            } else {
-                showNotification.error({ message: addAccount.detail, title: 'error' })
-            }
-        }
-    }, [addAccount])
-
     useEffect(() => {
         if(urlCurrent === "notify") {
             const payment = getLocalStore('payment')
