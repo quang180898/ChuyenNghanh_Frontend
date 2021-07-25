@@ -28,6 +28,7 @@ const Home = () => {
     const store = useSelector(state => state);
     const { filterHeader } = store.commonReducer;
     const { listBook } = store.homeReducer;
+    const { addAccount } = store.bookReducer;
 
     const limit = 8;
 
@@ -56,6 +57,16 @@ const Home = () => {
             dispatch(homeAction.loadListBook({ limit: limit, page: state.page, category_id: categoryId }))
         }
     }, [filterHeader])
+
+    useEffect(() => {
+        if (addAccount) {
+            if (addAccount.success) {
+                showNotification.success({ message: 'Thanh toán sách thành công', title: 'success' })
+            } else {
+                showNotification.error({ message: addAccount.detail, title: 'error' })
+            }
+        }
+    }, [addAccount])
 
     useEffect(() => {
         if (categoryId) {
