@@ -2,7 +2,7 @@ import { CardStyle } from "components/base/Card";
 import { StaticLoading } from "components/base/Loading";
 import { PaginationSingle } from "components/base/Pagination";
 import { PAGES_URL } from "contant";
-import { LoadDataPaging } from "functions/Utils";
+import { LoadDataPaging, showNotification } from "functions/Utils";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";

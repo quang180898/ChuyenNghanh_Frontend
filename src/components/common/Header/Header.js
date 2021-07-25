@@ -83,6 +83,7 @@ const Header = (props) => {
     const logOut = () => {
         // xóa data storage 
         getLocalStore('user', true)
+        getLocalStore('payment', true)
         //reload page and auto run /login
         window.location.reload()
     }
