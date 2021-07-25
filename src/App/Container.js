@@ -18,17 +18,17 @@ const Container = () => {
     const urlCurrent = location.pathname.split('/')[1]
 
     const store = useSelector(state => state.bookReducer)
-    const { addAccount } = store;
+    // const { addAccount } = store;
 
-    useEffect(() => {
-        if (addAccount) {
-            if (addAccount.success) {
-                showNotification.success({ message: 'Thanh toán sách thành công', title: 'success' })
-            } else {
-                showNotification.error({ message: addAccount.detail, title: 'error' })
-            }
-        }
-    }, [addAccount])
+    // useEffect(() => {
+    //     if (addAccount) {
+    //         if (addAccount.success) {
+    //             showNotification.success({ message: 'Thanh toán sách thành công', title: 'success' })
+    //         } else {
+    //             showNotification.error({ message: addAccount.detail, title: 'error' })
+    //         }
+    //     }
+    // }, [addAccount])
 
     useEffect(() => {
         if(urlCurrent === "notify") {
