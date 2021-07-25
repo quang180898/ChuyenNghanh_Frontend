@@ -117,4 +117,8 @@ export const PAGES_URL = {
         url: '/payment',
         title: 'payment'
     },
+    notify: {
+        url: '/notify',
+        title: 'notify'
+    },
 }

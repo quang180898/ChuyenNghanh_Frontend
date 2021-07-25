@@ -64,6 +64,7 @@ const Container = () => {
                         </Route>
                     ))}
                     <Redirect from={PAGES_URL.payment.url} to={PAGES_URL.home.url} />
+                    <Redirect from={PAGES_URL.notify.url} to={PAGES_URL.home.url} />
                     <Route component={PageNotFound} />
                 </Switch>
             </Suspense>
