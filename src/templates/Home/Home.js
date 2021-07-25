@@ -2,7 +2,7 @@ import { CardStyle } from "components/base/Card";
 import { StaticLoading } from "components/base/Loading";
 import { PaginationSingle } from "components/base/Pagination";
 import { PAGES_URL } from "contant";
-import { LoadDataPaging, showNotification } from "functions/Utils";
+import { LoadDataPaging } from "functions/Utils";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -28,7 +28,6 @@ const Home = () => {
     const store = useSelector(state => state);
     const { filterHeader } = store.commonReducer;
     const { listBook } = store.homeReducer;
-    const { addAccount } = store.bookReducer;
 
     const limit = 8;
 
@@ -57,16 +56,6 @@ const Home = () => {
             dispatch(homeAction.loadListBook({ limit: limit, page: state.page, category_id: categoryId }))
         }
     }, [filterHeader])
-
-    useEffect(() => {
-        if (addAccount) {
-            if (addAccount.success) {
-                showNotification.success({ message: 'Thanh toán sách thành công', title: 'success' })
-            } else {
-                showNotification.error({ message: addAccount.detail, title: 'error' })
-            }
-        }
-    }, [addAccount])
 
     useEffect(() => {
         if (categoryId) {
