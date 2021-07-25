@@ -18,7 +18,7 @@ const Container = () => {
     const urlCurrent = location.pathname.split('/')[1]
 
     useEffect(() => {
-        if(urlCurrent === "payment") {
+        if(urlCurrent === "notify") {
             const payment = getLocalStore('payment')
             const user = getLocalStore('user')
             let data = {
