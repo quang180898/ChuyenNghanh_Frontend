@@ -77,6 +77,7 @@ export default (state = initialState, action) => {
                 createUpdateBook: null,
                 detailBook: null,
                 addAccount: null,
+                deleteBook: null,
                 isLoading: false,
                 success: false,
                 error: false,

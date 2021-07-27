@@ -39,8 +39,8 @@ const ManageBookAccount = () => {
                 setStateLocal(e => ({...e, isShowModal: false}))
                 showNotification.success({ message: 'Xoá thành công', title: 'success' })
             }
+            dispatch(bookAction.requestClearAction())
         }
-
     }, [deleteAccountBook])
 
 

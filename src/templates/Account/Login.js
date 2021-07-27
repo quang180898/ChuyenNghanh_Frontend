@@ -74,12 +74,12 @@ const Login = () => {
                         <div className="title">Sign in</div>
                         <div className="cus-input">
                             <Form.Item name="username" rules={RULES.text.form()} >
-                                <InputBase label="Username" onChange={e => setState({ ...state, username: e.target.value })} />
+                                <InputBase label="Username" placeholder="Input" onChange={e => setState({ ...state, username: e.target.value })} />
                             </Form.Item>
                         </div>
                         <div className="cus-input">
                             <Form.Item name="password" rules={RULES.password.form()} >
-                                <InputPassword label="Password" onChange={e => setState({ ...state, password: e.target.value })} />
+                                <InputPassword label="Password" placeholder="Input" onChange={e => setState({ ...state, password: e.target.value })} />
                             </Form.Item>
                         </div>
                         <div className="forgot-password">

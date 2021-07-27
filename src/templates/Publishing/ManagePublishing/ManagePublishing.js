@@ -40,6 +40,7 @@ const ManagePublishing = () => {
                 setStateLocal(e => ({...e, isShowModal: false}))
                 showNotification.success({ message: 'Xoá thành công', title: 'success' })
             }
+            dispatch(publishingAction.requestClearAction())
         }
 
     }, [deletePublishing])

@@ -38,6 +38,7 @@ const ManageUser = () => {
                 setState(stateLocal.saveData)
                 setStateLocal(e => ({...e, isShowModal: false}))
             }
+            dispatch(accountAction.requestClearAction())
         }
         
     }, [deleteUser])

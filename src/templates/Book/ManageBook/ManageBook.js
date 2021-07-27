@@ -39,6 +39,7 @@ const ManageBook = () => {
                 setState(stateLocal.saveData)
                 setStateLocal(e => ({...e, isShowModal: false}))
             }
+            dispatch(bookAction.requestClearAction())
         }
 
     }, [deleteBook])

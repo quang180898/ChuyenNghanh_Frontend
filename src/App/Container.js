@@ -15,10 +15,13 @@ const Container = () => {
 
     const dispatch = useDispatch();
     const location = useLocation();
-    const urlCurrent = location.pathname.split('/')[1]
+    // const urlCurrent = location.pathname.split('/')[1]
+    // console.log(location)
+    const queryParams = new URLSearchParams(location.search);
+    const messageParams = queryParams.get('message');
 
     useEffect(() => {
-        if(urlCurrent === "notify") {
+        if(messageParams === "Success") {
             const payment = getLocalStore('payment')
             const user = getLocalStore('user')
             let data = {
@@ -32,7 +35,7 @@ const Container = () => {
                 dispatch(bookAction.createAccountBook(params))
             }
         }
-    },[urlCurrent])
+    },[messageParams])
 
 
     return (
@@ -51,7 +54,6 @@ const Container = () => {
                         </Route>
                     ))}
                     <Redirect from={PAGES_URL.payment.url} to={PAGES_URL.home.url} />
-                    <Redirect from={PAGES_URL.notify.url} to={PAGES_URL.home.url} />
                     <Route component={PageNotFound} />
                 </Switch>
             </Suspense>
